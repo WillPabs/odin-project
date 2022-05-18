@@ -17,10 +17,11 @@ function addBookToLibrary(book) {
 
 function displayMyLibrary() {
     let index = 0
-    for (let book of myLibrary) {
-        let bookDiv = document.getElementsByClassName('book')[index++]
-        bookDiv.innerHTML = book.info()
-    }
+    let cardDivElements = document.querySelectorAll('.card')
+    myLibrary.forEach(book => {
+        cardDivElements[index].children.item(0).innerHTML = book.title
+        cardDivElements[index++].children.item(1).innerHTML = book.info()
+    })
 }
 const potter = new Book('Harry Potter', 'J.K. Rowling', 500, false)
 const frost = new Book('Jack Frost', 'Santa Claus', 100, false)

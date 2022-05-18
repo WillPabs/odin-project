@@ -1,9 +1,10 @@
 .grid-container {
     display: grid;
-    grid-template-rows: 90px 90px 90px;
-    grid-template-columns: 110px 110px 110px;
+    grid-template-rows: 190px 190px 190px;
+    grid-template-columns: 140px 140px 140px;
+    gap: 50px;
 }
 
-.book {
+.card {
     border: 1px solid;
 }
