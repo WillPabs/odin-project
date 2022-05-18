@@ -33,7 +33,7 @@ function displayBook(book) {
         console.log(match)
         if (match >= 0) {
             myLibrary.splice(match, 1)
-            bookContainer.remove()
+            bookContainer.parentElement.remove()
         } else {
             console.log('No match found')
         }
@@ -46,10 +46,12 @@ function displayBook(book) {
 }
 
 function displayMyLibrary() {
-    let index = 0
-    let cardDivElements = document.querySelectorAll('.card')
+    let books = document.querySelector('.grid-container')
     myLibrary.forEach(book => {
-        cardDivElements[index++].appendChild(displayBook(book))
+        const card = document.createElement('div')
+        card.className = 'card'
+        card.append(displayBook(book))
+        books.appendChild(card)
     })
 }
 
