@@ -9,6 +9,10 @@ function Book(title, author, pages, read) {
     }
 }
 
+Book.prototype.changeReadStatus = () => {
+    this.read ? this.read = false : this.read = true
+}
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
@@ -25,12 +29,24 @@ function displayBook(book) {
     bookInfo.className = 'book-info'
     bookInfo.innerHTML = book.info()
 
+    let readContainer = document.createElement('div')
+    let readStatus = document.createElement('input')
+    readStatus.className = 'read-status'
+    readStatus.type = 'checkbox'
+    let readStatusLabel = document.createElement('label')
+    readStatusLabel.textContent = 'Read'
+    readStatus.addEventListener('click', () => {
+        book.changeReadStatus()
+    })
+    readContainer.append(readStatus)
+    readContainer.append(readStatusLabel)
+
+
     let removeBookButton = document.createElement('button')
     removeBookButton.innerHTML = 'Remove from Library'
     removeBookButton.id = `${book.title}`
     removeBookButton.addEventListener('click', () => {
         const match = myLibrary.findIndex(book => book.title === removeBookButton.id)
-        console.log(match)
         if (match >= 0) {
             myLibrary.splice(match, 1)
             bookContainer.parentElement.remove()
@@ -41,6 +57,7 @@ function displayBook(book) {
 
     bookContainer.append(bookTitle)
     bookContainer.append(bookInfo)
+    bookContainer.append(readContainer)
     bookContainer.append(removeBookButton)
     return bookContainer
 }
