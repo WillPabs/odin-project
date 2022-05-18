@@ -13,16 +13,28 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+function displayBook(book) {
+    let bookContainer = document.createElement('div')
+    bookContainer.className = 'book-container'
+
+    let bookTitle = document.createElement('h2')
+    bookTitle.className = 'book-title'
+    bookTitle.innerHTML = book.title
+
+    let bookInfo = document.createElement('p')
+    bookInfo.className = 'book-info'
+    bookInfo.innerHTML = book.info()
+
+    bookContainer.append(bookTitle)
+    bookContainer.append(bookInfo)
+    return bookContainer
+}
+
 function displayMyLibrary() {
     let index = 0
     let cardDivElements = document.querySelectorAll('.card')
     myLibrary.forEach(book => {
-        cardDivElements[index].children.item(0).innerHTML = book.title
-        cardDivElements[index].children.item(1).innerHTML = book.info()
-        let removeBookButton = document.createElement('button')
-        removeBookButton.innerHTML = "Remove from Library"
-        cardDivElements[index].children.item(1).append(removeBookButton)
-        index++
+        cardDivElements[index++].appendChild(displayBook(book))
     })
 }
 
