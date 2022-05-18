@@ -5,6 +5,10 @@
     gap: 50px;
 }
 
+.new-book-form {
+    display: none;
+}
+
 .card {
     border: 1px solid;
 }

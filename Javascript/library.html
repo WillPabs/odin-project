@@ -8,6 +8,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="new-book-container">
+        <div class="new-book-button-container">
+            <button id="new-book-button">NEW BOOK</button>
+        </div>
+        <div class="new-book-form">
+            <form id="new-book-form">
+                <legend>Add New Book</legend>
+
+                <label for="title">Title</label><br>
+                <input type="text" name="title" id="title"><br>
+                <label for="author">Author</label><br>
+                <input type="text" name="author" id="author"><br>
+                <label for="pages">Number of Pages</label><br>
+                <input type="text" name="pages" id="pages"><br>
+                <input type="checkbox" name="read" id="read">
+                <label for="read">Read?</label><br>
+                <input type="submit" id="submit-new-book" onsubmit="" value="ADD NEW BOOK">
+            </form>
+        </div>
+    </div>
     <div class="grid-container">
         <div class="card">
             <h2 class="book-title"></h2>
