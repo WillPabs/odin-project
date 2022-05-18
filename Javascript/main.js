@@ -25,8 +25,23 @@ function displayBook(book) {
     bookInfo.className = 'book-info'
     bookInfo.innerHTML = book.info()
 
+    let removeBookButton = document.createElement('button')
+    removeBookButton.innerHTML = 'Remove from Library'
+    removeBookButton.id = `${book.title}`
+    removeBookButton.addEventListener('click', () => {
+        const match = myLibrary.findIndex(book => book.title === removeBookButton.id)
+        console.log(match)
+        if (match >= 0) {
+            myLibrary.splice(match, 1)
+            bookContainer.remove()
+        } else {
+            console.log('No match found')
+        }
+    })
+
     bookContainer.append(bookTitle)
     bookContainer.append(bookInfo)
+    bookContainer.append(removeBookButton)
     return bookContainer
 }
 
@@ -38,12 +53,16 @@ function displayMyLibrary() {
     })
 }
 
-
 function addNewBook(book) {
     const newBook = new Book(book.title, book.author, book.pages, book.read)
     addBookToLibrary(newBook)
     alert('Added new book!')
 }
+
+document.querySelector('.grid-container').addEventListener('change', () => {
+    alert('Change in books detected')
+    displayMyLibrary()    
+})
 
 const bookForm = document.querySelector('#new-book-form')
 bookForm.addEventListener('submit', () => {
