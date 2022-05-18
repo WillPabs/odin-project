@@ -1,9 +1,9 @@
 .grid-container {
     display: grid;
-    grid-template-rows: 50px 50px 50px;
-    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 90px 90px 90px;
+    grid-template-columns: 110px 110px 110px;
 }
 
 .book {
-    
+    border: 1px solid;
 }
