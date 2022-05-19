@@ -51,6 +51,12 @@ function readContainerElement(book) {
     readStatusLabel.textContent = 'Read'
     readStatus.addEventListener('click', () => {
         book.changeReadStatus()
+        // the title variable is found by searching all matching classes,
+        // appending them to the array if they match the current instance's title
+        let info = [].slice.call(document.querySelectorAll('.book-container .book-title')).filter(function(div) {
+            return div.innerHTML === book.title;
+        })[0].parentElement.children[1]
+        info.innerHTML = book.info()
     })
     readContainer.append(readStatus)
     readContainer.append(readStatusLabel)
@@ -79,7 +85,7 @@ function displayBook(book) {
     let bookInfo = bookInfoElement(book)
     let readContainer = readContainerElement(book)
     let removeBookButton = removeBookButtonElement(book, myLibrary)
-    bookContainer = bookContainerElement(bookTitle, bookInfo, readContainer, removeBookButton)
+    let bookContainer = bookContainerElement(bookTitle, bookInfo, readContainer, removeBookButton)
     return bookContainer
 }
 
@@ -99,10 +105,10 @@ function addNewBook(book) {
     alert('Added new book!')
 }
 
-document.querySelector('.grid-container').addEventListener('change', () => {
+// document.querySelector('.grid-container').addEventListener('change', () => {
     
-    displayMyLibrary()    
-})
+//     displayMyLibrary()    
+// })
 
 const bookForm = document.querySelector('#new-book-form')
 bookForm.addEventListener('submit', () => {
@@ -128,9 +134,14 @@ let myLibrary = []
 const potter = new Book('Harry Potter', 'J.K. Rowling', 500, false)
 const frost = new Book('Jack Frost', 'Santa Claus', 100, false)
 const think = new Book('Think and Grow Rich', 'Something something', 100, true)
+const math = new Book('Math', 'Feyman', 1000, false)
+const science = new Book('Science', 'Professor', 1000, false)
+
 
 addBookToLibrary(potter)
 addBookToLibrary(frost)
 addBookToLibrary(think)
+addBookToLibrary(math)
+addBookToLibrary(science)
 
 displayMyLibrary()
