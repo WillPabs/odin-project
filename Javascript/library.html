@@ -13,7 +13,7 @@
             <button id="new-book-button">NEW BOOK</button>
         </div>
         <div class="new-book-form">
-            <form id="new-book-form">
+            <form id="new-book-form" method="post">
                 <legend>Add New Book</legend>
 
                 <label for="title">Title</label><br>
@@ -24,7 +24,7 @@
                 <input type="text" name="pages" id="pages"><br>
                 <input type="checkbox" name="read" id="read">
                 <label for="read">Read?</label><br>
-                <input type="submit" id="submit-new-book" onsubmit="" value="ADD NEW BOOK">
+                <input type="submit" id="submit-new-book" onsubmit="addNewBook(this.FormData)" value="ADD NEW BOOK">
             </form>
         </div>
     </div>

@@ -9,7 +9,8 @@ function Book(title, author, pages, read) {
     }
 }
 
-Book.prototype.changeReadStatus = () => {
+Book.prototype = Object.create(Book.prototype)
+Book.prototype.changeReadStatus = function() {
     this.read ? this.read = false : this.read = true
 }
 
@@ -17,18 +18,31 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function displayBook(book) {
+function bookContainerElement(bookTitle, bookInfo, readContainer, removeBookButton) {
     let bookContainer = document.createElement('div')
     bookContainer.className = 'book-container'
+    bookContainer.appendChild(bookTitle)
+    bookContainer.appendChild(bookInfo)
+    bookContainer.appendChild(readContainer)
+    bookContainer.appendChild(removeBookButton)
+    return bookContainer
+}
 
+function bookTitleElement(book) {
     let bookTitle = document.createElement('h2')
     bookTitle.className = 'book-title'
     bookTitle.innerHTML = book.title
+    return bookTitle
+}
 
+function bookInfoElement(book) {
     let bookInfo = document.createElement('p')
     bookInfo.className = 'book-info'
     bookInfo.innerHTML = book.info()
+    return bookInfo
+}
 
+function readContainerElement(book) {
     let readContainer = document.createElement('div')
     let readStatus = document.createElement('input')
     readStatus.className = 'read-status'
@@ -40,25 +54,32 @@ function displayBook(book) {
     })
     readContainer.append(readStatus)
     readContainer.append(readStatusLabel)
+    return readContainer
+}
 
-
+function removeBookButtonElement(book, library) {
     let removeBookButton = document.createElement('button')
     removeBookButton.innerHTML = 'Remove from Library'
     removeBookButton.id = `${book.title}`
     removeBookButton.addEventListener('click', () => {
-        const match = myLibrary.findIndex(book => book.title === removeBookButton.id)
+        const match = library.findIndex(book => book.title === removeBookButton.id)
         if (match >= 0) {
-            myLibrary.splice(match, 1)
-            bookContainer.parentElement.remove()
+            library.splice(match, 1)
+            removeBookButton.parentElement.parentElement.remove()
         } else {
             console.log('No match found')
         }
     })
+    return removeBookButton
+}
 
-    bookContainer.append(bookTitle)
-    bookContainer.append(bookInfo)
-    bookContainer.append(readContainer)
-    bookContainer.append(removeBookButton)
+
+function displayBook(book) {
+    let bookTitle = bookTitleElement(book)
+    let bookInfo = bookInfoElement(book)
+    let readContainer = readContainerElement(book)
+    let removeBookButton = removeBookButtonElement(book, myLibrary)
+    bookContainer = bookContainerElement(bookTitle, bookInfo, readContainer, removeBookButton)
     return bookContainer
 }
 
@@ -79,7 +100,7 @@ function addNewBook(book) {
 }
 
 document.querySelector('.grid-container').addEventListener('change', () => {
-    alert('Change in books detected')
+    
     displayMyLibrary()    
 })
 
