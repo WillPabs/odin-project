@@ -47,6 +47,7 @@ function readContainerElement(book) {
     let readStatus = document.createElement('input')
     readStatus.className = 'read-status'
     readStatus.type = 'checkbox'
+    if(book.read) readStatus.checked = true
     let readStatusLabel = document.createElement('label')
     readStatusLabel.textContent = 'Read'
     readStatus.addEventListener('click', () => {
