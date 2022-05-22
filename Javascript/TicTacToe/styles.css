@@ -1,0 +1,10 @@
+.game-container {
+    border: solid;
+    display: grid;    
+}
+
+
+
+/* .game-container > :nth-child() {
+    border: solid;
+} */
