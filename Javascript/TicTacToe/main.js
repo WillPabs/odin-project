@@ -20,17 +20,16 @@ const Gameboard = (function() {
 
     const displayGameboard = () => {
         console.log('displaying board')
-        let board = document.createElement('table');
+        let board = document.querySelector('#game-container');
+        let index = 1;
         dummyGameboard.forEach(row => { // change to use gameboard
-            let rowEl = document.createElement('div');
             row.forEach(marker => {
-                let cell = document.createElement('span');
+                let cell = document.querySelector(`#cell${index}`);
                 cell.innerHTML = marker;
-                rowEl.appendChild(cell);
+                board.appendChild(cell);
+                index++;
             });
-            board.appendChild(rowEl);
         });
-        document.querySelector('#game-container').appendChild(board);
     };
 
     return {
