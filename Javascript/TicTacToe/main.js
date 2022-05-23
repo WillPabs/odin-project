@@ -42,11 +42,14 @@ const Gameboard = (function() {
 
     };
     
+    // TODO 
+    // fix function to return true when board is filled
     const isComplete = () => {
         let board = gameboard;
         for (let row = 0; row < board.length; row++) {
             for (let position = 0; position < board[row].length; position++) {
                 let cell = board[row][position];
+                console.log(cell)
                 if (cell !== 'X' || cell !== 'O') return false;
             }
         }
@@ -61,7 +64,7 @@ const Gameboard = (function() {
             row.forEach(marker => {
                 let cell = document.querySelector(`#cell-${index}`);
                 cell.onclick = () => {
-                    console.log('Clicked Cell')
+                    
                 }
                 cell.innerHTML = marker;
                 board.appendChild(cell);
@@ -123,17 +126,17 @@ const GameFlowControl = function() {
         });
     }
 
-    const startGame = (gameboard, player1, player2) => {
-        let currentPlayer = player1;
-        if(!gameboard.isComplete()) {
-            document.querySelectorAll('.cell').forEach(cell => {
-                cell.addEventListener('click', e => {
-                    currentPlayer.selectCell(e);
-                });
-            });
-            currentPlayer === player1 ? currentPlayer = player2 : currentPlayer = player1;
-        }
-    }
+    // const startGame = (gameboard, player1, player2) => {
+    //     let currentPlayer = player1;
+    //     if(!gameboard.isComplete()) {
+    //         document.querySelectorAll('.cell').forEach(cell => {
+    //             cell.addEventListener('click', e => {
+    //                 currentPlayer.selectCell(e);
+    //             });
+    //         });
+    //         currentPlayer === player1 ? currentPlayer = player2 : currentPlayer = player1;
+    //     }
+    // }
 
     // document.querySelectorAll('.cell').forEach(cell => {
     //     cell.addEventListener('click', e => {
@@ -156,27 +159,21 @@ const npc = Player('NPC', 'O');
 let player1Turn = true;
 let currentPlayer;
 let index = 0;
-while(index < 4) {
-    if (player1Turn) {
-        currentPlayer = will;
-        document.querySelectorAll('.cell').forEach(cell => {
-            cell.addEventListener('click', e => {
-                currentPlayer.selectCell(e);
-                player1Turn = false;
-                console.log(player1Turn)
-            });
-        });
-    } else {
-        currentPlayer = npc;
-        document.querySelectorAll('.cell').forEach(cell => {
-            cell.addEventListener('click', e => {
-                currentPlayer.selectCell(e);
-                player1Turn = true;
-            });
-        });
-    }
-    index++;
-}
+
+
+document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', e => {
+        
+        if (player1Turn) {
+            will.selectCell(e);
+            player1Turn = false;
+        } else {
+            npc.selectCell(e);
+            player1Turn = true;
+        }
+        console.log(Gameboard.isComplete())
+    });
+});
 
 
 
