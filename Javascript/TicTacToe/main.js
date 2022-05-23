@@ -42,9 +42,26 @@ Gameboard.displayGameboard();
 
 
 // Player object : factoryFunction pattern
+    // selectCell(board, position) : fills the position on the board with player's marker
 const Player = (name) => {
     let wins = 0;
+    const marker = 'X';
+    const getMarker = () => marker;
     const getName = () => name;
+
+    const selectCell = (position) => {
+        const selected = document.querySelector(`#cell${position}`)
+        // check if position on board is filled
+        if (selected.innerHTML === null)
+            // return alert position has been filled choose another
+            alert('Cell has already been marked! Choose another cell.')
+        // grab the element of the position
+        selected.addEventListener('click', () => {
+            selected.innerHTML = marker;
+        })
+        // set a click event for that position
+            // fill the element with the player's marker
+    } 
 
     return {
         getName
@@ -60,6 +77,18 @@ console.log(will.getName());
         // vertically, or diagonally
     // boardComplete() : checks if all spots on the board have been
         // used. Will log no winner, if last spot didn't make a winner
-const GameFlowControl = () => {
+const GameFlowControl = (player1) => {
+    
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.addEventListener('click', e => {
+            let target = e.target;
+            console.log(target.id)
+            if (target.nodeName === 'cell') {
+                console.log(target);
+                target.innerHTML = player1.getMarker();
+            };
+        });
+    });
+};
 
-}
+const gameflow = GameFlowControl(will)
