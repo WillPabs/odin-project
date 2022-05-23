@@ -4,8 +4,12 @@
     // displayGameboard() : renders the gameboard to the frontend
     // updateGameboard(position, player) : updates the gameboard with the
         // selected position with the player's marker
+    // hasWinner() : checks if a player's markers match horizontally
+        // vertically, or diagonally
+    // boardComplete() : checks if all spots on the board have been
+        // used. Will log no winner, if last spot didn't make a winner
 const Gameboard = (function() {
-    let gameboard;
+    let gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
     console.log("Starting game");
     let dummyGameboard = [
         ['X','O','O'],
@@ -25,21 +29,40 @@ const Gameboard = (function() {
     const setPosition = (position, marker) => {
         console.log('Setting position on board');
         if (position >= 0 && position < 3 ) {
-            dummyGameboard[0][position] = marker;
+            gameboard[0][position] = marker;
         } else {
             let rowNum = Math.floor(position / 3);
             let newPosition = position % 3;
-            dummyGameboard[rowNum][newPosition] = marker;
+            gameboard[rowNum][newPosition] = marker;
         };
+        Gameboard.displayGameboard();
     };
+
+    const hasWinner = () => {
+
+    };
+    
+    const isComplete = () => {
+        let board = gameboard;
+        for (let row = 0; row < board.length; row++) {
+            for (let position = 0; position < board[row].length; position++) {
+                let cell = board[row][position];
+                if (cell !== 'X' || cell !== 'O') return false;
+            }
+        }
+        return true;
+    }
 
     const displayGameboard = () => {
         console.log('displaying board')
         let board = document.querySelector('#game-container');
         let index = 0;
-        dummyGameboard.forEach(row => { // change to use gameboard
+        gameboard.forEach(row => {
             row.forEach(marker => {
                 let cell = document.querySelector(`#cell-${index}`);
+                cell.onclick = () => {
+                    console.log('Clicked Cell')
+                }
                 cell.innerHTML = marker;
                 board.appendChild(cell);
                 index++;
@@ -51,7 +74,8 @@ const Gameboard = (function() {
         reset,
         displayGameboard,
         getBoard,
-        setPosition
+        setPosition,
+        isComplete
     };
 })();
 
@@ -60,55 +84,99 @@ const Gameboard = (function() {
 
 // Player object : factoryFunction pattern
     // selectCell(board, position) : fills the position on the board with player's marker
-const Player = (name) => {
+const Player = (name, marker) => {
     let wins = 0;
-    const marker = 'X';
     const getMarker = () => marker;
     const getName = () => name;
 
-    // const selectCell = (position) => {
-    //     const selected = document.querySelector(`#cell${position}`)
-    //     // check if position on board is filled
-    //     if (selected.innerHTML === null)
-    //         // return alert position has been filled choose another
-    //         alert('Cell has already been marked! Choose another cell.')
-    //     // grab the element of the position
-    //     selected.addEventListener('click', () => {
-    //         selected.innerHTML = getMarker();
-    //     })
-    //     // set a click event for that position
-    //         // fill the element with the player's marker
-    // } 
+    const selectCell = (element) => {
+        let selected = element.target;
+        console.log(selected)
+        if (selected.innerHTML === 'X' || selected.innerHTML === 'O') {
+            alert('Cell has already been marked! Choose another cell.');
+        } else {
+            if (selected.className === 'cell') {
+                let position = selected.id.split('-')[1];
+                Gameboard.setPosition(position, marker);
+            }
+        }
+    };
 
     return {
         getMarker,
-        getName
+        getName,
+        selectCell
     }
 }
 
-
-
-
 // Game Flow Control object : module pattern
-    // hasWinner() : checks if a player's markers match horizontally
-        // vertically, or diagonally
-    // boardComplete() : checks if all spots on the board have been
-        // used. Will log no winner, if last spot didn't make a winner
 const GameFlowControl = function() {
-    Gameboard.displayGameboard();
-    const will = Player('will');
-    
-    
-    document.querySelectorAll('.cell').forEach(cell => {
-        cell.addEventListener('click', e => {
-            let target = e.target;
-            if (target.className === 'cell') {
-                console.log(target.id)
-                let position = target.id.split('-')[1];
-                Gameboard.setPosition(position, will.getMarker());
-                Gameboard.displayGameboard();
-            }
+    const choosePlayer = (name, marker) => {
+        return Player(name, marker);
+    };
+
+    const takeTurn = (player) => {
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.addEventListener('click', e => {
+                player.selectCell(e);
+            });
         });
-    });
+    }
+
+    const startGame = (gameboard, player1, player2) => {
+        let currentPlayer = player1;
+        if(!gameboard.isComplete()) {
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.addEventListener('click', e => {
+                    currentPlayer.selectCell(e);
+                });
+            });
+            currentPlayer === player1 ? currentPlayer = player2 : currentPlayer = player1;
+        }
+    }
+
+    // document.querySelectorAll('.cell').forEach(cell => {
+    //     cell.addEventListener('click', e => {
+    //         will.selectCell(e);
+    //     });
+    // });
+
+    return {
+        takeTurn
+    }
 }();
+
+
+Gameboard.displayGameboard();
+console.log(Gameboard.isComplete());
+const will = Player('will', 'X');
+const npc = Player('NPC', 'O');
+
+// Create way for players to take turns 
+let player1Turn = true;
+let currentPlayer;
+let index = 0;
+while(index < 4) {
+    if (player1Turn) {
+        currentPlayer = will;
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.addEventListener('click', e => {
+                currentPlayer.selectCell(e);
+                player1Turn = false;
+                console.log(player1Turn)
+            });
+        });
+    } else {
+        currentPlayer = npc;
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.addEventListener('click', e => {
+                currentPlayer.selectCell(e);
+                player1Turn = true;
+            });
+        });
+    }
+    index++;
+}
+
+
 
