@@ -42,18 +42,9 @@ const Gameboard = (function() {
 
     };
     
-    // TODO 
-    // fix function to return true when board is filled
     const isComplete = () => {
-        let board = gameboard;
-        for (let row = 0; row < board.length; row++) {
-            for (let position = 0; position < board[row].length; position++) {
-                let cell = board[row][position];
-                console.log(cell)
-                if (cell !== 'X' || cell !== 'O') return false;
-            }
-        }
-        return true;
+        let board = gameboard.flat();
+        return board.every(cell => cell === 'X' || cell === 'O');
     }
 
     const displayGameboard = () => {
@@ -124,25 +115,7 @@ const GameFlowControl = function() {
                 player.selectCell(e);
             });
         });
-    }
-
-    // const startGame = (gameboard, player1, player2) => {
-    //     let currentPlayer = player1;
-    //     if(!gameboard.isComplete()) {
-    //         document.querySelectorAll('.cell').forEach(cell => {
-    //             cell.addEventListener('click', e => {
-    //                 currentPlayer.selectCell(e);
-    //             });
-    //         });
-    //         currentPlayer === player1 ? currentPlayer = player2 : currentPlayer = player1;
-    //     }
-    // }
-
-    // document.querySelectorAll('.cell').forEach(cell => {
-    //     cell.addEventListener('click', e => {
-    //         will.selectCell(e);
-    //     });
-    // });
+    };
 
     return {
         takeTurn
