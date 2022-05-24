@@ -131,8 +131,10 @@ const Player = (name, marker) => {
 
 // Game Flow Control object : module pattern
 const GameFlowControl = function(gameboard, players) {
-    const choosePlayer = (name, marker) => {
-        return Player(name, marker);
+    const createPlayer = () => {
+        let name = prompt("Enter Player Name: ");
+        let marker = prompt("Choose your marker. 'X' or 'O': ");
+        return new Player(name, marker);
     };
 
     const startGame = () => {
