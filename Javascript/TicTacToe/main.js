@@ -17,12 +17,23 @@ const Gameboard = (function() {
         ['X','O','O'],
     ];
 
+    const winningCombos = [
+        [0,1,2],
+        [0,3,6],
+        [0,4,8],
+        [1,4,7],
+        [2,4,6],
+        [2,5,8],
+        [3,4,5],
+        [6,7,8]
+    ]
+
     const getBoard = () => {
-        console.log(dummyGameboard);
+        gameboard;
     };
 
     const reset = () => {
-        gameboard = Array.from(Array(3), () => new Array(3));
+        gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
         console.log('Reset game board');
     };
 
@@ -37,15 +48,29 @@ const Gameboard = (function() {
         };
         Gameboard.displayGameboard();
     };
-
-    const hasWinner = () => {
-
-    };
     
-    const isComplete = () => {
+    const isDraw = () => {
         let board = gameboard.flat();
         return board.every(cell => cell === 'X' || cell === 'O');
     }
+
+    const hasWinner = (marker) => {
+        let board = gameboard.flat();
+        let isWinner = false;
+        let winningCombo;
+        winningCombos.forEach(combo => {
+            let markerCount = 0;
+            for (let i = 0; i < combo.length; i++) {
+                let winningPosition = combo[i];
+                if (board[winningPosition] === marker) markerCount++;
+            }
+            if (markerCount === 3) {
+                isWinner = true;
+                winningCombo = combo;
+            }
+        })
+        return isWinner;  
+    };
 
     const displayGameboard = () => {
         console.log('displaying board')
@@ -69,7 +94,8 @@ const Gameboard = (function() {
         displayGameboard,
         getBoard,
         setPosition,
-        isComplete
+        isDraw,
+        hasWinner
     };
 })();
 
@@ -104,27 +130,30 @@ const Player = (name, marker) => {
 }
 
 // Game Flow Control object : module pattern
-const GameFlowControl = function() {
+const GameFlowControl = function(gameboard, players) {
     const choosePlayer = (name, marker) => {
         return Player(name, marker);
     };
 
-    const takeTurn = (player) => {
-        document.querySelectorAll('.cell').forEach(cell => {
-            cell.addEventListener('click', e => {
-                player.selectCell(e);
-            });
-        });
-    };
+    const startGame = () => {
+    }
+
+    // const takeTurn = (player) => {
+    //     document.querySelectorAll('.cell').forEach(cell => {
+    //         cell.addEventListener('click', e => {
+    //             player.selectCell(e);
+    //         });
+    //     });
+    // };
 
     return {
-        takeTurn
+        startGame
     }
-}();
+};
 
 
 Gameboard.displayGameboard();
-console.log(Gameboard.isComplete());
+console.log(Gameboard.isDraw());
 const will = Player('will', 'X');
 const npc = Player('NPC', 'O');
 
@@ -132,19 +161,31 @@ const npc = Player('NPC', 'O');
 let player1Turn = true;
 let currentPlayer;
 let index = 0;
+const players = [will, npc];
+
 
 
 document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('click', e => {
+        let winner = false;
         
-        if (player1Turn) {
-            will.selectCell(e);
-            player1Turn = false;
-        } else {
-            npc.selectCell(e);
-            player1Turn = true;
-        }
-        console.log(Gameboard.isComplete())
+            if (player1Turn) {
+                will.selectCell(e);
+                winner = Gameboard.hasWinner(will.getMarker());
+                console.log("Winner? " + winner);
+                player1Turn = false;
+            } else {
+                npc.selectCell(e);
+                winner = Gameboard.hasWinner(npc.getMarker());
+                console.log("Winner? " + winner);
+                player1Turn = true;
+            }
+            if (Gameboard.isDraw()) {
+                alert('Board is full. Resetting board');
+                Gameboard.reset();
+                Gameboard.displayGameboard()
+            }
+        
     });
 });
 
