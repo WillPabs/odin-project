@@ -1,67 +1,108 @@
-const Game = () => {
-    const playRound = (playerSelection, computerSelection) => {
-        switch (playerSelection) {
-            case 'Rock':
-                if (computerSelection === 'Paper') return 'Computer Wins!';
-                if (computerSelection === 'Scissors') return 'Computer Loses.';
-                if (computerSelection === 'Rock') return "It's a tie.";
-                break;
-            case 'Paper':
-                if (computerSelection === 'Paper') return "It's a tie.";
-                if (computerSelection === 'Scissors') return 'Computer Wins!';
-                if (computerSelection === 'Rock') return 'Computer Loses.';
-                break;
-            case 'Scissors':
-                if (computerSelection === 'Paper') return 'Computer Loses.';
-                if (computerSelection === 'Scissors') return "It's a tie.";
-                if (computerSelection === 'Rock') return 'Computer Wins!';
-                break;
-        }
+const Game = (user) => {
+    const selections = ['rock', 'paper', 'scissors'];
+    const roundsToWin = 5;
+
+    const getScore = () => {
+        return {
+            player : user.getWins(),
+            computer : Computer.getWins()
+        };
     };
 
-    const totalRounds = (numOfRounds) => {
-        while (numOfRounds > 0) {
-            playRound(playerSelection, computerSelection);
+    const announceWinner = () => {
+        if (getScore().player === roundsToWin) return "Player wins!";
+        if (getScore().computer === roundsToWin) return "Computer wins!";
+    }
+    
+    const playRound = (playerSelection) => {
+        const computerSelection = Computer.computerPlay();
+        switch (playerSelection) {
+            case selections[0]:
+                if (computerSelection === selections[0]) return `It's a tie! Both players chose ${computerSelection}.`;
+                if (computerSelection === selections[1]) { Computer.win(); return `You Lose! ${computerSelection} beats ${playerSelection}`;};
+                if (computerSelection === selections[2]) { user.win(); return `You win! ${playerSelection} beats ${computerSelection}`;};
+                break;
+            case selections[1]:
+                if (computerSelection === selections[0]) { user.win(); return `You win! ${playerSelection} beats ${computerSelection}`;};
+                if (computerSelection === selections[1]) return `It's a tie! Both players chose ${computerSelection}.`;
+                if (computerSelection === selections[2]) { Computer.win(); return `You Lose! ${computerSelection} beats ${playerSelection}`;};
+                break;
+            case selections[2]:
+                if (computerSelection === selections[0]) { Computer.win(); return `You Lose! ${computerSelection} beats ${playerSelection}`;};
+                if (computerSelection === selections[1]) { user.win(); return `You win! ${playerSelection} beats ${computerSelection}`;};
+                if (computerSelection === selections[2]) return `It's a tie! Both players chose ${computerSelection}.`;
+                break;
         };
     };
 
     return {
         playRound,
-        totalRounds
-    }
+        getScore,
+        announceWinner
+    };
 };
 
 const User = () => {
-    const makeSelection = () => {
-        let selection = prompt('Choose Rock, Paper, or Scissors');
-        return selection;
+    let wins = 0;
+
+    const makeSelection = (selection) => {
+        return selection.toLowerCase();
+    };
+
+    const win = () => {
+        wins++;
+    };
+
+    const getWins = () => {
+        return wins;
     };
 
     return {
         makeSelection,
-    }
+        win,
+        getWins
+    };
 };
 
-const Computer = () => {
+const Computer = function() {
+    let wins = 0;
+    const selections = ['Rock', 'Paper', 'Scissors'];
+
     const computerPlay = () => {
-        const selections = ['Rock', 'Paper', 'Scissors'];
         let choice = Math.floor(Math.random() * (selections.length));
-        return selections[choice];
-    } 
+        return selections[choice].toLowerCase();
+    };
+
+    const win = () => {
+        wins++;
+    };
+
+    const getWins = () => {
+        return wins;
+    };
 
     return {
         computerPlay,
-    }
-};
+        win,
+        getWins
+    };
+}();
+
 
 let user = User();
-let computer = Computer();
-let game = Game();
+let game = Game(user);
 
-let userSelection = user.makeSelection('Rock');
-let computerSelection = computer.computerPlay();
-
-console.log(userSelection);
-console.log(computerSelection);
-
-console.log(game.playRound(userSelection, computerSelection));
+let buttons = document.querySelectorAll('.selection');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        let selection = user.makeSelection(button.id);
+        let result = document.querySelector('#result');
+        result.innerText = game.playRound(selection);
+        let score = document.querySelector('#scoreboard');
+        let playerScore = game.getScore().player;
+        let computerScore = game.getScore().computer;
+        score.innerText = `Player Wins: ${playerScore} ||| Computer Wins: ${computerScore}`;
+        let winner = document.querySelector('#winner');
+        if (game.announceWinner() !== undefined) winner.innerText = game.announceWinner();        
+    });
+});
