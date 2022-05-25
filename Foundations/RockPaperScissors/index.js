@@ -1,14 +1,19 @@
 const Game = (user) => {
     const selections = ['rock', 'paper', 'scissors'];
+    const roundsToWin = 5;
 
     const getScore = () => {
         return {
             player : user.getWins(),
             computer : Computer.getWins()
         };
+    };
+
+    const announceWinner = () => {
+        if (getScore().player === roundsToWin) return "Player wins!";
+        if (getScore().computer === roundsToWin) return "Computer wins!";
     }
     
-
     const playRound = (playerSelection) => {
         const computerSelection = Computer.computerPlay();
         switch (playerSelection) {
@@ -30,17 +35,11 @@ const Game = (user) => {
         };
     };
 
-    const totalRounds = (numOfRounds) => {
-        while (numOfRounds > 0) {
-            playRound(playerSelection, computerSelection);
-        };
-    };
-
     return {
         playRound,
-        totalRounds,
-        getScore
-    }
+        getScore,
+        announceWinner
+    };
 };
 
 const User = () => {
@@ -52,17 +51,17 @@ const User = () => {
 
     const win = () => {
         wins++;
-    }
+    };
 
     const getWins = () => {
         return wins;
-    }
+    };
 
     return {
         makeSelection,
         win,
         getWins
-    }
+    };
 };
 
 const Computer = function() {
@@ -72,21 +71,21 @@ const Computer = function() {
     const computerPlay = () => {
         let choice = Math.floor(Math.random() * (selections.length));
         return selections[choice].toLowerCase();
-    } 
+    };
 
     const win = () => {
         wins++;
-    }
+    };
 
     const getWins = () => {
         return wins;
-    }
+    };
 
     return {
         computerPlay,
         win,
         getWins
-    }
+    };
 }();
 
 
@@ -103,5 +102,7 @@ buttons.forEach(button => {
         let playerScore = game.getScore().player;
         let computerScore = game.getScore().computer;
         score.innerText = `Player Wins: ${playerScore} ||| Computer Wins: ${computerScore}`;
+        let winner = document.querySelector('#winner');
+        if (game.announceWinner() !== undefined) winner.innerText = game.announceWinner();        
     });
 });
