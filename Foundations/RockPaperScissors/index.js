@@ -1,7 +1,16 @@
-const Game = () => {
+const Game = (user) => {
     const selections = ['rock', 'paper', 'scissors'];
 
-    const playRound = (playerSelection, computerSelection) => {
+    let buttons = document.querySelectorAll('.selection');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            let selection = user.makeSelection(button.id);
+            console.log(playRound(selection));
+        });
+    });
+
+    const playRound = (playerSelection) => {
+        const computerSelection = Computer.computerPlay();
         switch (playerSelection) {
             case selections[0]:
                 if (computerSelection === selections[0]) return `It's a tie! Both players chose ${computerSelection}.`;
@@ -34,8 +43,7 @@ const Game = () => {
 };
 
 const User = () => {
-    const makeSelection = () => {
-        let selection = prompt('Choose Rock, Paper, or Scissors');
+    const makeSelection = (selection) => {
         return selection.toLowerCase();
     };
 
@@ -44,7 +52,7 @@ const User = () => {
     }
 };
 
-const Computer = () => {
+const Computer = function() {
     const selections = ['Rock', 'Paper', 'Scissors'];
     const computerPlay = () => {
         let choice = Math.floor(Math.random() * (selections.length));
@@ -54,16 +62,16 @@ const Computer = () => {
     return {
         computerPlay,
     }
-};
+}();
 
 let user = User();
-let computer = Computer();
-let game = Game();
+// let computer = Computer();
+let game = Game(user);
 
-let userSelection = user.makeSelection();
-let computerSelection = computer.computerPlay();
+// let userSelection = user.makeSelection();
+// let computerSelection = computer.computerPlay();
 
-console.log(userSelection);
-console.log(computerSelection);
+// console.log(userSelection);
+// console.log(computerSelection);
 
-console.log(game.playRound(userSelection, computerSelection));
+// console.log(game.playRound(userSelection, computerSelection));
