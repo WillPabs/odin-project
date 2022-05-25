@@ -1,14 +1,6 @@
 const Game = (user) => {
     const selections = ['rock', 'paper', 'scissors'];
 
-    let buttons = document.querySelectorAll('.selection');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            let selection = user.makeSelection(button.id);
-            console.log(playRound(selection));
-        });
-    });
-
     const playRound = (playerSelection) => {
         const computerSelection = Computer.computerPlay();
         switch (playerSelection) {
@@ -64,14 +56,15 @@ const Computer = function() {
     }
 }();
 
+
 let user = User();
-// let computer = Computer();
 let game = Game(user);
 
-// let userSelection = user.makeSelection();
-// let computerSelection = computer.computerPlay();
-
-// console.log(userSelection);
-// console.log(computerSelection);
-
-// console.log(game.playRound(userSelection, computerSelection));
+let buttons = document.querySelectorAll('.selection');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        let selection = user.makeSelection(button.id);
+        let result = document.querySelector('#result');
+        result.innerText = game.playRound(selection);
+    });
+});
