@@ -9,6 +9,11 @@ const Game = (user) => {
         };
     };
 
+    const resetScore = () => {
+        user.resetWins();
+        Computer.resetWins();
+    }
+
     const announceWinner = () => {
         if (getScore().player === roundsToWin) return "Player wins!";
         if (getScore().computer === roundsToWin) return "Computer wins!";
@@ -38,7 +43,8 @@ const Game = (user) => {
     return {
         playRound,
         getScore,
-        announceWinner
+        announceWinner,
+        resetScore
     };
 };
 
@@ -57,10 +63,15 @@ const User = () => {
         return wins;
     };
 
+    const resetWins = () => {
+        wins = 0;
+    };
+
     return {
         makeSelection,
         win,
-        getWins
+        getWins,
+        resetWins
     };
 };
 
@@ -81,10 +92,15 @@ const Computer = function() {
         return wins;
     };
 
+    const resetWins = () => {
+        wins = 0;
+    };
+
     return {
         computerPlay,
         win,
-        getWins
+        getWins,
+        resetWins
     };
 }();
 
@@ -103,6 +119,9 @@ buttons.forEach(button => {
         let computerScore = game.getScore().computer;
         score.innerText = `Player Wins: ${playerScore} ||| Computer Wins: ${computerScore}`;
         let winner = document.querySelector('#winner');
-        if (game.announceWinner() !== undefined) winner.innerText = game.announceWinner();        
+        if (game.announceWinner() !== undefined) {
+            winner.innerText = game.announceWinner();
+            game.resetScore();
+        }        
     });
 });
