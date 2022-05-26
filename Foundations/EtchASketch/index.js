@@ -1,5 +1,4 @@
-// create 16x16 grid of square divs
-
+// create n^2 grid of square divs
 function createNSquareGrid(divAmount) {
     if (divAmount > 100) {
         divAmount = 100;
