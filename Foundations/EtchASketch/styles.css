@@ -1,21 +1,20 @@
 .container {
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
+    /* grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr); */
 }
 
 .square {
-    /* border: 1px solid black; */
+    border: 1px solid black;
     height: 60px;
-    width: 60px;
+    /* width: 60px; */
     background: grey;
-    opacity: 0;
+    /* opacity: 0; */
     transition: opacity 1s ease 0.2s, transform 0.8s ease;
     transform: scale(1);
 }
 
 .square:hover {
-    /* background: blue; */
     cursor: pointer;
     opacity: 1;
     transition: opacity 0.2s ease;
