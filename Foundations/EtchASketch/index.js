@@ -7,7 +7,11 @@ function create16x16Grid() {
     for (let divs = 0; divs < divAmount; divs++) {
         let div = document.createElement('div');
         div.classList.add('square');
-        div.textContent = divs;
+        div.addEventListener('mousemove', e => {
+            const { x, y } = div.getBoundingClientRect();
+            div.style.setProperty("--x", e.clientX - x);
+            div.style.setProperty("--y", e.clientY - y);
+        });
         container.appendChild(div);
     }
     return container;
