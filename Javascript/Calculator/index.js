@@ -48,6 +48,12 @@ const Operator = (() => {
     }
 })();
 
+const display = (button) => {
+    let display = document.querySelector('#display');
+    display.innerText = button.innerText;
+}
+
+
 function calculatorElement() {
     let container = document.createElement('div');
     container.className = 'container';
@@ -98,7 +104,12 @@ function calculatorElement() {
 }
 
 
-
 const calculator = calculatorElement();
 document.body.appendChild(calculator);
 
+let buttons = document.querySelectorAll('.button');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        display(button);
+    });
+})
