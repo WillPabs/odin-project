@@ -1,22 +1,52 @@
-const add = (a, b) => {
-    return a + b;
-};
+const Operator = (() => {
+    const symbols = [
+        {
+            'name' : 'add',
+            'symbol' : '+'
+        },
+        {
+            'name' : 'subtract',
+            'symbol' : '-'
+        },
+        {
+            'name' : 'multiply',
+            'symbol' : '*'
+        },
+        {
+            'name' : 'divide',
+            'symbol' : '/'
+        }
+    ];
 
-const subtract = (a, b) => {
-    return a - b;
-};
+    const add = (a, b) => {
+        return a + b;
+    };
+    
+    const subtract = (a, b) => {
+        return a - b;
+    };
+    
+    const multiply = (a, b) => {
+        return a * b;
+    };
+    
+    const divide = (a, b) => {
+        return a / b;
+    };
+    
+    const operate = (operator, num1, num2) => {
+        return operator(num1, num2);
+    };
 
-const multiply = (a, b) => {
-    return a * b;
-};
-
-const divide = (a, b) => {
-    return a / b;
-};
-
-const operate = (operator, num1, num2) => {
-    return operator(num1, num2);
-};
+    return {
+        symbols,
+        add,
+        subtract,
+        multiply,
+        divide,
+        operate
+    }
+})();
 
 function calculatorElement() {
     let container = document.createElement('div');
@@ -31,6 +61,7 @@ function calculatorElement() {
     let buttonsContainer = document.createElement('div');
     buttonsContainer.classList = 'buttonsContainer';
 
+    // number buttons
     for (let i = 1; i < 10; i++) {
         let button = document.createElement('button');
         button.className = 'button';
@@ -38,6 +69,15 @@ function calculatorElement() {
         button.innerText = i;
         buttonsContainer.appendChild(button);
     };
+
+    // operator buttons
+    Operator.symbols.forEach(symbol => {
+        let button = document.createElement('button');
+        button.className = 'button';
+        button.id = symbol.name;
+        button.innerText = symbol.symbol;
+        buttonsContainer.appendChild(button);
+    });
 
     let equalsElement = document.createElement('button');
     equalsElement.className = 'equalsSign';
@@ -60,6 +100,5 @@ function calculatorElement() {
 
 
 const calculator = calculatorElement();
-console.log(calculator);
 document.body.appendChild(calculator);
 
