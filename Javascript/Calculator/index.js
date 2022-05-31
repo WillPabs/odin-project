@@ -22,6 +22,12 @@ function calculatorElement() {
     let container = document.createElement('div');
     container.className = 'container';
 
+    let display = document.createElement('div');
+    display.className = 'display';
+    display.id = 'display';
+    display.style.border = 'solid 1px';
+    display.innerText = '4 + 10 = 14';
+
     let buttonsContainer = document.createElement('div');
     buttonsContainer.classList = 'buttonsContainer';
 
@@ -43,6 +49,7 @@ function calculatorElement() {
     clear.id = 'clear';
     clear.innerText = 'CLEAR';
 
+    container.appendChild(display);
     container.appendChild(buttonsContainer);
     container.appendChild(equalsElement);
     container.appendChild(clear);
