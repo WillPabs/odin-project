@@ -34,8 +34,18 @@ const Operator = (() => {
         return a / b;
     };
     
-    const operate = (operator, num1, num2) => {
-        return operator(num1, num2);
+    const operate = () => {
+        let values = Display.getValuesOrder();
+        values.forEach(value => {
+            // check if value matches a symbol in symbols
+            if (value === symbols.find(symbol => {symbol.symbol === value})) {
+                console.log('Found match');
+            } else {
+                console.log('Not Found');
+            }
+            console.log(value);
+        })
+        // return operator(num1, num2);
     };
 
     return {
@@ -48,8 +58,11 @@ const Operator = (() => {
     }
 })();
 
+// when user presses '=' key, the operate function will be run
+
 const Display = (() => {
     let displayWindow = '';
+    let displayValuesOrder = [];
     let displayEl;
     
     window.addEventListener('load', () => {
@@ -58,6 +71,7 @@ const Display = (() => {
     
     const addToDisplay = (button) => {
         displayWindow = displayWindow.concat(button.textContent);
+        displayValuesOrder.push(button.textContent);
     }
 
     const display = (button) => {
@@ -65,13 +79,19 @@ const Display = (() => {
         displayEl.textContent = displayWindow;
     }
 
+    const getValuesOrder = () => {
+        return displayValuesOrder;
+    }
+
     const clear = () => {
         displayWindow = '';
+        displayValuesOrder = [];
         displayEl.textContent = displayWindow;
     }
 
     return {
         display,
+        getValuesOrder,
         clear
     }
 })();
@@ -112,6 +132,7 @@ function calculatorElement() {
     equalsElement.className = 'equalsSign';
     equalsElement.id = 'equals';
     equalsElement.textContent = '=';
+    equalsElement.onclick = Operator.operate;
 
     let clear = document.createElement('button');
     clear.className = 'clear';
