@@ -1,50 +1,77 @@
 const Operator = (() => {
-    const symbols = [
-        {
-            'name' : 'add',
-            'symbol' : '+'
-        },
-        {
-            'name' : 'subtract',
-            'symbol' : '-'
-        },
-        {
-            'name' : 'multiply',
-            'symbol' : '*'
-        },
-        {
-            'name' : 'divide',
-            'symbol' : '/'
-        }
-    ];
-
     const add = (a, b) => {
-        return a + b;
+        return Number(a) + Number(b);
     };
     
     const subtract = (a, b) => {
-        return a - b;
+        return Number(a) - Number(b);
     };
     
     const multiply = (a, b) => {
-        return a * b;
+        return Number(a) * Number(b);
     };
     
     const divide = (a, b) => {
-        return a / b;
+        return Number(a) / Number(b);
     };
-    
+
+    const symbols = [
+        {
+            'name' : 'add',
+            'symbol' : '+',
+            'function' : add
+        },
+        {
+            'name' : 'subtract',
+            'symbol' : '-',
+            'function' : subtract
+        },
+        {
+            'name' : 'multiply',
+            'symbol' : '*',
+            'function' : multiply
+        },
+        {
+            'name' : 'divide',
+            'symbol' : '/',
+            'function' : divide
+        }
+    ];
+
+    // This function will get the inputted values from calculator.
+    // It will then loop through each value.
+    // Each iteration of the loop will append the number to a variable.
+    // If the value of the current iteration is an operator, the previous
+    // number values will become one number and appended to an array for
+    // further calculation. The operator will be pushed into the array for
+    // that number. The loop will continue to the next value and append the 
+    // number to a brand new variable, until another operator is met.
+    // ** Figure out PEMDAS functionality after all values have been pushed
+    // to the new array **
     const operate = () => {
         let values = Display.getValuesOrder();
+        let num1 = '';
+        let num2 = '';
+        let operatorEncountered = false;
+        let operation;
+
         values.forEach(value => {
-            // check if value matches a symbol in symbols
-            if (value === symbols.find(symbol => {symbol.symbol === value})) {
-                console.log('Found match');
+            let operator = symbols.find( ({symbol}) => symbol === value);
+            if (operator) {
+                console.log(operator)
+                operation = operator;
+                operatorEncountered = true;
             } else {
-                console.log('Not Found');
+                if (!operatorEncountered) {
+                    num1 = num1.concat(value);
+                } else {
+                    num2 = num2.concat(value)
+                };    
             }
-            console.log(value);
-        })
+        });
+        let op = operation.function;
+        let result = op(num1, num2);
+        console.log(result);
         // return operator(num1, num2);
     };
 
@@ -111,7 +138,7 @@ function calculatorElement() {
     buttonsContainer.classList = 'buttonsContainer';
 
     // number buttons
-    for (let i = 1; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         let button = document.createElement('button');
         button.className = 'button';
         button.id = `button-${i}`;
