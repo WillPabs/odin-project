@@ -48,10 +48,23 @@ const Operator = (() => {
     }
 })();
 
-const display = (button) => {
-    let display = document.querySelector('#display');
-    display.innerText = button.innerText;
-}
+const Display = (() => {
+    let displayWindow = '';
+
+    const acceptArgument = (button) => {
+        displayWindow = displayWindow.concat(button.innerText);
+    }
+
+    const display = (button) => {
+        let displayEl = document.querySelector('#display');
+        acceptArgument(button);
+        displayEl.innerText = displayWindow;
+    }
+
+    return {
+        display
+    }
+})();
 
 
 function calculatorElement() {
@@ -110,6 +123,6 @@ document.body.appendChild(calculator);
 let buttons = document.querySelectorAll('.button');
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-        display(button);
+        Display.display(button);
     });
 })
