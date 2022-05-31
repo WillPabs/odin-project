@@ -50,19 +50,29 @@ const Operator = (() => {
 
 const Display = (() => {
     let displayWindow = '';
-
-    const acceptArgument = (button) => {
-        displayWindow = displayWindow.concat(button.innerText);
+    let displayEl;
+    
+    window.addEventListener('load', () => {
+        displayEl = document.querySelector('#display');
+    });
+    
+    const addToDisplay = (button) => {
+        displayWindow = displayWindow.concat(button.textContent);
     }
 
     const display = (button) => {
-        let displayEl = document.querySelector('#display');
-        acceptArgument(button);
-        displayEl.innerText = displayWindow;
+        addToDisplay(button);
+        displayEl.textContent = displayWindow;
+    }
+
+    const clear = () => {
+        displayWindow = '';
+        displayEl.textContent = displayWindow;
     }
 
     return {
-        display
+        display,
+        clear
     }
 })();
 
@@ -75,7 +85,7 @@ function calculatorElement() {
     display.className = 'display';
     display.id = 'display';
     display.style.border = 'solid 1px';
-    display.innerText = '4 + 10 = 14';
+    display.textContent = '4 + 10 = 14';
 
     let buttonsContainer = document.createElement('div');
     buttonsContainer.classList = 'buttonsContainer';
@@ -85,7 +95,7 @@ function calculatorElement() {
         let button = document.createElement('button');
         button.className = 'button';
         button.id = `button-${i}`;
-        button.innerText = i;
+        button.textContent = i;
         buttonsContainer.appendChild(button);
     };
 
@@ -94,19 +104,20 @@ function calculatorElement() {
         let button = document.createElement('button');
         button.className = 'button';
         button.id = symbol.name;
-        button.innerText = symbol.symbol;
+        button.textContent = symbol.symbol;
         buttonsContainer.appendChild(button);
     });
 
     let equalsElement = document.createElement('button');
     equalsElement.className = 'equalsSign';
     equalsElement.id = 'equals';
-    equalsElement.innerText = '=';
+    equalsElement.textContent = '=';
 
     let clear = document.createElement('button');
-    clear.className = clear;
+    clear.className = 'clear';
     clear.id = 'clear';
-    clear.innerText = 'CLEAR';
+    clear.textContent = 'CLEAR';
+    clear.onclick = Display.clear;
 
     container.appendChild(display);
     container.appendChild(buttonsContainer);
