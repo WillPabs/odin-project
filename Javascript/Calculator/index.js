@@ -46,33 +46,43 @@ const Operator = (() => {
     // further calculation. The operator will be pushed into the array for
     // that number. The loop will continue to the next value and append the 
     // number to a brand new variable, until another operator is met.
-    // ** Figure out PEMDAS functionality after all values have been pushed
-    // to the new array **
     const operate = () => {
         let values = Display.getValuesOrder();
-        let num1 = '';
-        let num2 = '';
+        let num = '';
         let operatorEncountered = false;
-        let operation;
+        let equationArray = [];
 
-        values.forEach(value => {
+        for (let i = 0; i < values.length; i++) {
+            let value = values[i];
             let operator = symbols.find( ({symbol}) => symbol === value);
             if (operator) {
-                console.log(operator)
-                operation = operator;
+                equationArray.push(Number(num));
+                num = '';
+                equationArray.push(operator);
                 operatorEncountered = true;
             } else {
-                if (!operatorEncountered) {
-                    num1 = num1.concat(value);
-                } else {
-                    num2 = num2.concat(value)
-                };    
+                num = num.concat(value);
             }
-        });
-        let op = operation.function;
-        let result = op(num1, num2);
-        console.log(result);
-        // return operator(num1, num2);
+            if (i === values.length - 1) equationArray.push(Number(num));
+        }
+
+        let result;
+        let a;
+        let b;
+        for (let i = 0; i < equationArray.length; i++) {
+            if (typeof equationArray[i] !== 'number') {
+                let operation = equationArray[i].function;
+                b = equationArray[i + 1];
+                if (result === undefined) {
+                    result = operation(a,b);
+                } else {
+                    result = operation(result,b);
+                }
+                i = i + 1;
+            };
+            a = equationArray[i];
+        };
+        return result;  
     };
 
     return {
