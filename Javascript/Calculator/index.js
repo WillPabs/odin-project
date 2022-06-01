@@ -82,7 +82,7 @@ const Operator = (() => {
             };
             a = equationArray[i];
         };
-        return result;  
+        Display.display(result);  
     };
 
     return {
@@ -112,8 +112,12 @@ const Display = (() => {
     }
 
     const display = (button) => {
-        addToDisplay(button);
-        displayEl.textContent = displayWindow;
+        if (typeof button === 'number') {
+            displayEl.textContent = button;
+        } else {
+            addToDisplay(button);
+            displayEl.textContent = displayWindow;
+        }
     }
 
     const getValuesOrder = () => {
