@@ -4,6 +4,7 @@
     border: black solid 10px;
     background-color: black;
     border-radius: 5%;
+    max-width: 12em;
 }
 
 #display {
