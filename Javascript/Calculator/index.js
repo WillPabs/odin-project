@@ -39,7 +39,7 @@ const Operator = (() => {
     ];
 
     const isCalculatorButton = (e) => {
-        if (Number(e) || e === '0' || e === '.' || e === '=' || Operator.findMatchingSymbol(e)) {
+        if (Number(e) || e === '0' || e === '.' || Operator.findMatchingSymbol(e)) {
             return true
         }
         return false;
@@ -124,6 +124,16 @@ const Display = (() => {
         displayValuesOrder.push(button.textContent);
     }
 
+    const backspace = (event) => {
+        if (event.key === 'Backspace') {
+            displayValuesOrder.pop();
+            displayWindow = Array.from(displayWindow)
+            displayWindow.pop();
+            displayWindow = displayWindow.join('');
+            displayEl.textContent = displayWindow;
+        }
+    }
+
     const display = (output) => {
         if (typeof output === 'number') {
             displayWindow = output.toString();
@@ -147,7 +157,8 @@ const Display = (() => {
     return {
         display,
         getValuesOrder,
-        clear
+        clear,
+        backspace
     }
 })();
 
@@ -168,7 +179,7 @@ function calculatorElement() {
     // number buttons
     for (let i = 0; i < 10; i++) {
         let button = document.createElement('button');
-        button.className = 'button';
+        button.classList.add('button', 'number');
         button.id = `button-${i}`;
         button.textContent = i;
         buttonsContainer.appendChild(button);
@@ -177,7 +188,7 @@ function calculatorElement() {
     // operator buttons
     Operator.symbols.forEach(symbol => {
         let button = document.createElement('button');
-        button.className = 'button';
+        button.classList.add('button', 'operator');
         button.id = symbol.name;
         button.textContent = symbol.symbol;
         buttonsContainer.appendChild(button);
@@ -185,18 +196,16 @@ function calculatorElement() {
 
     // decimal button
     let decimal = document.createElement('button');
-    decimal.className = 'button';
+    decimal.classList.add('button', 'operator');
     decimal.id = 'decimal';
     decimal.textContent = '.';
     buttonsContainer.appendChild(decimal);
 
     // equals button
     let equalsElement = document.createElement('button');
-    equalsElement.className = 'equalsSign';
+    equalsElement.classList.add('button', 'operator');
     equalsElement.id = 'equals';
     equalsElement.textContent = '=';
-    // equalsElement.onclick = Operator.operate;
-    // equalsElement.onkeydown = Operator.operate;
     ['click', 'keydown'].forEach( event => {
         equalsElement.addEventListener(event, Operator.operate);
     });
@@ -204,7 +213,7 @@ function calculatorElement() {
 
     // clear button
     let clear = document.createElement('button');
-    clear.className = 'clear';
+    clear.classList.add('button', 'operator');
     clear.id = 'clear';
     clear.textContent = 'CLEAR';
     clear.onclick = Display.clear;
@@ -229,6 +238,7 @@ buttons.forEach(button => {
 
 document.addEventListener('keydown', (e) => {
     if (e.key === '=' || e.key === 'Enter') Operator.operate();
+    if (e.key === 'Backspace') Display.backspace(e);
     if (Operator.isCalculatorButton(e.key)) {
         buttons = Array.from(buttons);
         let match = buttons.find(button => button.textContent === e.key);
