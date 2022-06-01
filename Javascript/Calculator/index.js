@@ -38,6 +38,14 @@ const Operator = (() => {
         }
     ];
 
+    // This function will get the inputted values from calculator.
+    // It will then loop through each value.
+    // Each iteration of the loop will append the number to a variable.
+    // If the value of the current iteration is an operator, the previous
+    // number values will become one number and appended to an array for
+    // further calculation. The operator will be pushed into the array for
+    // that number. The loop will continue to the next value and append the 
+    // number to a brand new variable, until another operator is met.
     const parseExpression = () => {
         let values = Display.getValuesOrder();
         let num = '';
@@ -61,14 +69,7 @@ const Operator = (() => {
         }
         return equationArray;
     }
-    // This function will get the inputted values from calculator.
-    // It will then loop through each value.
-    // Each iteration of the loop will append the number to a variable.
-    // If the value of the current iteration is an operator, the previous
-    // number values will become one number and appended to an array for
-    // further calculation. The operator will be pushed into the array for
-    // that number. The loop will continue to the next value and append the 
-    // number to a brand new variable, until another operator is met.
+    
     const operate = () => {
         let equationArray = parseExpression();
 
@@ -86,6 +87,7 @@ const Operator = (() => {
             };
             a = equationArray[i];
         };
+        result = Number(result.toFixed(4));
         Display.display(result);  
     };
 
@@ -113,11 +115,12 @@ const Display = (() => {
         displayValuesOrder.push(button.textContent);
     }
 
-    const display = (button) => {
-        if (typeof button === 'number') {
-            displayEl.textContent = button;
+    const display = (output) => {
+        if (typeof output === 'number') {
+            displayWindow = output.toString();
+            displayEl.textContent = output;
         } else {
-            addToDisplay(button);
+            addToDisplay(output);
             displayEl.textContent = displayWindow;
         }
     }
@@ -173,7 +176,7 @@ function calculatorElement() {
 
     // decimal button
     let decimal = document.createElement('button');
-    decimal.className = 'decimal';
+    decimal.className = 'button';
     decimal.id = 'decimal';
     decimal.textContent = '.';
 
