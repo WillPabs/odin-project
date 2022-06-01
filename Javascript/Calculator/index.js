@@ -38,6 +38,17 @@ const Operator = (() => {
         }
     ];
 
+    const isCalculatorButton = (e) => {
+        if (Number(e) || e === '0' || e === '.' || e === '=' || Operator.findMatchingSymbol(e)) {
+            return true
+        }
+        return false;
+    }
+
+    const findMatchingSymbol = (value) => {
+        return result = symbols.find( ({symbol}) => symbol === value);
+    };
+
     // This function will get the inputted values from calculator.
     // It will then loop through each value.
     // Each iteration of the loop will append the number to a variable.
@@ -53,7 +64,7 @@ const Operator = (() => {
 
         for (let i = 0; i < values.length; i++) {
             let value = values[i];
-            let operator = symbols.find( ({symbol}) => symbol === value);
+            let operator = findMatchingSymbol(value);
             if (operator) {
                 if (num.length > 0) {
                     equationArray.push(Number(num));
@@ -93,10 +104,8 @@ const Operator = (() => {
 
     return {
         symbols,
-        add,
-        subtract,
-        multiply,
-        divide,
+        isCalculatorButton,
+        findMatchingSymbol,
         operate
     }
 })();
@@ -179,13 +188,19 @@ function calculatorElement() {
     decimal.className = 'button';
     decimal.id = 'decimal';
     decimal.textContent = '.';
+    buttonsContainer.appendChild(decimal);
 
     // equals button
     let equalsElement = document.createElement('button');
     equalsElement.className = 'equalsSign';
     equalsElement.id = 'equals';
     equalsElement.textContent = '=';
-    equalsElement.onclick = Operator.operate;
+    // equalsElement.onclick = Operator.operate;
+    // equalsElement.onkeydown = Operator.operate;
+    ['click', 'keydown'].forEach( event => {
+        equalsElement.addEventListener(event, Operator.operate);
+    });
+    buttonsContainer.appendChild(equalsElement);
 
     // clear button
     let clear = document.createElement('button');
@@ -193,12 +208,10 @@ function calculatorElement() {
     clear.id = 'clear';
     clear.textContent = 'CLEAR';
     clear.onclick = Display.clear;
+    buttonsContainer.appendChild(clear);
 
     container.appendChild(display);
     container.appendChild(buttonsContainer);
-    container.appendChild(decimal);
-    container.appendChild(equalsElement);
-    container.appendChild(clear);
 
     return container;
 }
@@ -212,4 +225,13 @@ buttons.forEach(button => {
     button.addEventListener('click', () => {
         Display.display(button);
     });
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === '=' || e.key === 'Enter') Operator.operate();
+    if (Operator.isCalculatorButton(e.key)) {
+        buttons = Array.from(buttons);
+        let match = buttons.find(button => button.textContent === e.key);
+        Display.display(match);
+    }
 })
