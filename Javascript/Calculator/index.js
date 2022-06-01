@@ -38,6 +38,29 @@ const Operator = (() => {
         }
     ];
 
+    const parseExpression = () => {
+        let values = Display.getValuesOrder();
+        let num = '';
+        let equationArray = [];
+
+        for (let i = 0; i < values.length; i++) {
+            let value = values[i];
+            let operator = symbols.find( ({symbol}) => symbol === value);
+            if (operator) {
+                if (num.length > 0) {
+                    equationArray.push(Number(num));
+                    num = '';
+                }
+                equationArray.push(operator);
+                console.log(operator);
+            } else {
+                num = num.concat(value);
+                console.log(num);
+            }
+            if (i === values.length - 1) equationArray.push(Number(num));
+        }
+        return equationArray;
+    }
     // This function will get the inputted values from calculator.
     // It will then loop through each value.
     // Each iteration of the loop will append the number to a variable.
@@ -47,28 +70,9 @@ const Operator = (() => {
     // that number. The loop will continue to the next value and append the 
     // number to a brand new variable, until another operator is met.
     const operate = () => {
-        let values = Display.getValuesOrder();
-        let num = '';
-        let operatorEncountered = false;
-        let equationArray = [];
+        let equationArray = parseExpression();
 
-        for (let i = 0; i < values.length; i++) {
-            let value = values[i];
-            let operator = symbols.find( ({symbol}) => symbol === value);
-            if (operator) {
-                equationArray.push(Number(num));
-                num = '';
-                equationArray.push(operator);
-                operatorEncountered = true;
-            } else {
-                num = num.concat(value);
-            }
-            if (i === values.length - 1) equationArray.push(Number(num));
-        }
-
-        let result;
-        let a;
-        let b;
+        let result, a, b;
         for (let i = 0; i < equationArray.length; i++) {
             if (typeof equationArray[i] !== 'number') {
                 let operation = equationArray[i].function;
@@ -94,8 +98,6 @@ const Operator = (() => {
         operate
     }
 })();
-
-// when user presses '=' key, the operate function will be run
 
 const Display = (() => {
     let displayWindow = '';
@@ -169,12 +171,20 @@ function calculatorElement() {
         buttonsContainer.appendChild(button);
     });
 
+    // decimal button
+    let decimal = document.createElement('button');
+    decimal.className = 'decimal';
+    decimal.id = 'decimal';
+    decimal.textContent = '.';
+
+    // equals button
     let equalsElement = document.createElement('button');
     equalsElement.className = 'equalsSign';
     equalsElement.id = 'equals';
     equalsElement.textContent = '=';
     equalsElement.onclick = Operator.operate;
 
+    // clear button
     let clear = document.createElement('button');
     clear.className = 'clear';
     clear.id = 'clear';
@@ -183,6 +193,7 @@ function calculatorElement() {
 
     container.appendChild(display);
     container.appendChild(buttonsContainer);
+    container.appendChild(decimal);
     container.appendChild(equalsElement);
     container.appendChild(clear);
 
