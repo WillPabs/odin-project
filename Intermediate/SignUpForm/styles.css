@@ -60,3 +60,17 @@
 }
 
 /*------------ COLUMN 2 ------------*/
+
+.column2 {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.row1 {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.companyMottoContainer {
+    grid-row: 2;
+}
