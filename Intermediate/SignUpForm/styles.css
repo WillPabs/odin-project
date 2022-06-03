@@ -9,6 +9,7 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
     height: 100vh;
 }
 
@@ -113,4 +114,19 @@ body {
     display: grid;
     grid-template-rows: 1fr 1fr;
     width: 50%;
+}
+
+/*------------ COLUMN 2 ROW 3 ------------*/
+
+.row3 > div {
+    margin-top: 30px;
+}
+
+#createAccount {
+    background-color: #596D48;
+    border-radius: 10%;
+    border: 0px;
+    height: 2.5rem;
+    width: 12rem;
+    color: white;
 }
