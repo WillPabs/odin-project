@@ -2,7 +2,7 @@
 
 This repository contains a multitude of projects associated with https://www.theodinproject.com/.
 
-[Foundations Projects](tree/main/Foundations).
+[Foundations Projects](Foundations).
 
 
-[Javascript Projects](tree/main/Javascript).
+[Javascript Projects](Javascript).
