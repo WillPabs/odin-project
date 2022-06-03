@@ -114,6 +114,7 @@ body {
     display: grid;
     grid-template-rows: 1fr 1fr;
     width: 50%;
+    font-size: 12px;
 }
 
 /*------------ COLUMN 2 ROW 3 ------------*/
