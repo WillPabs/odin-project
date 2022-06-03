@@ -64,11 +64,15 @@
 .column2 {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: 1fr 19fr;
+    /* grid-template-columns: 1fr 19fr; */
 }
 
-.column2 > div {
-    grid-column: 2;
+.column2 > div > div {
+    margin-left: 30px;
+}
+
+.column2 .row2 {
+    box-shadow: 0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
 .row1 {
