@@ -115,6 +115,16 @@ body {
     font-size: 12px;
 }
 
+#signUpInputContainer > div input {
+    border-color: #E5E7EB;
+    border-radius: 10%;
+}
+
+#signUpInputContainer > div input {
+    border-color: #E5E7EB;
+    border-radius: 10%;
+}
+
 /*------------ COLUMN 2 ROW 3 ------------*/
 
 #row3 > div {
