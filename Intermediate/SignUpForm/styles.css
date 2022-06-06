@@ -67,6 +67,8 @@ body {
 #column2 {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 #column2 > div > div {
@@ -115,16 +117,22 @@ body {
     font-size: 12px;
 }
 
-#signUpInputContainer > div input {
-    /* border-color: #E5E7EB; */
+input {
+    border-color: #E5E7EB;
     outline: none !important;
     border-radius: 4px;
     border-width: 1px;
     padding-left: 5px;
 }
 
+.spacing {
+    letter-spacing: 1px;
+    font-size: 11px;
+}
+
 .blue-input:focus {
-    border-color: lightblue;
+    border-color: blue;
+    outline: none !important;
     box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.3);
 }
 
