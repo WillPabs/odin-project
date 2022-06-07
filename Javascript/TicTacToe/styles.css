@@ -1,10 +1,11 @@
-.game-container {
-    border: solid;
-    display: grid;    
+#game-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 20px; 
 }
 
-
-
-/* .game-container > :nth-child() {
+.cell {
     border: solid;
-} */
+    text-align: center;
+}
