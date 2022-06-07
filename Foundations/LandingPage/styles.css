@@ -88,6 +88,7 @@ a {
 
 /* ------- INFO ------- */
 .info {
+    margin-bottom: 70px;
     padding-left: 10%;
     padding-right: 10%;
     display: flex;
@@ -160,6 +161,45 @@ a {
 .sign-up {
     padding-left: 10%;
     padding-right: 10%;
+    display:flex;
+    justify-content: center;
+}
+
+.sign-up-container {
+    background-color: #3882F6;
+    margin: 70px;
+    flex: 1;
+    border-radius: 10px;
+    color: white;
+    padding: 40px;
+}
+
+.sign-up-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.sign-up-text > * {
+    margin: 0;
+    font-family: Verdana;
+}
+
+.sign-up-text h4 {
+    font-size: 18px;
+}
+
+.sign-up-content button {
+    border: solid 2px white;
+    outline-color: white;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 30px; 
+    background-color: #3882F6;
+    font-family: Verdana;
+    font-size: 18px;
+    min-width: 133px;
 }
 
 /* ------- FOOTER ------- */
