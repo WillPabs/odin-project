@@ -16,8 +16,8 @@ body {
     justify-content: space-between;
     align-items: center;
     font-family: Verdana;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
     padding-bottom: 50px;
 }
 
@@ -45,8 +45,8 @@ a {
     background-color: #1F2937;
     color: white;
     align-items: stretch;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
     padding-top: 50px;
     padding-bottom: 100px;
 }
@@ -89,8 +89,8 @@ a {
 /* ------- INFO ------- */
 .info {
     margin-bottom: 70px;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,8 +129,8 @@ a {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
     padding: 100px 100px;
     background-color: #E5E7EB;
 }
@@ -159,15 +159,16 @@ a {
 
 /* ------- SIGN-UP ------- */
 .sign-up {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
     display:flex;
     justify-content: center;
 }
 
 .sign-up-container {
     background-color: #3882F6;
-    margin: 70px;
+    margin-top: 70px;
+    margin-bottom: 70px;
     flex: 1;
     border-radius: 10px;
     color: white;
@@ -176,8 +177,10 @@ a {
 
 .sign-up-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
     gap: 30px;
 }
 
