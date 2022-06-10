@@ -16,7 +16,7 @@ ul {
 #container {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    /* grid-template-rows: auto; */
+    height: 100vh;
 }
 
 /* ---------- NAVBAR ---------- */
@@ -55,9 +55,14 @@ ul {
     margin-top: 30px;
 }
 
-/* ---------- MAIN-CONTENT ---------- */
+/* ---------- MAIN ---------- */
 
-#main-content > div {
+#main {
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+}
+
+#main > div {
     padding-left: 30px;
     padding-right: 60px;
 }
@@ -68,7 +73,7 @@ ul {
     display: grid;
     grid-template-rows: 1fr 1.5fr;
     grid-template-columns: 2fr 1fr;
-    height: 175px;
+    /* height: 175px; */
     align-items: center;
     box-shadow: 10px 10px 10px 5px rgba(2, 2, 2, 0.2);
 }
@@ -156,6 +161,29 @@ ul {
 
 #content {
     display: grid;
-    grid-column: 2;
+    grid-template-columns: 4fr 1fr;
     background-color: lightgray;
+}
+
+/* ---------- MAIN-CONTENT ---------- */
+
+#main-content {
+    display: grid;
+}
+
+/* ---------- PROJECTS ---------- */
+
+#projects {
+}
+
+/* ---------- ANNOUNCEMENTS ---------- */
+
+#announcements {
+
+}
+
+/* ---------- TRENDING ---------- */
+
+#trending {
+    grid-column: 2;
 }
