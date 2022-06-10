@@ -176,6 +176,18 @@ ul {
 /* ---------- PROJECTS ---------- */
 
 #projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: .2fr repeat(auto, 1fr);
+}
+
+.content-title {
+    grid-column: 1 / span 2;
+}
+
+.project {
+    /* height: 75%; */
+    /* width: 30%; */
 }
 
 /* ---------- ANNOUNCEMENTS ---------- */
