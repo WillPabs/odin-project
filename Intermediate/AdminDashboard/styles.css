@@ -179,6 +179,7 @@ ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: .2fr repeat(auto, 1fr);
+    gap: 20px;
 }
 
 .content-title {
@@ -188,6 +189,9 @@ ul {
 .project {
     /* height: 75%; */
     /* width: 30%; */
+    /* outline: solid 1px; */
+    border-radius: 10px;
+    background-color: white;
 }
 
 /* ---------- ANNOUNCEMENTS ---------- */
