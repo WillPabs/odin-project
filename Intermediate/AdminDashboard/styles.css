@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     font-family: Arial;
+    box-sizing: border-box;
 }
 
 ul {
@@ -53,7 +54,7 @@ ul {
     margin-top: 30px;
 }
 
-/* ---------- HEADER ---------- */
+/* ---------- MAIN-CONTENT HEADER ---------- */
 
 #header {
     display: grid;
@@ -61,10 +62,23 @@ ul {
     grid-template-columns: 2fr 1fr;
 }
 
+#search-bar {
+    
+}
+
+#user-section ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
 #welcome-options-container {
-    grid-column: 2;
-    grid-row: 1;
+
+}
+
+.profile-pic {
+    height: 50px;
+    border-radius: 50px;
 }
 
 /* ---------- CONTENT ---------- */
