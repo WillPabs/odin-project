@@ -54,17 +54,41 @@ ul {
     margin-top: 30px;
 }
 
-/* ---------- MAIN-CONTENT HEADER ---------- */
+/* ---------- MAIN-CONTENT ---------- */
+
+#main-content > div {
+    padding-left: 30px;
+}
+
+/* ---------- HEADER ---------- */
 
 #header {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
     grid-template-columns: 2fr 1fr;
+    height: 200px;
+    align-items: center;
+    box-shadow: 10px 10px 10px 5px rgba(2, 2, 2, 0.2);
 }
 
+/* ---------- SEARCH-BAR ---------- */
+
 #search-bar {
-    
+    display: flex;
+    /* align-items: center; */
+    gap: 20px;
+    /* padding: 10px; */
 }
+
+#search-input {
+    width: 75%;
+    /* height: 65%; */
+    border-radius: 30px;
+    background-color: lightgray;
+    border: none;
+}
+
+/* ---------- USER-SECTION ---------- */
 
 #user-section ul {
     display: flex;
@@ -72,8 +96,13 @@ ul {
     align-items: center;
 }
 
-#welcome-options-container {
+/* ---------- WELCOME ---------- */
 
+#welcome {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: bold;
 }
 
 .profile-pic {
@@ -81,9 +110,27 @@ ul {
     border-radius: 50px;
 }
 
+#welcome-message {
+    display: flex;
+    flex-direction: column;
+    font-size: .8rem;
+    gap: 5px;
+}
+
+#username {
+    font-size: 1.2rem;
+}
+
+/* ---------- OPTIONS ---------- */
+
+#options ul {
+    display: flex;
+}
+
 /* ---------- CONTENT ---------- */
 
 #content {
     display: grid;
     grid-column: 2;
+    background-color: lightgray;
 }
