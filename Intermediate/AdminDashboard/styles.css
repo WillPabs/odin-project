@@ -162,10 +162,12 @@ ul {
 
 #content {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3fr 1fr;
     padding-top: 30px;
     background-color: lightgray;
     gap: 30px;
+    padding-bottom: 60px;
+    padding-right: 30px !important;
 }
 
 /* ---------- MAIN-CONTENT ---------- */
@@ -173,7 +175,7 @@ ul {
 #main-content {
     display: grid;
     grid-template-rows: auto 1fr;
-
+    grid-template-columns: 1fr;
 }
 
 /* ---------- PROJECTS ---------- */
@@ -238,14 +240,76 @@ ul {
     background-color: white;
 }
 
+/* ---------- SIDE-CONTENT ---------- */
+
+#side-content {
+    display: grid;
+    gap: 20px;
+}
+
 /* ---------- ANNOUNCEMENTS ---------- */
 
 #announcements {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+}
+
+#announcements ul {
+    display: grid;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.announcement {
 
 }
+
+.announcement-title {
+    font-weight: bold;
+    font-size: .85rem;
+}
+
+.announcement-info {
+    font-size: .7rem;
+}
+
 
 /* ---------- TRENDING ---------- */
 
 #trending {
-    grid-column: 2;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+}
+
+#trending ul {
+    display: grid;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+#trending ul img {
+    height: 40px;
+    border-radius: 40px;
+}
+
+.trending-user {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.user-info {
+    font-size: .85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.user-project {
+    color: rgb(119, 118, 118);
 }
