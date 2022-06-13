@@ -17,7 +17,6 @@ const Gameboard = function() {
         [6,7,8]
     ];
 
-
     const renderGameboard = () => {
         let board = document.querySelector("#game-container");
         
@@ -28,15 +27,65 @@ const Gameboard = function() {
         });
     };
 
+    const setPosition = (position, marker) => {
+        gameboard.flat()[position] = marker;
+    }
+
     return {
-        renderGameboard
+        renderGameboard,
+        setPosition
     }
 }();
 
-Gameboard.renderGameboard();
 const playerFactory = (name, marker) => {
-    this.name = name;
-    this.marker = marker;
 
+    const selectCell = (element, gameboard) => {
+        let selection = element.target; 
+        if (selection.textContent === 'X' || selection.textContent === 'O') {
+            alert('Cell has already been marked! Choose another cell.');
+        } else {
+            if (selected.className === 'cell') {
+                let position = selected.id.split('-')[1];
+                gameboard.setPosition(position, marker);
+            };
+        };
+    };
 
-}
+    return {
+        name,
+        marker,
+        selectCell
+    };
+};
+
+const will = new playerFactory('will', 'X');
+const bot = new playerFactory('bot', 'O');
+
+const GameFlowControl = (player1, player2) => {
+    let turnTracker = [];
+
+    const setTurn = () => {
+        let currentMarker;
+
+        if (turnTracker.length === 0) {
+            turnTracker.push(player1);
+            currentMarker = player1.marker;
+            return currentMarker;
+        };
+
+        if (turnTracker.pop() === player1) {
+            // player2's turn
+            currentMarker = player2.marker;
+            return currentMarker;
+        } else {
+            // player1's turn
+            currentMarker = player1.marker;
+            return currentMarker;
+        };
+    };
+
+    return {
+        setTurn
+    };
+    
+};
