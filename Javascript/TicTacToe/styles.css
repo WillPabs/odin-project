@@ -1,11 +1,15 @@
 #game-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 20px; 
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 5px; 
 }
 
 .cell {
     border: solid;
-    text-align: center;
+    justify-items: center;
+    height: 50px;
+    display: grid;
+    align-items: center;
+    font-size: 1.5rem;
 }
