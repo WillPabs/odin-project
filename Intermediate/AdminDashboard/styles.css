@@ -232,7 +232,7 @@ ul {
 
 .project-options-container ul {
     display: flex;
-    gap: 10px;
+    gap: 25px;
 }
 
 .project-options-container ul button {
@@ -262,10 +262,6 @@ ul {
     border-radius: 10px;
 }
 
-.announcement {
-
-}
-
 .announcement-title {
     font-weight: bold;
     font-size: .85rem;
@@ -273,6 +269,11 @@ ul {
 
 .announcement-info {
     font-size: .7rem;
+}
+
+hr {
+    margin-top: 15px;
+    height: 1px;
 }
 
 
