@@ -1,5 +1,5 @@
 const Gameboard = function() {
-    let gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
+    let gameboard = new Array(9).fill('');
     let dummyGameboard = [
         ['X','O','O'],
         ['O','X','O'],
@@ -20,7 +20,7 @@ const Gameboard = function() {
     const renderGameboard = () => {
         let board = document.querySelector("#game-container");
         
-        gameboard.flat().forEach((cell, i) => {
+        gameboard.forEach((cell, i) => {
             let c = document.querySelector(`#cell-${i}`);
             c.textContent = cell;
             board.appendChild(c);
@@ -28,7 +28,8 @@ const Gameboard = function() {
     };
 
     const setPosition = (position, marker) => {
-        gameboard.flat()[position] = marker;
+        gameboard[position] = marker;
+        console.log(gameboard);
     }
 
     return {
@@ -70,12 +71,16 @@ const GameFlowControl = (player1, player2) => {
             return player1;
         };
 
-        if (turnTracker[length - 1] === player1) {
-            // player2's turn
+        // player2's turn
+        if (turnTracker[turnTracker.length - 1] === player1) {
+            console.log('player2 turn');
             turnTracker.push(player2);
             return player2;
-        } else {
-            // player1's turn
+        };
+
+        // player1's turn
+        if (turnTracker[turnTracker.length - 1] === player2) {
+            console.log('player1 turn');
             turnTracker.push(player1);
             return player1;
         };
@@ -87,9 +92,9 @@ const GameFlowControl = (player1, player2) => {
     
 };
 
+let game = GameFlowControl(will, bot);
 document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
-        game = GameFlowControl(will, bot);
         let currentPlayer = game.setTurn();
         console.log(currentPlayer);
         currentPlayer.selectCell(e, Gameboard);

@@ -3,101 +3,101 @@
     // reset() : sets all spots in gameboard back to empty
     // displayGameboard() : renders the gameboard to the frontend
     // updateGameboard(position, player) : updates the gameboard with the
-        // selected position with the player's marker
-    // hasWinner() : checks if a player's markers match horizontally
-        // vertically, or diagonally
-    // boardComplete() : checks if all spots on the board have been
-        // used. Will log no winner, if last spot didn't make a winner
-const Gameboard = (function() {
-    let gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
-    console.log("Starting game");
-    let dummyGameboard = [
-        ['X','O','O'],
-        ['O','X','O'],
-        ['X','O','O'],
-    ];
+//         // selected position with the player's marker
+//     // hasWinner() : checks if a player's markers match horizontally
+//         // vertically, or diagonally
+//     // boardComplete() : checks if all spots on the board have been
+//         // used. Will log no winner, if last spot didn't make a winner
+// const Gameboard = (function() {
+//     let gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
+//     console.log("Starting game");
+//     let dummyGameboard = [
+//         ['X','O','O'],
+//         ['O','X','O'],
+//         ['X','O','O'],
+//     ];
 
-    const winningCombos = [
-        [0,1,2],
-        [0,3,6],
-        [0,4,8],
-        [1,4,7],
-        [2,4,6],
-        [2,5,8],
-        [3,4,5],
-        [6,7,8]
-    ]
+//     const winningCombos = [
+//         [0,1,2],
+//         [0,3,6],
+//         [0,4,8],
+//         [1,4,7],
+//         [2,4,6],
+//         [2,5,8],
+//         [3,4,5],
+//         [6,7,8]
+//     ]
 
-    const getBoard = () => {
-        gameboard;
-    };
+//     const getBoard = () => {
+//         gameboard;
+//     };
 
-    const reset = () => {
-        gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
-        console.log('Reset game board');
-    };
+//     const reset = () => {
+//         gameboard = Array.from(Array(3), () => new Array(3).fill('_'));
+//         console.log('Reset game board');
+//     };
 
-    const setPosition = (position, marker) => {
-        console.log('Setting position on board');
-        if (position >= 0 && position < 3 ) {
-            gameboard[0][position] = marker;
-        } else {
-            let rowNum = Math.floor(position / 3);
-            let newPosition = position % 3;
-            gameboard[rowNum][newPosition] = marker;
-        };
-        Gameboard.displayGameboard();
-    };
+//     const setPosition = (position, marker) => {
+//         console.log('Setting position on board');
+//         if (position >= 0 && position < 3 ) {
+//             gameboard[0][position] = marker;
+//         } else {
+//             let rowNum = Math.floor(position / 3);
+//             let newPosition = position % 3;
+//             gameboard[rowNum][newPosition] = marker;
+//         };
+//         Gameboard.displayGameboard();
+//     };
     
-    const isDraw = () => {
-        let board = gameboard.flat();
-        return board.every(cell => cell === 'X' || cell === 'O');
-    }
+//     const isDraw = () => {
+//         let board = gameboard.flat();
+//         return board.every(cell => cell === 'X' || cell === 'O');
+//     }
 
-    const hasWinner = (marker) => {
-        let board = gameboard.flat();
-        let isWinner = false;
-        let winningCombo;
-        winningCombos.forEach(combo => {
-            let markerCount = 0;
-            for (let i = 0; i < combo.length; i++) {
-                let winningPosition = combo[i];
-                if (board[winningPosition] === marker) markerCount++;
-            }
-            if (markerCount === 3) {
-                isWinner = true;
-                winningCombo = combo;
-            }
-        })
-        return isWinner;  
-    };
+//     const hasWinner = (marker) => {
+//         let board = gameboard.flat();
+//         let isWinner = false;
+//         let winningCombo;
+//         winningCombos.forEach(combo => {
+//             let markerCount = 0;
+//             for (let i = 0; i < combo.length; i++) {
+//                 let winningPosition = combo[i];
+//                 if (board[winningPosition] === marker) markerCount++;
+//             }
+//             if (markerCount === 3) {
+//                 isWinner = true;
+//                 winningCombo = combo;
+//             }
+//         })
+//         return isWinner;  
+//     };
 
-    const displayGameboard = () => {
-        console.log('displaying board')
-        let board = document.querySelector('#game-container');
-        let index = 0;
-        gameboard.forEach(row => {
-            row.forEach(marker => {
-                let cell = document.querySelector(`#cell-${index}`);
-                cell.onclick = () => {
+//     const displayGameboard = () => {
+//         console.log('displaying board')
+//         let board = document.querySelector('#game-container');
+//         let index = 0;
+//         gameboard.forEach(row => {
+//             row.forEach(marker => {
+//                 let cell = document.querySelector(`#cell-${index}`);
+//                 cell.onclick = () => {
                     
-                }
-                cell.innerHTML = marker;
-                board.appendChild(cell);
-                index++;
-            });
-        });
-    };
+//                 }
+//                 cell.innerHTML = marker;
+//                 board.appendChild(cell);
+//                 index++;
+//             });
+//         });
+//     };
 
-    return {
-        reset,
-        displayGameboard,
-        getBoard,
-        setPosition,
-        isDraw,
-        hasWinner
-    };
-})();
+//     return {
+//         reset,
+//         displayGameboard,
+//         getBoard,
+//         setPosition,
+//         isDraw,
+//         hasWinner
+//     };
+// })();
 
 
 
