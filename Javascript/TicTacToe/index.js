@@ -46,7 +46,6 @@ const Gameboard = function() {
                 if (gBoardPos === marker1) m1MatchCount++;
                 if (gBoardPos === marker2) m2MatchCount++;
             }
-            console.log(`${m1MatchCount} || ${m2MatchCount}`);
             if (m1MatchCount === 3) return true;
             if (m2MatchCount === 3) return true;
         }
@@ -54,7 +53,6 @@ const Gameboard = function() {
     }
 
     const isGameOver = () => {
-        console.log(hasWinner());
         if (hasWinner() || isTie()) return true;
         return false;
     }
@@ -118,8 +116,15 @@ const GameFlowControl = (player1, player2) => {
         };
     };
 
+    const createPlayer = (data) => {
+        let name = data.elements[0].value;
+        let newPlayer = PlayerFactory(name, 'X');
+        return newPlayer;
+    }
+
     return {
-        setTurn
+        setTurn,
+        createPlayer
     };
     
 };
@@ -137,6 +142,15 @@ restart.addEventListener('click', () => {
 const will = PlayerFactory('will', 'X');
 const bot = PlayerFactory('bot', 'O');
 let game = GameFlowControl(will, bot);
+document.querySelectorAll('form').forEach(form => {
+    console.log(form[0].data);
+})
+
+document.querySelectorAll('.create-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(e);
+    });
+});
 /* GAME START */
 let currentPlayer = game.setTurn(); // assignment of who takes 1st turn
 document.querySelectorAll('.cell').forEach(cell => {
