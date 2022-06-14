@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="player1-details" class="player-details">
-        <div class="name"></div>
-        <div class="marker"></div>
-    </div>
-    <div id="player2-details" class="player-details">
-        <div class="name"></div>
-        <div class="marker"></div>
+    <div id="players-container">
+        <div id="player1-details" class="player-details">
+            <div class="name"></div>
+            <div class="marker"></div>
+        </div>
+        <div id="player2-details" class="player-details">
+            <div class="name"></div>
+            <div class="marker"></div>
+        </div>
     </div>
     <div id="game-container">
         <div id="cell-0" class="cell"></div>
@@ -28,7 +30,7 @@
         <div id="cell-8" class="cell"></div>
     </div>
     <div class="winning-message">
-        <div id="winningMessageText"></div>
+        <div id="winning-message-text"></div>
         <button id="restartButton">Restart</button>
     </div>
     <script src="index.js"></script>

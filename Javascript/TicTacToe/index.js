@@ -17,6 +17,12 @@ const Gameboard = function() {
         [6,7,8]
     ];
 
+    let previousWinners = [];
+
+    const getWinners = () => {
+        return previousWinners;
+    }
+
     const renderGameboard = () => {
         let board = document.querySelector("#game-container");
         
@@ -46,8 +52,16 @@ const Gameboard = function() {
                 if (gBoardPos === marker1) m1MatchCount++;
                 if (gBoardPos === marker2) m2MatchCount++;
             }
-            if (m1MatchCount === 3) return true;
-            if (m2MatchCount === 3) return true;
+            if (m1MatchCount === 3) {
+                let winner = {marker: marker1, combo : winningCombos[combo]};
+                previousWinners.push(winner);
+                return true;
+            };
+            if (m2MatchCount === 3) {
+                let winner = {marker: marker1, combo : winningCombos[combo]};
+                previousWinners.push(winner);
+                return true;
+            };
         }
         return false;
     }
@@ -62,6 +76,7 @@ const Gameboard = function() {
     }
 
     return {
+        getWinners,
         renderGameboard,
         setPosition,
         isGameOver,
@@ -138,9 +153,6 @@ restart.addEventListener('click', () => {
     Gameboard.renderGameboard();
 });
 
-
-
-
 /* SETUP */
 let name1 = prompt('Enter Player 1 name');
 const player1 = PlayerFactory(name1, 'X');
@@ -149,25 +161,23 @@ const player2 = PlayerFactory(name2, 'O');
 let game = GameFlowControl(player1, player2);
 game.setDetails();
 
-document.querySelectorAll('.create-button').forEach(button => {
-    button.addEventListener('click', (e) => {
-        console.log(e);
-    });
-});
 /* GAME START */
 let currentPlayer = game.setTurn(); // assignment of who takes 1st turn
 document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
         if (currentPlayer.selectCell(e, Gameboard)) {
-            currentPlayer = game.setTurn();
             Gameboard.renderGameboard();
             if(Gameboard.isGameOver()) {
+                let winningText = document.querySelector('#winning-message-text');
+                let winningInfo = Gameboard.getWinners().pop();
+                winningText.textContent = `${currentPlayer.name} is the winner!\n ${currentPlayer.name} won with ${winningInfo.combo}`;
                 setTimeout(() => {
                     Gameboard.reset();
                     alert("GAME OVER");
                     Gameboard.renderGameboard();
-                }, 1);
+                }, 1000);
             };
+            currentPlayer = game.setTurn();
         };
     });
 });
