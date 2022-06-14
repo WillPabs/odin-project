@@ -29,29 +29,45 @@ const Gameboard = function() {
 
     const setPosition = (position, marker) => {
         gameboard[position] = marker;
-        console.log(gameboard);
     }
 
-    const isGameOver = (player) => {
-        let isOver = false;
-        let marker = player.marker
-        winningCombos.forEach(combo => {
-            let matchCount = 0;
-            combo.forEach((position) => {
-                if (gameboard[position] === marker) matchCount++;
-            });
-            if (matchCount === 3) {
-                isOver = true;
-                return isOver;
+    const isTie = () => {
+        return gameboard.every(cell => cell === 'X' || cell === 'O');
+    };
+
+    const hasWinner = () => {
+        const marker1 = 'X';
+        const marker2 = 'O' ;
+        for (let combo = 0; combo < winningCombos.length; combo++) {
+            let m1MatchCount = 0;
+            let m2MatchCount = 0;
+            for (let position = 0; position < winningCombos[combo].length; position++) {
+                let gBoardPos = gameboard[winningCombos[combo][position]]; 
+                if (gBoardPos === marker1) m1MatchCount++;
+                if (gBoardPos === marker2) m2MatchCount++;
             }
-        });
-        return isOver;
+            console.log(`${m1MatchCount} || ${m2MatchCount}`);
+            if (m1MatchCount === 3) return true;
+            if (m2MatchCount === 3) return true;
+        }
+        return false;
+    }
+
+    const isGameOver = () => {
+        console.log(hasWinner());
+        if (hasWinner() || isTie()) return true;
+        return false;
+    }
+
+    const reset = () => {
+        gameboard = new Array(9).fill('');
     }
 
     return {
         renderGameboard,
         setPosition,
-        isGameOver
+        isGameOver,
+        reset
     }
 }();
 
@@ -59,12 +75,16 @@ const PlayerFactory = (name, marker) => {
 
     const selectCell = (element, gameboard) => {
         let selection = element.target; 
+        let isSelectionSet = false;
         if (selection.textContent === 'X' || selection.textContent === 'O') {
             alert('Cell has already been marked! Choose another cell.');
+            return isSelectionSet;
         } else {
             if (selection.className === 'cell') {
                 let position = selection.id.split('-')[1];
                 gameboard.setPosition(position, marker);
+                isSelectionSet = true;
+                return isSelectionSet;
             };
         };
     };
@@ -75,9 +95,6 @@ const PlayerFactory = (name, marker) => {
         selectCell
     };
 };
-
-const will = PlayerFactory('will', 'X');
-const bot = PlayerFactory('bot', 'O');
 
 const GameFlowControl = (player1, player2) => {
     let turnTracker = [];
@@ -90,14 +107,12 @@ const GameFlowControl = (player1, player2) => {
 
         // player2's turn
         if (turnTracker[turnTracker.length - 1] === player1) {
-            console.log('player2 turn');
             turnTracker.push(player2);
             return player2;
         };
 
         // player1's turn
         if (turnTracker[turnTracker.length - 1] === player2) {
-            console.log('player1 turn');
             turnTracker.push(player1);
             return player1;
         };
@@ -109,13 +124,33 @@ const GameFlowControl = (player1, player2) => {
     
 };
 
+let restart = document.querySelector('#restartButton');
+restart.addEventListener('click', () => {
+    Gameboard.reset();
+    Gameboard.renderGameboard();
+});
+
+
+
+
+/* SETUP */
+const will = PlayerFactory('will', 'X');
+const bot = PlayerFactory('bot', 'O');
 let game = GameFlowControl(will, bot);
+/* GAME START */
+let currentPlayer = game.setTurn(); // assignment of who takes 1st turn
 document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
-        let currentPlayer = game.setTurn();
-        console.log(currentPlayer);
-        currentPlayer.selectCell(e, Gameboard);
-        Gameboard.renderGameboard();
-        if(Gameboard.isGameOver(currentPlayer)) alert("GAME OVER");
-    })
-})
+        if (currentPlayer.selectCell(e, Gameboard)) {
+            currentPlayer = game.setTurn();
+            Gameboard.renderGameboard();
+            if(Gameboard.isGameOver()) {
+                setTimeout(() => {
+                    Gameboard.reset();
+                    alert("GAME OVER");
+                    Gameboard.renderGameboard();
+                }, 1);
+            };
+        };
+    });
+});
