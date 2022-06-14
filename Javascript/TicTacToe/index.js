@@ -96,6 +96,15 @@ const PlayerFactory = (name, marker) => {
 
 const GameFlowControl = (player1, player2) => {
     let turnTracker = [];
+    
+    const setDetails = () => {
+        let p1Details = document.querySelector('#player1-details').children;
+        let p2Details = document.querySelector('#player2-details').children;
+        p1Details[0].textContent = player1.name;
+        p1Details[1].textContent = player1.marker;
+        p2Details[0].textContent = player2.name;
+        p2Details[1].textContent = player2.marker;
+    }
 
     const setTurn = () => {
         if (turnTracker.length === 0) {
@@ -116,15 +125,9 @@ const GameFlowControl = (player1, player2) => {
         };
     };
 
-    const createPlayer = (data) => {
-        let name = data.elements[0].value;
-        let newPlayer = PlayerFactory(name, 'X');
-        return newPlayer;
-    }
-
     return {
-        setTurn,
-        createPlayer
+        setDetails,
+        setTurn
     };
     
 };
@@ -139,12 +142,12 @@ restart.addEventListener('click', () => {
 
 
 /* SETUP */
-const will = PlayerFactory('will', 'X');
-const bot = PlayerFactory('bot', 'O');
-let game = GameFlowControl(will, bot);
-document.querySelectorAll('form').forEach(form => {
-    console.log(form[0].data);
-})
+let name1 = prompt('Enter Player 1 name');
+const player1 = PlayerFactory(name1, 'X');
+let name2 = prompt('Enter Player 2 name');
+const player2 = PlayerFactory(name2, 'O');
+let game = GameFlowControl(player1, player2);
+game.setDetails();
 
 document.querySelectorAll('.create-button').forEach(button => {
     button.addEventListener('click', (e) => {
