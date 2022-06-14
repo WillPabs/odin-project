@@ -20,7 +20,7 @@ const Gameboard = function() {
     const renderGameboard = () => {
         let board = document.querySelector("#game-container");
         
-        dummyGameboard.flat().forEach((cell, i) => {
+        gameboard.flat().forEach((cell, i) => {
             let c = document.querySelector(`#cell-${i}`);
             c.textContent = cell;
             board.appendChild(c);
@@ -37,15 +37,15 @@ const Gameboard = function() {
     }
 }();
 
-const playerFactory = (name, marker) => {
+const PlayerFactory = (name, marker) => {
 
     const selectCell = (element, gameboard) => {
         let selection = element.target; 
         if (selection.textContent === 'X' || selection.textContent === 'O') {
             alert('Cell has already been marked! Choose another cell.');
         } else {
-            if (selected.className === 'cell') {
-                let position = selected.id.split('-')[1];
+            if (selection.className === 'cell') {
+                let position = selection.id.split('-')[1];
                 gameboard.setPosition(position, marker);
             };
         };
@@ -58,29 +58,26 @@ const playerFactory = (name, marker) => {
     };
 };
 
-const will = new playerFactory('will', 'X');
-const bot = new playerFactory('bot', 'O');
+const will = PlayerFactory('will', 'X');
+const bot = PlayerFactory('bot', 'O');
 
 const GameFlowControl = (player1, player2) => {
     let turnTracker = [];
 
     const setTurn = () => {
-        let currentMarker;
-
         if (turnTracker.length === 0) {
             turnTracker.push(player1);
-            currentMarker = player1.marker;
-            return currentMarker;
+            return player1;
         };
 
-        if (turnTracker.pop() === player1) {
+        if (turnTracker[length - 1] === player1) {
             // player2's turn
-            currentMarker = player2.marker;
-            return currentMarker;
+            turnTracker.push(player2);
+            return player2;
         } else {
             // player1's turn
-            currentMarker = player1.marker;
-            return currentMarker;
+            turnTracker.push(player1);
+            return player1;
         };
     };
 
@@ -89,3 +86,13 @@ const GameFlowControl = (player1, player2) => {
     };
     
 };
+
+document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', (e) => {
+        game = GameFlowControl(will, bot);
+        let currentPlayer = game.setTurn();
+        console.log(currentPlayer);
+        currentPlayer.selectCell(e, Gameboard);
+        Gameboard.renderGameboard();
+    })
+})
