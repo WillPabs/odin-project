@@ -32,9 +32,26 @@ const Gameboard = function() {
         console.log(gameboard);
     }
 
+    const isGameOver = (player) => {
+        let isOver = false;
+        let marker = player.marker
+        winningCombos.forEach(combo => {
+            let matchCount = 0;
+            combo.forEach((position) => {
+                if (gameboard[position] === marker) matchCount++;
+            });
+            if (matchCount === 3) {
+                isOver = true;
+                return isOver;
+            }
+        });
+        return isOver;
+    }
+
     return {
         renderGameboard,
-        setPosition
+        setPosition,
+        isGameOver
     }
 }();
 
@@ -99,5 +116,6 @@ document.querySelectorAll('.cell').forEach(cell => {
         console.log(currentPlayer);
         currentPlayer.selectCell(e, Gameboard);
         Gameboard.renderGameboard();
+        if(Gameboard.isGameOver(currentPlayer)) alert("GAME OVER");
     })
 })
