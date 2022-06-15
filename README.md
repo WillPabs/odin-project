@@ -15,4 +15,4 @@ Intermediate Section
 Javascript Projects
 - [Library](https://willpabs.github.io/odin-project/Javascript/Library/index.html)
 - [Calculator](https://willpabs.github.io/odin-project/Javascript/Calculator/index.html)
-- [TicTacToe](https://willpabs.github.io/odin-project/Javascript/TicTacToe/index.html)
+- [TicTacToe](https://willpabs.github.io/odin-project/Javascript/TicTacToe)
