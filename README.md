@@ -1,5 +1,4 @@
 # odin-project
-
 This repository contains a multitude of projects associated with https://www.theodinproject.com/. Below is a list of links to github pages of my completed projects.
 
 Foundations Projects
