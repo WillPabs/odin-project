@@ -46,4 +46,8 @@ Repeat from step 5
 - reset()
 
 #### GameFlowControl
+<<<<<<< HEAD
 - takeTurn()
+=======
+- takeTurn()
+>>>>>>> tictactoe
