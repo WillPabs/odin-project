@@ -1,7 +1,7 @@
 import './styles/style.css';
 
 const bgImg = document.createElement('img');
-bgImg.src = 'https://images.squarespace-cdn.com/content/v1/5835d948414fb5a615f7641e/1481519058032-2V7L61ZFLEDNYTL2CYU7/Food+Photo+Background.jpg?format=2500w';
+bgImg.src = 'https://images.unsplash.com/photo-1518188770546-efd25d4ca263?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80';
 
 const headline = document.createElement('div');
 headline.textContent = 'WELCOME TO MY RESTAURANT';
