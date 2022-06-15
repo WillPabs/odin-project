@@ -154,12 +154,14 @@ restart.addEventListener('click', () => {
 });
 
 /* SETUP */
-let name1 = prompt('Enter Player 1 name');
-const player1 = PlayerFactory(name1, 'X');
-let name2 = prompt('Enter Player 2 name');
-const player2 = PlayerFactory(name2, 'O');
-let game = GameFlowControl(player1, player2);
-game.setDetails();
+window.addEventListener('load', () => {
+    let name1 = prompt('Welcome to TicTacToe!\nEnter Player 1 name');
+    const player1 = PlayerFactory(name1, 'X');
+    let name2 = prompt('Enter Player 2 name');
+    const player2 = PlayerFactory(name2, 'O');
+    let game = GameFlowControl(player1, player2);
+    game.setDetails();
+});
 
 /* GAME START */
 let currentPlayer = game.setTurn(); // assignment of who takes 1st turn
