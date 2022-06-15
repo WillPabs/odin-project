@@ -16,6 +16,7 @@ copy.classList.add('copy');
 
 const homeContainer = document.createElement('div');
 homeContainer.id = 'home-container';
+homeContainer.classList.add('container');
 homeContainer.appendChild(headline);
 homeContainer.appendChild(copy);
 

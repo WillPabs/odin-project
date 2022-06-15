@@ -10,3 +10,15 @@
     height: 100vh;
 }
 
+.container {
+    position: absolute;
+    color: white;
+    display: grid;
+    grid-template-rows: repeat(auto, 1fr);
+    justify-self: center;
+}
+
+.container div {
+    text-align: center;
+}
+
