@@ -1,0 +1,11 @@
+#home-container {
+    position: absolute;
+    color: white;
+    display: grid;
+    grid-template-rows: repeat(auto, 1fr);
+    justify-self: center;
+}
+
+#home-container div {
+    text-align: center;
+}
