@@ -12,11 +12,17 @@ module.exports = {
     clean: true
   },
   devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/templates/index.html'
     }),
   ],
+  optimization: {
+    runtimeChunk: 'single',
+  },
   module: {
     rules: [
       {
