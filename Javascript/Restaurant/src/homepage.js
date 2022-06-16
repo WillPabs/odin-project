@@ -20,6 +20,8 @@ homeContainer.classList.add('container');
 homeContainer.appendChild(headline);
 homeContainer.appendChild(copy);
 
+
+
 const addHomepage = () => {
     const content = document.querySelector('#content');
     content.appendChild(bgImg);
