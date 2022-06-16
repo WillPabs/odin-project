@@ -1,5 +1,8 @@
+import './styles/tab.css';
+
 const createTab = (text) => {
     const container = document.createElement('div');
+    container.classList.add('tab-container');
     const tab = document.createElement('button');
     tab.classList.add('tab');
     tab.textContent = text;
