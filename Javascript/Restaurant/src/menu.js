@@ -15,25 +15,27 @@ headline.textContent = 'MENU';
 headline.classList.add('headline');
 menuContainer.appendChild(headline);
 
-const menuGroup = document.createElement('div');
-menuGroup.classList.add('menu-group');
-menuGroup.textContent = 'Main Dishes';
-menuContainer.appendChild(menuGroup);
+const menuGroup = (text) =>  {
+    const menuG = document.createElement('div');
+    menuG.classList.add('menu-group');
+    menuG.textContent = text;
+    return menuG;
+}
 
-menuGroup.textContent = 'Beverages';
-menuContainer.appendChild(menuGroup);
+const mainDish = menuGroup('Main Dishes');
+const bevs = menuGroup('Beverages');
+const sides = menuGroup('Sides');
+menuContainer.appendChild(mainDish);
+menuContainer.appendChild(bevs);
+menuContainer.appendChild(sides);
 
-menuGroup.textContent = 'Sides';
-menuContainer.appendChild(menuGroup);
-
-const addMenu = () => {
+export const addMenu = () => {
     const content = document.querySelector('#content');
     // content.remove();
     content.appendChild(bgImg);
     content.appendChild(menuContainer);
 }
 
-export { addMenu };
 
 
 
