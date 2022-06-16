@@ -6,12 +6,13 @@
 
 #content {
     display: grid;
-    grid-template-rows: repeat(auto, 1fr);
+    grid-template-rows: 1fr 8fr;
     height: 100vh;
+    background: url('https://images.unsplash.com/photo-1518188770546-efd25d4ca263?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80') no-repeat;
+    background-size: cover;
 }
 
 .container {
-    position: absolute;
     color: white;
     display: grid;
     grid-template-rows: repeat(auto, 1fr);
