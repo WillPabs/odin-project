@@ -1,4 +1,7 @@
 import './styles/tab.css';
+import { addHomepage } from "./homepage";
+import { addMenu } from "./menu";
+import { addContact } from './contact';
 
 const createTab = (text) => {
     const container = document.createElement('div');
@@ -9,6 +12,21 @@ const createTab = (text) => {
     container.appendChild(tab);
     return container;
 }
+
+const tabs = [
+    {
+        'name': 'Home',
+        'func': addHomepage
+    }, 
+    { 
+        'name': 'Menu',
+        'func': addMenu
+    },
+    { 
+        'name': 'Contact',
+        'func': addContact
+    }
+];
 
 const home = createTab('Home');
 const menu = createTab('Menu');
@@ -21,6 +39,11 @@ container.appendChild(home);
 container.appendChild(menu);
 container.appendChild(contact);
 
-export const addTab = () => {
+const addTab = () => {
     return container;
 }
+
+export { 
+    tabs, 
+    addTab 
+};
