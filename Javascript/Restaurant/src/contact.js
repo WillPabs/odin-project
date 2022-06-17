@@ -35,7 +35,7 @@ export const addContact = () => {
         return contactContainer;
     };
 
-    const will = createContact('CEO', 'William Pabitero', '111-111-1111', 'goated@dev.com', null);
+    const will = createContact('CEO', 'William Pabitero', '111-111-1111', 'goated@dev.com', undefined);
     container.appendChild(will);
 
     return container;

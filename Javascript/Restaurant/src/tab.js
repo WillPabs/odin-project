@@ -7,11 +7,6 @@ const createTab = (text, callback) => {
     const container = document.createElement('div');
     container.classList.add('tab-container');
     const tab = document.createElement('button');
-    tab.addEventListener('click', () => {
-        let content = document.querySelector('.container').parentElement;
-        document.querySelector('.container').remove();
-        content.appendChild(callback());
-    });
     tab.classList.add('tab');
     tab.textContent = text;
     container.appendChild(tab);
