@@ -25,7 +25,8 @@
 
 .container > div {
     text-align: center;
-    margin: 10px;
+    margin: 2rem;
     border: white 1px solid;
+    border-radius: 30px;
 }
 
