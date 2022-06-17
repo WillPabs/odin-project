@@ -1,9 +1,6 @@
 import './styles/tab.css';
-import { addMenu } from './menu';
-import { addHomepage } from './homepage';
-import { addContact } from './contact';
 
-const createTab = (text, callback) => {
+const createTab = (text) => {
     const container = document.createElement('div');
     container.classList.add('tab-container');
     const tab = document.createElement('button');
@@ -13,9 +10,9 @@ const createTab = (text, callback) => {
     return container;
 }
 
-const home = createTab('Home', addHomepage);
-const menu = createTab('Menu', addMenu);
-const contact = createTab('Contact', addContact);
+const home = createTab('Home');
+const menu = createTab('Menu');
+const contact = createTab('Contact');
 
 const container = document.createElement('div');
 container.classList.add('tabs');
