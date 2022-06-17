@@ -53,7 +53,19 @@ mainDish.appendChild(salmon);
 mainDish.appendChild(chicken);
 
 const bevs = createMenuGroup('Beverages');
+const seltzer = createMenuItem('Happy Dad', '$9.99', 'Hard Seltzer from Nelk Boys', undefined);
+const beer = createMenuItem('Stella Artois', '$7.99', 'Fresh beer', undefined);
+const tequila = createMenuItem('Casamigos', '$39.99', 'Tequila baby!!!', undefined);
+bevs.appendChild(seltzer);
+bevs.appendChild(beer);
+bevs.appendChild(tequila);
+
 const sides = createMenuGroup('Sides');
+const fries = createMenuItem('French Fries', '$4.99', 'Fresh cut potatoes', undefined);
+const salad = createMenuItem('Kale Salad', '$6.99', 'Fresh vegetable salad', undefined);
+sides.appendChild(fries);
+sides.appendChild(salad);
+
 menuContainer.appendChild(mainDish);
 menuContainer.appendChild(bevs);
 menuContainer.appendChild(sides);
