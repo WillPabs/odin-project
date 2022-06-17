@@ -20,7 +20,9 @@
     margin: 10%;
 }
 
-.container div {
+.container > div {
     text-align: center;
+    margin: 10px;
+    border: white 1px solid;
 }
 

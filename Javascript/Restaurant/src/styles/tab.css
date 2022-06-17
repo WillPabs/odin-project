@@ -7,7 +7,12 @@
     align-items: end;
 }
 
-.tab-container {
-    /* display: grid; */
-    /* justify-items: end; */
+.tab {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.tab:focus {
+    background-color: darkseagreen;
 }
