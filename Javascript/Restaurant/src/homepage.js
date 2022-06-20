@@ -2,7 +2,7 @@ import './styles/homepage.css';
 
 const createInfo = (title, info) => {
     const container = document.createElement('div');
-    container.classList.add('home-info');
+    container.classList.add('home-info-container');
     container.id = String(title).toLowerCase();
 
     const titleDiv = document.createElement('div');
