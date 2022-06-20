@@ -1,8 +1,12 @@
 export const addContact = () => {
     
     const createContact = (position, name, number, email, profilePicture) => {
+        const outer = document.createElement('div');
+        outer.classList.add('outer');
+
         const contactContainer = document.createElement('div');
         contactContainer.classList.add('contact');
+        contactContainer.classList.add('inner');
         
         const positionDiv = document.createElement('div');
         positionDiv.textContent = position;
@@ -25,7 +29,8 @@ export const addContact = () => {
         contactContainer.appendChild(emailDiv);
         contactContainer.appendChild(profilePictureDiv);
 
-        return contactContainer;
+        outer.appendChild(contactContainer);
+        return outer;
     };
 
     const container = document.createElement('div');
@@ -34,7 +39,10 @@ export const addContact = () => {
     
     const headline = document.createElement('div');
     headline.classList.add('headline');
-    headline.textContent = 'Contact Us';
+    headline.classList.add('outer');
+    const inner = document.createElement('div');
+    inner.textContent = 'Contact Us';
+    headline.appendChild(inner);
     container.appendChild(headline);
 
     const will = createContact('CEO', 'William Pabitero', '111-111-1111', 'goated@dev.com', undefined);

@@ -1,8 +1,12 @@
 import './styles/homepage.css';
 
 const createInfo = (title, info) => {
+    const outer = document.createElement('div');
+    outer.classList.add('outer');
+
     const container = document.createElement('div');
     container.classList.add('home-info-container');
+    container.classList.add('inner');
     container.id = String(title).toLowerCase();
 
     const titleDiv = document.createElement('div');
@@ -15,22 +19,27 @@ const createInfo = (title, info) => {
 
     container.appendChild(titleDiv);
     container.appendChild(infoDiv);
-    return container;
+    outer.append(container);
+    return outer;
 }
 
+const outer = document.createElement('div');
+outer.classList.add('outer');
 const headline = document.createElement('div');
 headline.textContent = 'WELCOME TO MY RESTAURANT';
 headline.classList.add('headline');
+headline.classList.add('inner');
+outer.appendChild(headline);
 
 const sum = 'We are a 5 Michelin star restuarant. Enjoy our finest cuisine in all of The Milky Way.';
 const summary = createInfo('Pabs', sum);
 
-const times = `Sunday: 8am - 8pm\n
-Monday: 6am - 6pm\n
-Tuesday: 6am - 6pm\n
-Wednesday: 6am - 6pm\n
-Thursday: 6am - 10pm\n
-Friday: 6am - 10pm\n
+const times = `Sunday: 8am - 8pm
+Monday: 6am - 6pm
+Tuesday: 6am - 6pm
+Wednesday: 6am - 6pm
+Thursday: 6am - 10pm
+Friday: 6am - 10pm
 Saturday: 8am - 10pm`;
 const hours = createInfo('Hours', times);
 
@@ -40,7 +49,7 @@ const location = createInfo('Location', address);
 const homeContainer = document.createElement('div');
 homeContainer.id = 'home-container';
 homeContainer.classList.add('container');
-homeContainer.appendChild(headline);
+homeContainer.appendChild(outer);
 homeContainer.appendChild(summary);
 homeContainer.appendChild(hours);
 homeContainer.appendChild(location);
