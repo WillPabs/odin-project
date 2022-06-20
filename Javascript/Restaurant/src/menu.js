@@ -17,6 +17,7 @@ const createMenuItem = (name, price, description, image) => {
 
     const item = document.createElement('div');
     item.classList.add('item');
+    item.classList.add('inner');
     item.id = name;
 
     const itemName = document.createElement('div');
@@ -50,32 +51,35 @@ menuContainer.classList.add('container');
 const headline = document.createElement('div');
 const innerHeadline = document.createElement('div');
 innerHeadline.textContent = 'MENU';
+innerHeadline.classList.add('inner');
 headline.classList.add('headline');
 headline.classList.add('outer');
 headline.appendChild(innerHeadline);
 menuContainer.appendChild(headline);
 
+const drinkImg = 'https://images.unsplash.com/photo-1587888637140-849b25d80ef9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80';
+
 const mainDish = createMenuGroup('Main Dishes');
-const steak = createMenuItem('Tomahawk Steak', '$1000', 'Rare steak from the fields of Japan', undefined);
-const salmon = createMenuItem('Fresh Atlantic Salmon', '$49.99', 'Fresh caught wild salmon of the Atlantic', undefined);
-const chicken = createMenuItem('Grilled Peruvian Chicken', '$29.99', 'Organic grass fed chicken', undefined);
+const steak = createMenuItem('Tomahawk Steak', '$1000', 'Rare steak from the fields of Japan', drinkImg);
+const salmon = createMenuItem('Fresh Atlantic Salmon', '$49.99', 'Fresh caught wild salmon of the Atlantic', drinkImg);
+const chicken = createMenuItem('Grilled Peruvian Chicken', '$29.99', 'Organic grass fed chicken', drinkImg);
 menuContainer.appendChild(mainDish);
 menuContainer.appendChild(steak);
 menuContainer.appendChild(salmon);
 menuContainer.appendChild(chicken);
 
 const bevs = createMenuGroup('Beverages');
-const seltzer = createMenuItem('Happy Dad', '$9.99', 'Hard Seltzer from Nelk Boys', undefined);
-const beer = createMenuItem('Stella Artois', '$7.99', 'Fresh beer', undefined);
-const tequila = createMenuItem('Casamigos', '$39.99', 'Tequila baby!!!', undefined);
+const seltzer = createMenuItem('Happy Dad', '$9.99', 'Hard Seltzer from Nelk Boys', drinkImg);
+const beer = createMenuItem('Stella Artois', '$7.99', 'Fresh beer', drinkImg);
+const tequila = createMenuItem('Casamigos', '$39.99', 'Tequila baby!!!', drinkImg);
 menuContainer.appendChild(bevs);
 menuContainer.appendChild(seltzer);
 menuContainer.appendChild(beer);
 menuContainer.appendChild(tequila);
 
 const sides = createMenuGroup('Sides');
-const fries = createMenuItem('French Fries', '$4.99', 'Fresh cut potatoes', undefined);
-const salad = createMenuItem('Kale Salad', '$6.99', 'Fresh vegetable salad', undefined);
+const fries = createMenuItem('French Fries', '$4.99', 'Fresh cut potatoes', drinkImg);
+const salad = createMenuItem('Kale Salad', '$6.99', 'Fresh vegetable salad', drinkImg);
 menuContainer.appendChild(sides);
 menuContainer.appendChild(fries);
 menuContainer.appendChild(salad);

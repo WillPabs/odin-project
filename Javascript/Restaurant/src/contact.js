@@ -41,6 +41,7 @@ export const addContact = () => {
     headline.classList.add('headline');
     headline.classList.add('outer');
     const inner = document.createElement('div');
+    inner.classList.add('inner');
     inner.textContent = 'Contact Us';
     headline.appendChild(inner);
     container.appendChild(headline);
