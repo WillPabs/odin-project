@@ -99,12 +99,48 @@ nav {
     white-space: pre-line;
 }
 
-.item-image {
-    height: 100px;
-    width: auto;
+
+/* ---------- MENU ---------- */
+
+.menu-group {
+    font-size: 1.6rem;
+    font-weight: bold;
 }
+
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 10px;
+}
+
+.item-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.item-price {
+    font-weight: bold;
+}
+
+.item-price, .item-desc {
+    padding-left: 30px;
+    text-align: start;
+}
+
+.item-image {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    align-self: flex-end;
+    border: solid 1px;
+    border-radius: 10px;
+}
+
+
+/* ---------- CONTACT ---------- */
 
 .profile-pic {
     height: 100px;
 }
-
