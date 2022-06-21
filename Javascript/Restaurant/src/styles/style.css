@@ -67,13 +67,15 @@ nav {
     max-width: 700px;
 }
 
+.home-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
 #pabs {
     display: flex;
     flex-direction: column-reverse;
-}
-
-#pabs > div {
-    flex: 1;
+    gap: 20px;
 }
 
 #pabs .home-info {
@@ -83,13 +85,14 @@ nav {
 
 #pabs .home-title {
     align-self: flex-start;
-    padding-left: 3rem;
     font-size: 1.3rem;
 }
 
 .home-title {
     font-weight: bold;
     font-size: 1.5rem;
+    display: flex;
+    padding-left: 2rem;
 }
 
 #hours .home-info {
@@ -104,3 +107,4 @@ nav {
 .profile-pic {
     height: 100px;
 }
+
