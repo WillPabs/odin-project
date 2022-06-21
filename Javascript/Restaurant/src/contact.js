@@ -15,16 +15,19 @@ export const addContact = () => {
         
         const nameDiv = document.createElement('div');
         nameDiv.textContent = name;
+        nameDiv.classList.add('contact-name');
 
         const numberDiv = document.createElement('div');
         numberDiv.textContent = number;
+        numberDiv.classList.add('contact-number');
         
         const emailDiv = document.createElement('div');
         emailDiv.textContent = email;
+        emailDiv.classList.add('contact-email');
         
         const profilePictureDiv = document.createElement('img');
         profilePictureDiv.src = profilePicture;
-        profilePictureDiv.classList.add('profile-pic');
+        profilePictureDiv.classList.add('contact-pic');
 
         contactContainer.appendChild(positionDiv);
         contactContainer.appendChild(nameDiv);
