@@ -1,5 +1,3 @@
-import './styles/homepage.css';
-
 const createInfo = (title, info) => {
     const outer = document.createElement('div');
     outer.classList.add('outer');
@@ -25,9 +23,9 @@ const createInfo = (title, info) => {
 
 const outer = document.createElement('div');
 outer.classList.add('outer');
+outer.classList.add('headline');
 const headline = document.createElement('div');
-headline.textContent = 'WELCOME TO MY RESTAURANT';
-headline.classList.add('headline');
+headline.textContent = 'Pabs Eats';
 headline.classList.add('inner');
 outer.appendChild(headline);
 

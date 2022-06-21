@@ -50,7 +50,7 @@ menuContainer.classList.add('container');
 
 const headline = document.createElement('div');
 const innerHeadline = document.createElement('div');
-innerHeadline.textContent = 'MENU';
+innerHeadline.textContent = 'Menu';
 innerHeadline.classList.add('inner');
 headline.classList.add('headline');
 headline.classList.add('outer');
