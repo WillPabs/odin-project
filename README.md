@@ -3,7 +3,6 @@ This repository contains a multitude of projects associated with https://www.the
 
 Foundations Projects
 - [Landing Page](https://willpabs.github.io/odin-project/Foundations/LandingPage/index.html)
-- [DOM Manipulation and Events](https://willpabs.github.io/odin-project/Foundations/DomManipulationAndEvents/index.html)
 - [Etch a Sketch](https://willpabs.github.io/odin-project/Foundations/EtchASketch/index.html)
 - [Rock Paper Scissors](https://willpabs.github.io/odin-project/Foundations/RockPaperScissors/index.html)
 
