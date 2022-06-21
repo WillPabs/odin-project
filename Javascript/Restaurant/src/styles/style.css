@@ -141,6 +141,33 @@ nav {
 
 /* ---------- CONTACT ---------- */
 
-.profile-pic {
-    height: 100px;
+.contact {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    position: relative;
 }
+
+.contact-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+
+.contact-position, 
+.contact-number,
+.contact-email {
+    padding-left: 50px;
+}
+
+.contact-pic {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    border-radius: 20px;
+    top: 10px;
+    right: 40px;
+}
+
+
