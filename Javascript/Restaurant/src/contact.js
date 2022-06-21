@@ -1,4 +1,5 @@
 import pfp1 from './images/DeadGod_5011.png';
+import pfp2 from './images/GenMeta_3063.png';
 
 export const addContact = () => {
     
@@ -54,7 +55,7 @@ export const addContact = () => {
     container.appendChild(headline);
 
     const will = createContact('CEO', 'William Pabitero', '111-111-1111', 'goated@dev.com', pfp1);
-    const elon = createContact('Chief Technoking', 'Elon Musk', '123-999-0000', 'elon@musk.com', undefined);
+    const elon = createContact('Chief Technoking', 'Elon Musk', '123-999-0000', 'elon@musk.com', pfp2);
     container.appendChild(will);
     container.appendChild(elon);
 
