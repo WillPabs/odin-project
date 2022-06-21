@@ -1,3 +1,5 @@
+import pfp1 from './images/DeadGod_5011.png';
+
 export const addContact = () => {
     
     const createContact = (position, name, number, email, profilePicture) => {
@@ -22,6 +24,7 @@ export const addContact = () => {
         
         const profilePictureDiv = document.createElement('img');
         profilePictureDiv.src = profilePicture;
+        profilePictureDiv.classList.add('profile-pic');
 
         contactContainer.appendChild(positionDiv);
         contactContainer.appendChild(nameDiv);
@@ -46,7 +49,7 @@ export const addContact = () => {
     headline.appendChild(inner);
     container.appendChild(headline);
 
-    const will = createContact('CEO', 'William Pabitero', '111-111-1111', 'goated@dev.com', undefined);
+    const will = createContact('CEO', 'William Pabitero', '111-111-1111', 'goated@dev.com', pfp1);
     const elon = createContact('Chief Technoking', 'Elon Musk', '123-999-0000', 'elon@musk.com', undefined);
     container.appendChild(will);
     container.appendChild(elon);
