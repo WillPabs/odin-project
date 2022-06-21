@@ -10,12 +10,13 @@ export const addContact = () => {
         contactContainer.classList.add('contact');
         contactContainer.classList.add('inner');
         
-        const positionDiv = document.createElement('div');
-        positionDiv.textContent = position;
-        
         const nameDiv = document.createElement('div');
         nameDiv.textContent = name;
         nameDiv.classList.add('contact-name');
+
+        const positionDiv = document.createElement('div');
+        positionDiv.textContent = position;
+        positionDiv.classList.add('contact-position');
 
         const numberDiv = document.createElement('div');
         numberDiv.textContent = number;
@@ -29,8 +30,8 @@ export const addContact = () => {
         profilePictureDiv.src = profilePicture;
         profilePictureDiv.classList.add('contact-pic');
 
-        contactContainer.appendChild(positionDiv);
         contactContainer.appendChild(nameDiv);
+        contactContainer.appendChild(positionDiv);
         contactContainer.appendChild(numberDiv);
         contactContainer.appendChild(emailDiv);
         contactContainer.appendChild(profilePictureDiv);
