@@ -108,10 +108,26 @@ nav {
 }
 
 .bottom-center {
-    position: absolute;
-    z-index: 1;
-    left: 40%;
-    bottom: 10%;
+    left: 43%;
+    top: 53%;
+}
+
+.top-right {
+    right: 15%;
+    top: 25px;
+    height: 30px !important;
+}
+
+.rest-icon-left {
+    height: 35px !important;
+    top: 13%;
+    left: 3%;
+}
+
+.rest-icon-right {
+    bottom: 5%;
+    right: 7%;
+    height: 35px !important;
 }
 
 
@@ -156,16 +172,17 @@ nav {
 .decorations {
     position: absolute;
     height: 50px;
-    top: 25%;
     z-index: 1;
 }
 
 .icon-left {
+    top: 25%;
     left: 10%;
 }
 
 .icon-right {
     transform: scaleX(-1);
+    top: 25%;
     right: 10%;
 }
 
