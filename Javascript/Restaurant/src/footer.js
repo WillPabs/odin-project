@@ -12,6 +12,7 @@ export const addFooter = () => {
 
     const footerList = [
         'Menu images used from unsplash.com',
+        'Other icons used from flaticon.com',
         'Contact images used from self'
     ];
 
