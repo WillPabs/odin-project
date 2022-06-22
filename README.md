@@ -1,5 +1,5 @@
 # odin-project
-This repository contains a multitude of projects associated with https://www.theodinproject.com/. Below is a list of links to github pages of my completed projects.
+This repository contains a multitude of projects associated with https://www.theodinproject.com/. Below is a list of links to github pages of my completed projects. Projects get increasingly more complex as you go down the list.
 
 Foundations Projects
 - [Landing Page](https://willpabs.github.io/odin-project/Foundations/LandingPage/index.html)
@@ -14,3 +14,4 @@ Javascript Projects
 - [Library](https://willpabs.github.io/odin-project/Javascript/Library/index.html)
 - [Calculator](https://willpabs.github.io/odin-project/Javascript/Calculator/index.html)
 - [TicTacToe](https://willpabs.github.io/odin-project/Javascript/TicTacToe)
+- [Restaurant](https://willpabs.github.io/odin-project/Javascript/Restaurant/dist)
