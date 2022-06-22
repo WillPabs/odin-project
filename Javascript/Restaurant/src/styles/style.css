@@ -69,6 +69,7 @@ nav {
     font-weight: bold;
     width: 65%;
     max-width: 700px;
+    position: relative;
 }
 
 .home-info-container {
@@ -140,6 +141,13 @@ nav {
     align-self: flex-end;
     border: solid 1px;
     border-radius: 10px;
+}
+
+.menu-img {
+    position: absolute;
+    height: 50px;
+    top: 25%;
+    left: 10%;
 }
 
 

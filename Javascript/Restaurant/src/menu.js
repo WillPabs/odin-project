@@ -7,6 +7,7 @@ import beerImg from './images/menu/beer.avif';
 import tequilaImg from './images/menu/tequila.avif';
 import friesImg from './images/menu/fries.avif';
 import saladImg from './images/menu/salad.avif';
+import menuImg from './images/menu.png';
 
 const createMenuGroup = (text) =>  {
     const outer = document.createElement('div');
@@ -57,11 +58,15 @@ menuContainer.id = 'menu-container';
 menuContainer.classList.add('container');
 
 const headline = document.createElement('div');
+const menuImage = document.createElement('img');
+menuImage.src = menuImg;
+menuImage.classList.add('menu-img');
 const innerHeadline = document.createElement('div');
 innerHeadline.textContent = 'Menu';
 innerHeadline.classList.add('inner');
 headline.classList.add('headline');
 headline.classList.add('outer');
+headline.appendChild(menuImage);
 headline.appendChild(innerHeadline);
 menuContainer.appendChild(headline);
 
