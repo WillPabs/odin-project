@@ -35,7 +35,7 @@ nav {
 }
 
 .container {
-    color: white;
+    color: black;
     display: grid;
     grid-template-rows: repeat(auto, 1fr);
     background: rgba(0, 0, 0, 1);
@@ -46,6 +46,7 @@ nav {
 
 .outer {
     text-align: center;
+    position: relative;
     margin: 2rem;
     border-radius: 30px;
     display: grid;
@@ -57,7 +58,7 @@ nav {
 }
 
 .inner {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.8);
     padding: 1rem;
     clip-path: polygon( 0 20%, 10% 0, 90% 0, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0 80%);
 }
@@ -143,11 +144,20 @@ nav {
     border-radius: 10px;
 }
 
-.menu-img {
+.decorations {
     position: absolute;
     height: 50px;
     top: 25%;
+    z-index: 1;
+}
+
+.icon-left {
     left: 10%;
+}
+
+.icon-right {
+    transform: scaleX(-1);
+    right: 10%;
 }
 
 
