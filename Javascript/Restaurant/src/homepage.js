@@ -1,6 +1,7 @@
 import restIcon from './images/restaurant.png';
 import hoursIcon from './images/hours.png';
 import locationIcon from './images/location.png';
+import utenIcon from './images/utensils.png';
 
 const createInfo = (title, info) => {
     const outer = document.createElement('div');
@@ -28,11 +29,19 @@ const createInfo = (title, info) => {
 const outer = document.createElement('div');
 outer.classList.add('outer');
 outer.classList.add('headline');
-
-
+const utensils = document.createElement('img');
+utensils.src = utenIcon;
+utensils.classList.add('decorations');
+utensils.classList.add('rest-icon-left');
+const utensils1 = document.createElement('img');
+utensils1.src = utenIcon;
+utensils1.classList.add('decorations');
+utensils1.classList.add('rest-icon-right');
 const headline = document.createElement('div');
 headline.textContent = 'Pabs Eats';
 headline.classList.add('inner');
+outer.appendChild(utensils);
+outer.appendChild(utensils1);
 outer.appendChild(headline);
 
 const sum = 'We are a 5 Michelin star restuarant. Enjoy our finest cuisine in all of The Milky Way.';

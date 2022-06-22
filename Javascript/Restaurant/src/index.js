@@ -12,8 +12,7 @@ const footer = document.querySelector('footer');
 footer.appendChild(addFooter());
 
 const content = document.querySelector('#content');
-// content.appendChild(addTab());
-// content.appendChild(addHomepage());
+content.appendChild(addHomepage());
 
 document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
