@@ -13,28 +13,28 @@ export const Task = (title, description, dueDate, priority, notes) => {
     };
 };
 
-export const TaskNode = (title, description, dueDate, priority, notes) => {
+export const TaskNode = (task) => {
     const taskNode = document.createElement('div');
     taskNode.classList.add('task');
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('task-title');
-    titleDiv.textContent = title;
+    titleDiv.textContent = task.title;
 
     const descriptionDiv = document.createElement('div');
     descriptionDiv.classList.add('task-description');
-    descriptionDiv.textContent = description;
+    descriptionDiv.textContent = task.description;
 
     const dueDateDiv = document.createElement('div');
     dueDateDiv.classList.add('task-due-date')
-    dueDateDiv.textContent = dueDate;
+    dueDateDiv.textContent = task.dueDate;
 
     const priorityDiv = document.createElement('div');
     priorityDiv.classList.add('task-priority');
-    priorityDiv.textContent = priority;
+    priorityDiv.textContent = task.priority;
 
     const notesDiv = document.createElement('div');
     notesDiv.classList.add('task-notes');
-    notesDiv.textContent = notes;
+    notesDiv.textContent = task.notes;
 
     taskNode.appendChild(titleDiv);
     taskNode.appendChild(descriptionDiv);
