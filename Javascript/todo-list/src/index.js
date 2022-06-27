@@ -1,4 +1,4 @@
-import { ToDo } from './todo';
+import { TaskNode } from './task';
 
-const todo1 = ToDo('Read', 'Finish Chapter 1', '6/28/22', 'high');
-console.log(todo1);
+const task = TaskNode('Read', 'Finish Chapter 1', '6/28/22', 'high');
+document.body.appendChild(task);
