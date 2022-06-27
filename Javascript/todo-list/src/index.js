@@ -1,4 +1,10 @@
-import { TaskNode } from './task';
+import { Task, TaskNode } from './task';
+import { Project } from './project';
 
-const task = TaskNode('Read', 'Finish Chapter 1', '6/28/22', 'high');
-document.body.appendChild(task);
+const task = Task('Read', 'Finish Chapter 1', '6/28/22', 'high');
+const taskNode = TaskNode(task);
+document.body.appendChild(taskNode);
+
+const project = Project('Project1');
+project.addTask(task);
+console.log(project);
