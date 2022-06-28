@@ -17,6 +17,10 @@ export const Project = (title) => {
         };
     };
 
+    const getTitle = () => {
+        return title;
+    }
+
     const getTaskList = () => {
         return taskList;
     };
@@ -29,7 +33,8 @@ export const Project = (title) => {
         addTask,
         removeTask,
         finishTask,
+        getTitle,
         getTaskList,
         getFinishedTasks
-    }
+    };
 };
