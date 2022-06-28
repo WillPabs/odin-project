@@ -25,6 +25,36 @@ export const Project = (title) => {
         return taskList;
     };
 
+    const getTasksByPriority = (priority) => {
+        if (priority === 'high') return getHighPriorityTasks();
+        else if (priority === 'medium') return getMediumPriorityTasks();
+        else if (priority === 'low') return getLowPriorityTasks();
+    }
+
+    const getHighPriorityTasks = () => {
+        const high = [];
+        for (let i = 0; i < taskList.length; i++) {
+            if (taskList[i].priority === 'high') high.push(taskList[i]);
+        };
+        return high;
+    };
+
+    const getMediumPriorityTasks = () => {
+        const medium = [];
+        for (let i = 0; i < taskList.length; i++) {
+            if (taskList[i].priority === 'medium') medium.push(taskList[i]);
+        };
+        return medium;
+    };
+
+    const getLowPriorityTasks = () => {
+        const low = [];
+        for (let i = 0; i < taskList.length; i++) {
+            if (taskList[i].priority === 'low') low.push(taskList[i]);
+        };
+        return low;
+    };
+
     const getFinishedTasks = () => {
         return finishedTasks;
     };
@@ -35,6 +65,7 @@ export const Project = (title) => {
         finishTask,
         getTitle,
         getTaskList,
+        getTasksByPriority,
         getFinishedTasks
     };
 };
