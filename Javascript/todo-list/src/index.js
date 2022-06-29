@@ -50,7 +50,35 @@ document.body.appendChild(tasksView);
 const footer = Footer();
 document.body.appendChild(footer);
 
-const changeTitle = document.createElement('button');
-changeTitle.addEventListener('click', () => {
-    // document.querySelector('')
+const showCreate = (head, toInsert, callback) => {
+    if (!toInsert) {
+        const createContainer = callback();
+        head.parentNode.insertBefore(createContainer, head.nextSibling);
+    } else {
+        toggleShow(toInsert);
+    }
+}
+
+const toggleShow = (toInsert) => {
+    const createP = toInsert;
+    if (createP.style.display === 'none') {
+        createP.style.display = 'inline';
+    } else {
+        createP.style.display = 'none';
+    }
+}
+
+const createProjectLink = document.querySelector('.create-project-link');
+const createTaskLink = document.querySelector('.create-task-link');
+
+createProjectLink.addEventListener('click', () => {
+    const head = document.querySelector('.projects-header')
+    const toInsert = document.querySelector('#create-project')
+    showCreate(head, toInsert, CreateProject);
+});
+
+createTaskLink.addEventListener('click', () => {
+    const head = document.querySelector('.project');
+    const toInsert = document.querySelector('#create-task');
+    showCreate(head, toInsert, CreateTask);
 });
