@@ -12,6 +12,5 @@ export const Task = (title, description, dueDate, priority, notes) => {
 const taskFunctions = {
     setTitle(newTitle) {
         this.title = newTitle;
-        console.log('changed title');
     }
 };
