@@ -3,30 +3,41 @@ export const Tasks = (project) => {
     container.classList.add('project');
     container.id = project.getTitle();
 
-    const projectHeading = document.createElement('div');
-    projectHeading.classList.add('project-heading');
-    projectHeading.textContent = project.getTitle();
+    const projectHeader = document.createElement('div');
+    projectHeader.classList.add('project-header');
+
+    const projectTitle = document.createElement('div');
+    projectTitle.classList.add('project-title');
+    projectTitle.textContent = project.getTitle();
 
     const createTask = document.createElement('a');
     createTask.classList.add('create-task-link');
-    createTask.href = 'Create Task';
+    createTask.href = '#';
     createTask.textContent = 'Create Task';
 
     const showFinshed = document.createElement('a');
     showFinshed.classList.add('show-finished-link');
-    showFinshed.href = 'Show Finished';
+    showFinshed.href = '#';
     showFinshed.textContent = 'Show Finished';
+
+    projectHeader.appendChild(projectTitle);
+    projectHeader.appendChild(createTask);
+    projectHeader.appendChild(showFinshed);
+
+
+    const projectTasks = document.createElement('div');
+    projectTasks.classList.add('project-tasks');
 
     const highPriorityTasks = createTaskList(project.getTasksByPriority('high'));
     const mediumPriorityTasks = createTaskList(project.getTasksByPriority('medium'));
     const lowPriorityTasks = createTaskList(project.getTasksByPriority('low'));
 
-    container.appendChild(projectHeading);
-    container.appendChild(createTask);
-    container.appendChild(showFinshed);
-    container.appendChild(highPriorityTasks);
-    container.appendChild(mediumPriorityTasks);
-    container.appendChild(lowPriorityTasks);
+    projectTasks.appendChild(highPriorityTasks);
+    projectTasks.appendChild(mediumPriorityTasks);
+    projectTasks.appendChild(lowPriorityTasks);
+
+    container.appendChild(projectHeader);
+    container.appendChild(projectTasks);
     return container;
 };
 
