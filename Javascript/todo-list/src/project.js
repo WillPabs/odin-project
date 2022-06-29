@@ -1,71 +1,58 @@
 export const Project = (title) => {
-    const taskList = [];
-    const finishedTasks = [];
+    let self = {};
+    self.title = title;
+    self.taskList = [];
+    self.finishedTasks = [];
 
-    const addTask = (task) => {
-        taskList.push(task);
-    };
+    return Object.assign(self, projectFunctions);
+};
 
-    const removeTask = (task) => {
-        const index = taskList.findIndex(task);
+const projectFunctions = {
+    addTask(task) {
+        this.taskList.push(task);
+    },
+    removeTask(task) {
+        const index = this.taskList.findIndex(task);
         taskList.slice(index, 1);
-    };
-
-    const finishTask = (task) => {
-        if (task in taskList) {
-            finishedTasks.push(task);
+    },
+    finishTask(task) {
+        if (task in this.taskList) {
+            this.finishedTasks.push(task);
         };
-    };
-
-    const getTitle = () => {
-        return title;
-    }
-
-    const getTaskList = () => {
-        return taskList;
-    };
-
-    const getTasksByPriority = (priority) => {
-        if (priority === 'high') return getHighPriorityTasks();
-        else if (priority === 'medium') return getMediumPriorityTasks();
-        else if (priority === 'low') return getLowPriorityTasks();
-    }
-
-    const getHighPriorityTasks = () => {
+    },
+    getTitle() {
+        return this.title;
+    },
+    getTaskList() {
+        return this.taskList;
+    },
+    getTasksByPriority(priority) {
+        if (priority === 'high') return this.getHighPriorityTasks();
+        else if (priority === 'medium') return this.getMediumPriorityTasks();
+        else if (priority === 'low') return this.getLowPriorityTasks();
+    },
+    getHighPriorityTasks() {
         const high = [];
-        for (let i = 0; i < taskList.length; i++) {
-            if (taskList[i].priority === 'high') high.push(taskList[i]);
+        for (let i = 0; i < this.taskList.length; i++) {
+            if (this.taskList[i].priority === 'high') high.push(this.taskList[i]);
         };
         return high;
-    };
-
-    const getMediumPriorityTasks = () => {
+    },
+    getMediumPriorityTasks() {
         const medium = [];
-        for (let i = 0; i < taskList.length; i++) {
-            if (taskList[i].priority === 'medium') medium.push(taskList[i]);
+        for (let i = 0; i < this.taskList.length; i++) {
+            if (this.taskList[i].priority === 'medium') medium.push(this.taskList[i]);
         };
         return medium;
-    };
-
-    const getLowPriorityTasks = () => {
+    },
+    getLowPriorityTasks() {
         const low = [];
-        for (let i = 0; i < taskList.length; i++) {
-            if (taskList[i].priority === 'low') low.push(taskList[i]);
+        for (let i = 0; i < this.taskList.length; i++) {
+            if (this.taskList[i].priority === 'low') low.push(this.taskList[i]);
         };
         return low;
-    };
-
-    const getFinishedTasks = () => {
-        return finishedTasks;
-    };
-
-    return {
-        addTask,
-        removeTask,
-        finishTask,
-        getTitle,
-        getTaskList,
-        getTasksByPriority,
-        getFinishedTasks
-    };
+    },
+    getFinishedTasks() {
+        return this.finishedTasks;
+    }
 };
