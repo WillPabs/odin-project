@@ -2,16 +2,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Helvetica;   
+    list-style-type: none;
 }
 
-html, body {
-    height: 100vh;
+header, footer {
+    background: rgb(85, 85, 85);
 }
 
 .header, 
-.footer {
-    background: rgb(85, 85, 85);
+.footer { 
+    height: 5rem;
     display: flex;
+    align-items: center;
+}
+
+header {
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .header-left, 
@@ -19,10 +27,28 @@ html, body {
     display: flex;
     flex: 1;
     align-items: center;
+    gap: 1rem;
 }
 
 .header-right {
     justify-content: flex-end;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    min-height: calc(100vh - 10rem);
+}
+
+main > div {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#projects-bar {
+    grid-column: 1;
+    grid-column-end: auto;
+    background: rgb(85, 85, 85);
 }
 
 .footer {
@@ -40,4 +66,34 @@ html, body {
 .profile-header {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
+
+/* --------- MAIN --------- */
+
+/* --------- PROJECTS-BAR --------- */
+
+#projects-bar {
+    display: flex;
+    flex-direction: column; /* Should be row but displays as column */
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.project-links {
+    display: grid;
+    gap: 1rem;
+}
+
+.project-link {
+    flex: 1;
+}
+
+/* --------- CONTENT --------- */
+
+.content {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
