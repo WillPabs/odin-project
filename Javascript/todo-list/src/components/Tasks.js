@@ -1,3 +1,5 @@
+import { CreateTask } from './CreateTask';
+
 export const Tasks = (project) => {
     const container = document.createElement('div');
     container.classList.add('project');
@@ -13,6 +15,9 @@ export const Tasks = (project) => {
     const createTask = document.createElement('a');
     createTask.classList.add('create-task-link');
     createTask.href = '#';
+    createTask.addEventListener('click', () => {
+        showCreate(container, document.querySelector('#create-task'), CreateTask);
+    })
     createTask.textContent = 'Create Task';
 
     const showFinshed = document.createElement('a');
@@ -86,3 +91,21 @@ const createListItem = (task) => {
     li.appendChild(dueDate);
     return li;
 };
+
+const showCreate = (head, toInsert, callback) => {
+    if (!toInsert) {
+        const createContainer = callback();
+        head.parentNode.insertBefore(createContainer, head.nextSibling);
+    } else {
+        toggleShow(toInsert);
+    }
+}
+
+const toggleShow = (toInsert) => {
+    const createP = toInsert;
+    if (createP.style.display === 'none') {
+        createP.style.display = 'inline';
+    } else {
+        createP.style.display = 'none';
+    }
+}

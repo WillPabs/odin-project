@@ -48,7 +48,7 @@ const projectsView = Projects(user1);
 const tasksView = Tasks(project);
 // main.appendChild(tasksView);
 
-const content = Content(tasksView);
+const content = Content(projectsView);
 main.appendChild(content);
 
 const footer = Footer();
@@ -75,19 +75,21 @@ const toggleShow = (toInsert) => {
 const createProjectLink = document.querySelector('.create-project-link');
 const createTaskLink = document.querySelector('.create-task-link');
 
-// createProjectLink.addEventListener('click', () => {
-//     const head = document.querySelector('.projects-header')
-//     const toInsert = document.querySelector('#create-project')
-//     showCreate(head, toInsert, CreateProject);
-// });
+if (createProjectLink) {
+    createProjectLink.addEventListener('click', () => {
+        const head = document.querySelector('.projects-header')
+        const toInsert = document.querySelector('#create-project')
+        showCreate(head, toInsert, CreateProject);
+    });
+}
 
 
 // TODO
 // fix bug that no longer displays create task component
 // when changing project on project bar and clicking
 // create task
-createTaskLink.addEventListener('click', () => {
-    const head = document.querySelector('.project');
-    const toInsert = document.querySelector('#create-task');
-    showCreate(head, toInsert, CreateTask);
-});
+// createTaskLink.addEventListener('click', () => {
+//     const head = document.querySelector('.project');
+//     const toInsert = document.querySelector('#create-task');
+//     showCreate(head, toInsert, CreateTask);
+// });
