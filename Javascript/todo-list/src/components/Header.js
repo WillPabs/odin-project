@@ -1,6 +1,6 @@
 import logoIcon from '../images/logo.png';
 
-export const Header = (profilePic, name) => {
+export const Header = (user) => {
     const container = document.createElement('div');
     container.classList.add('header');
 
@@ -23,12 +23,12 @@ export const Header = (profilePic, name) => {
 
     const profilePicDiv = document.createElement('img');
     profilePicDiv.classList.add('profile-pic');
-    profilePicDiv.src = profilePic;
+    profilePicDiv.src = user.profilePicture;
     profilePicDiv.style.width = '50px';
 
     const nameDiv = document.createElement('div');
     nameDiv.classList.add('name');
-    nameDiv.textContent = name;
+    nameDiv.textContent = user.name;
     right.appendChild(profilePicDiv);
     right.appendChild(nameDiv);
 
