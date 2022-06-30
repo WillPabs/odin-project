@@ -1,4 +1,5 @@
 import logoIcon from '../images/logo.png';
+import { ProfileHeader } from './ProfileHeader';
 
 export const Header = (user) => {
     const container = document.createElement('div');
@@ -20,18 +21,8 @@ export const Header = (user) => {
 
     const right = document.createElement('div');
     right.classList.add('header-right');
-
-    const profilePicDiv = document.createElement('img');
-    profilePicDiv.classList.add('profile-pic');
-    profilePicDiv.src = user.profilePicture;
-    profilePicDiv.style.width = '50px';
-
-    const nameDiv = document.createElement('div');
-    nameDiv.classList.add('name');
-    nameDiv.textContent = user.name;
-    right.appendChild(profilePicDiv);
-    right.appendChild(nameDiv);
-
+    right.appendChild(ProfileHeader(user));
+    
     container.appendChild(left);
     container.appendChild(right);
     return container;
