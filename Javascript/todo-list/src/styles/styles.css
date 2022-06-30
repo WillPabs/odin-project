@@ -77,6 +77,7 @@ main > div {
     display: flex;
     flex-direction: column; /* Should be row but displays as column */
     align-items: center;
+    text-align: center;
     gap: 1rem;
 
 }
