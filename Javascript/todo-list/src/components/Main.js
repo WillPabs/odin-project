@@ -1,11 +1,22 @@
 import { ProjectBar } from './ProjectBar';
 import { Content } from './Content';
+import { Projects } from './Projects';
 
-export const Main = (projects, content) => {
+// export const Main = (projects, content) => {
+//     const main = document.createElement('main');
+//     main.classList.add('main');
+//     const navbar = ProjectBar(projects);
+//     const mainContent = Content(content);
+//     main.appendChild(navbar);
+//     main.appendChild(mainContent);
+//     return main;
+// };
+
+export const Main = (user) => {
     const main = document.createElement('main');
     main.classList.add('main');
-    const navbar = ProjectBar(projects);
-    const mainContent = Content(content);
+    const navbar = ProjectBar(user);
+    const mainContent = Content(Projects(user));
     main.appendChild(navbar);
     main.appendChild(mainContent);
     return main;
