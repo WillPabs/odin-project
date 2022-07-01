@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: Helvetica;   
     list-style-type: none;
+    text-decoration: none;
 }
 
 header, footer {
@@ -79,7 +80,10 @@ header {
     align-items: center;
     text-align: center;
     gap: 1rem;
+}
 
+#projects-bar-heading {
+    font-size: 1.2rem;
 }
 
 .project-links {
@@ -98,3 +102,17 @@ header {
     padding-right: 3rem;
 }
 
+.content-container {
+    display: grid;
+}
+
+.projects-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.project-options-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
