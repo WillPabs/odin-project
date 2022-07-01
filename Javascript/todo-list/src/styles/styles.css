@@ -34,13 +34,13 @@ header {
     justify-content: flex-end;
 }
 
-main {
+.main {
     display: grid;
     grid-template-columns: 1fr 6fr;
     min-height: calc(100vh - 10rem);
 }
 
-main > div {
+.main > div {
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
