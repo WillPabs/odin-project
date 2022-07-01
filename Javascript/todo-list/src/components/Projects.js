@@ -12,8 +12,12 @@ export const Projects = (user) => {
     heading.classList.add('projects-heading');
     heading.textContent = `${user.name[0].toUpperCase() + user.name.substring(1)}'s Projects`;
 
+    const projectOptions = document.createElement('div');
+    projectOptions.classList.add('project-options-container');
+
     const createProject = document.createElement('a');
     createProject.classList.add('create-project-link');
+    createProject.classList.add('project-option');
     createProject.href = '#';
     createProject.addEventListener('click', () => {
         showCreate(container, document.querySelector('#create-project'), CreateProject);
@@ -22,12 +26,15 @@ export const Projects = (user) => {
 
     const showFinished = document.createElement('a');
     showFinished.classList.add('show-finished-link');
+    createProject.classList.add('project-option');
     showFinished.href = '#';
     showFinished.textContent = 'Show Finished';
 
+    projectOptions.appendChild(createProject);
+    projectOptions.appendChild(showFinished);
+
     projectsHeader.appendChild(heading);
-    projectsHeader.appendChild(createProject);
-    projectsHeader.appendChild(showFinished);
+    projectsHeader.appendChild(projectOptions);
 
     const list = createProjectsList(user.projects);
     const projects = document.createElement('div');
@@ -69,3 +76,18 @@ const createProjectsList = (projects) => {
     });
     return container;
 };
+
+/* callback doesn't work */
+// const createProjectOption = (id, text, callback=undefined, htmlEl=undefined) => {
+//     const projectOption = document.createElement('a');
+//     projectOption.classList.add(id);
+//     projectOption.classList.add('project-option');
+//     projectOption.href = '#';
+//     if (htmlEl) {
+//         projectOption.addEventListener('click', () => {
+//             showCreate(container, htmlEl, callback);
+//         });
+//     }
+//     projectOption.textContent = text;
+//     return projectOption;
+// };
