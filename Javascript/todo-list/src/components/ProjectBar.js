@@ -1,7 +1,9 @@
 import { switchContent } from './Content';
 import { Tasks } from './Tasks';
+import { Content } from './Content';
+import { Projects } from './Projects';
 
-export const ProjectBar = (...projects) => {
+export const ProjectBar = (user) => {
     const projectBar = document.createElement('div');
     projectBar.id = 'projects-bar';
 
@@ -10,8 +12,18 @@ export const ProjectBar = (...projects) => {
     heading.textContent = 'Your Projects';
     projectBar.appendChild(heading);
 
-    const links = createProjectLinks(...projects);
+    const links = createProjectLinks(user.projects);
     projectBar.appendChild(links);
+
+    const allProjectsLink = document.createElement('a');
+    allProjectsLink.classList.add('all-projects-link');
+    allProjectsLink.textContent = 'View Projects';
+    allProjectsLink.href = '#';
+    allProjectsLink.addEventListener('click', () => {
+        Content(Projects(user));
+    });
+
+    projectBar.appendChild(allProjectsLink);
     return projectBar;
 };
 
@@ -35,3 +47,6 @@ const createProjectLinks = (projects) => {
 // add link at bottom of bar with text 'View All Projects'
 // when link is clicked, it should trigger the content component
 // to switch to Projects View Component
+const viewAllProjects = (projects) => {
+
+};
