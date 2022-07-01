@@ -2,7 +2,7 @@ import logoIcon from '../images/logo.png';
 import { ProfileHeader } from './ProfileHeader';
 
 export const Header = (user) => {
-    const container = document.createElement('div');
+    const container = document.createElement('header');
     container.classList.add('header');
 
     const left = document.createElement('div');
