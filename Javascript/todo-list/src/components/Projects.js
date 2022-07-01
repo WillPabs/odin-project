@@ -1,3 +1,6 @@
+import { showCreate } from '../utils';
+import { CreateProject } from './CreateProject';
+
 export const Projects = (user) => {
     const container = document.createElement('div');
     container.classList.add('content-container');
@@ -12,6 +15,9 @@ export const Projects = (user) => {
     const createProject = document.createElement('a');
     createProject.classList.add('create-project-link');
     createProject.href = '#';
+    createProject.addEventListener('click', () => {
+        showCreate(container, document.querySelector('#create-project'), CreateProject);
+    });
     createProject.textContent = 'Add Project';
 
     const showFinished = document.createElement('a');
