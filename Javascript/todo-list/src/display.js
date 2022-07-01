@@ -8,7 +8,7 @@ const generateUserContent = (user) => {
     return { header, main };
 }
 
-const displayUserContent = (user) => {
+export const displayUserContent = (user) => {
     const userContent = generateUserContent(user);
     document.querySelector('header').appendChild(userContent.header);
     document.querySelector('main').appendChild(userContent.main);
