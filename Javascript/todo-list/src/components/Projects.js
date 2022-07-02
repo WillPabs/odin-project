@@ -53,20 +53,20 @@ const createProjectsList = (projects) => {
 
     projects.forEach(project => {
         const projectContainer = document.createElement('div');
-        container.classList.add('project');
+        projectContainer.classList.add('project');
 
         const heading = document.createElement('div');
         heading.classList.add('project-heading');
         heading.textContent = project.title;
 
         const tasksContainer = document.createElement('div');
+        tasksContainer.classList.add('project-tasks');
         const size = 4;
         const tasks = project.getTaskList().slice(0, size);
         tasks.forEach(task => {
             const taskContainer = document.createElement('div');
-            const title = document.createElement('div');
-            title.textContent = task.title;
-            taskContainer.appendChild(title);
+            taskContainer.classList.add('task');
+            taskContainer.textContent = task.title;
             tasksContainer.appendChild(taskContainer);
         });
 
