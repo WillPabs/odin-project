@@ -53,23 +53,20 @@ const createProjectsList = (projects) => {
     projects.forEach(project => {
         const projectContainer = document.createElement('div');
         projectContainer.classList.add('project');
-        projectContainer.addEventListener('click', () => {
-            switchContent(Tasks(project));
-        });
         
         const heading = document.createElement('div');
         heading.classList.add('project-heading');
         heading.textContent = project.title;
-
+        heading.addEventListener('click', () => {
+            switchContent(Tasks(project));
+        });
+        
         const tasksContainer = document.createElement('div');
         tasksContainer.classList.add('project-tasks');
         const size = 4;
         const tasks = project.getTaskList().slice(0, size);
         tasks.forEach(task => {
-            const taskContainer = document.createElement('div');
-            taskContainer.classList.add('task');
-            taskContainer.textContent = task.title;
-            tasksContainer.appendChild(taskContainer);
+            tasksContainer.appendChild(createProjectTask(task));
         });
 
         projectContainer.appendChild(heading);
@@ -78,3 +75,20 @@ const createProjectsList = (projects) => {
     });
     return container;
 };
+
+const createProjectTask = (task) => {
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('task');
+
+    const taskFinishToggle = document.createElement('input');
+    taskFinishToggle.classList.add('task-finished');
+    taskFinishToggle.type = 'checkbox';
+    taskFinishToggle.checked = task.finished;
+
+    const taskTitle = document.createElement('div');
+    taskTitle.textContent = task.title;
+
+    taskContainer.appendChild(taskFinishToggle);
+    taskContainer.appendChild(taskTitle);
+    return taskContainer;
+}
