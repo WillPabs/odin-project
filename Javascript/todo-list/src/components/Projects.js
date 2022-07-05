@@ -22,7 +22,7 @@ export const Projects = (user) => {
     createProject.classList.add('project-option');
     createProject.href = '#';
     createProject.addEventListener('click', () => {
-        showCreate(container, document.querySelector('#create-project'), CreateProject);
+        showCreate(container, document.querySelector('#create-project'), CreateProject.bind(null, user));
     });
     createProject.textContent = 'Add Project';
 
