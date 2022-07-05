@@ -7,8 +7,18 @@ export const Projects = (user) => {
     const container = document.createElement('div');
     container.classList.add('content-container');
 
-    const projectsHeader = document.createElement('div');
-    projectsHeader.classList.add('projects-header');
+    const projectsHeader = createProjectsHeader(user);
+
+    const projects = createProjectsList(user.projects);
+    
+    container.appendChild(projectsHeader);
+    container.appendChild(projects);
+    return container;
+};
+
+const createProjectsHeader = (user) => {
+    const projectHeader = document.createElement('div');
+    projectHeader.classList.add('projects-header');
 
     const heading = document.createElement('div');
     heading.classList.add('projects-heading');
@@ -22,7 +32,7 @@ export const Projects = (user) => {
     createProject.classList.add('project-option');
     createProject.href = '#';
     createProject.addEventListener('click', () => {
-        showCreate(container, document.querySelector('#create-project'), CreateProject.bind(null, user));
+        showCreate(projectHeader, document.querySelector('#create-project'), CreateProject.bind(null, user));
     });
     createProject.textContent = 'Add Project';
 
@@ -35,14 +45,9 @@ export const Projects = (user) => {
     projectOptions.appendChild(createProject);
     projectOptions.appendChild(showFinished);
 
-    projectsHeader.appendChild(heading);
-    projectsHeader.appendChild(projectOptions);
-
-    const projects = createProjectsList(user.projects);
-    
-    container.appendChild(projectsHeader);
-    container.appendChild(projects);
-    return container;
+    projectHeader.appendChild(heading);
+    projectHeader.appendChild(projectOptions);
+    return projectHeader;
 };
 
 
