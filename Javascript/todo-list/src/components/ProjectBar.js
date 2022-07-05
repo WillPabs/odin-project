@@ -1,6 +1,5 @@
-import { switchContent } from './Content';
+import { Content, switchContent } from './Content';
 import { Tasks } from './Tasks';
-import { Content } from './Content';
 import { Projects } from './Projects';
 
 export const ProjectBar = (user) => {
@@ -41,12 +40,4 @@ const createProjectLinks = (projects) => {
         container.appendChild(link);
     });
     return container;
-};
-
-// TODO
-// add link at bottom of bar with text 'View All Projects'
-// when link is clicked, it should trigger the content component
-// to switch to Projects View Component
-const viewAllProjects = (projects) => {
-
 };
