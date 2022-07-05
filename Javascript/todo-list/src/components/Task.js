@@ -1,6 +1,7 @@
 export const TaskNode = (task) => {
     const taskNode = document.createElement('div');
     taskNode.classList.add('task');
+
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('task-title');
     titleDiv.textContent = task.title;
