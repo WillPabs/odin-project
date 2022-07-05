@@ -3,12 +3,33 @@ import { CreateTask } from './CreateTask';
 import high from '../images/red_circle.png';
 import medium from '../images/yellow_circle.png';
 import low from '../images/blue_circle.png';
+import { switchContent } from './Content';
+import { TaskNode } from './Task';
 
 export const Tasks = (project) => {
     const container = document.createElement('div');
     container.classList.add('project');
     container.id = project.getTitle();
 
+    const projectHeader = createProjectHeader(project);
+
+    const projectTasks = document.createElement('div');
+    projectTasks.classList.add('project-tasks');
+
+    const highPriorityTasks = createTaskList(project.getTasksByPriority('high'), high);
+    const mediumPriorityTasks = createTaskList(project.getTasksByPriority('medium'), medium);
+    const lowPriorityTasks = createTaskList(project.getTasksByPriority('low'), low);
+
+    projectTasks.appendChild(highPriorityTasks);
+    projectTasks.appendChild(mediumPriorityTasks);
+    projectTasks.appendChild(lowPriorityTasks);
+
+    container.appendChild(projectHeader);
+    container.appendChild(projectTasks);
+    return container;
+};
+
+const createProjectHeader = (project) => {
     const projectHeader = document.createElement('div');
     projectHeader.classList.add('project-header');
 
@@ -32,22 +53,7 @@ export const Tasks = (project) => {
     projectHeader.appendChild(projectTitle);
     projectHeader.appendChild(createTask);
     projectHeader.appendChild(showFinshed);
-
-
-    const projectTasks = document.createElement('div');
-    projectTasks.classList.add('project-tasks');
-
-    const highPriorityTasks = createTaskList(project.getTasksByPriority('high'), high);
-    const mediumPriorityTasks = createTaskList(project.getTasksByPriority('medium'), medium);
-    const lowPriorityTasks = createTaskList(project.getTasksByPriority('low'), low);
-
-    projectTasks.appendChild(highPriorityTasks);
-    projectTasks.appendChild(mediumPriorityTasks);
-    projectTasks.appendChild(lowPriorityTasks);
-
-    container.appendChild(projectHeader);
-    container.appendChild(projectTasks);
-    return container;
+    return projectHeader;
 };
 
 const createTaskList = (tasks, level) => {
@@ -91,6 +97,9 @@ const createListItem = (task) => {
     const title = document.createElement('div');
     title.classList.add('task-title');
     title.textContent = task.title;
+    title.addEventListener('click', () => {
+        switchContent(TaskNode(task));
+    });
 
     const dueDate = document.createElement('div');
     dueDate.classList.add('task-due-date');
