@@ -1,5 +1,7 @@
 import { showCreate } from '../utils';
 import { CreateProject } from './CreateProject';
+import { Tasks } from './Tasks';
+import { switchContent } from './Content';
 
 export const Projects = (user) => {
     const container = document.createElement('div');
@@ -36,10 +38,7 @@ export const Projects = (user) => {
     projectsHeader.appendChild(heading);
     projectsHeader.appendChild(projectOptions);
 
-    const list = createProjectsList(user.projects);
-    const projects = document.createElement('div');
-    projects.classList.add('projects-container');
-    projects.appendChild(list);
+    const projects = createProjectsList(user.projects);
     
     container.appendChild(projectsHeader);
     container.appendChild(projects);
@@ -54,7 +53,10 @@ const createProjectsList = (projects) => {
     projects.forEach(project => {
         const projectContainer = document.createElement('div');
         projectContainer.classList.add('project');
-
+        projectContainer.addEventListener('click', () => {
+            switchContent(Tasks(project));
+        });
+        
         const heading = document.createElement('div');
         heading.classList.add('project-heading');
         heading.textContent = project.title;
@@ -76,18 +78,3 @@ const createProjectsList = (projects) => {
     });
     return container;
 };
-
-/* callback doesn't work */
-// const createProjectOption = (id, text, callback=undefined, htmlEl=undefined) => {
-//     const projectOption = document.createElement('a');
-//     projectOption.classList.add(id);
-//     projectOption.classList.add('project-option');
-//     projectOption.href = '#';
-//     if (htmlEl) {
-//         projectOption.addEventListener('click', () => {
-//             showCreate(container, htmlEl, callback);
-//         });
-//     }
-//     projectOption.textContent = text;
-//     return projectOption;
-// };
