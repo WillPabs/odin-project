@@ -106,6 +106,8 @@ header {
     display: grid;
 }
 
+/* --------- PROJECTS --------- */
+
 .projects-header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -116,3 +118,33 @@ header {
     justify-content: flex-end;
     gap: 1rem;
 }
+
+.projects-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.project {
+    display: grid;
+    background-color: rgb(107, 103, 103);
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.project-heading {
+    font-size: 1.4rem;
+}
+
+.project-tasks {
+    padding-top: .4rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.task {
+    display: flex;
+}
+
