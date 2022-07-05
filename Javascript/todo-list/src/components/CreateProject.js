@@ -1,4 +1,6 @@
-export const CreateProject = () => {
+import { Project } from '../project';
+
+export const CreateProject = (user) => {
     const container = document.createElement('div');
     container.id = 'create-project';
 
@@ -8,8 +10,18 @@ export const CreateProject = () => {
 
     const title = createField('title', 'text');
 
+    const button = document.createElement('button');
+    button.textContent = 'Create';
+    button.addEventListener('click', () => {
+        const projectName = button.value;
+        const newProject = Project(projectName);
+        user.addProject(newProject);
+    });
+
     form.appendChild(heading);
     form.appendChild(title);
+    form.appendChild(button);
+
     container.appendChild(form);
     return container;
 };
@@ -27,6 +39,8 @@ const createField = (fieldName, inputType) => {
     input.setAttribute('type', inputType);
     input.setAttribute('id', fieldName);
     input.setAttribute('name', fieldName);
+
+    
 
     field.appendChild(label);
     field.appendChild(input);
