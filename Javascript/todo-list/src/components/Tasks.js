@@ -1,5 +1,8 @@
 import { showCreate } from '../utils';
 import { CreateTask } from './CreateTask';
+import high from '../images/red_circle.png';
+import medium from '../images/yellow_circle.png';
+import low from '../images/blue_circle.png';
 
 export const Tasks = (project) => {
     const container = document.createElement('div');
@@ -34,9 +37,9 @@ export const Tasks = (project) => {
     const projectTasks = document.createElement('div');
     projectTasks.classList.add('project-tasks');
 
-    const highPriorityTasks = createTaskList(project.getTasksByPriority('high'));
-    const mediumPriorityTasks = createTaskList(project.getTasksByPriority('medium'));
-    const lowPriorityTasks = createTaskList(project.getTasksByPriority('low'));
+    const highPriorityTasks = createTaskList(project.getTasksByPriority('high'), high);
+    const mediumPriorityTasks = createTaskList(project.getTasksByPriority('medium'), medium);
+    const lowPriorityTasks = createTaskList(project.getTasksByPriority('low'), low);
 
     projectTasks.appendChild(highPriorityTasks);
     projectTasks.appendChild(mediumPriorityTasks);
@@ -47,7 +50,7 @@ export const Tasks = (project) => {
     return container;
 };
 
-const createTaskList = (tasks) => {
+const createTaskList = (tasks, level) => {
     const container = document.createElement('div');
     container.classList.add('tasks-list');
 
@@ -55,7 +58,7 @@ const createTaskList = (tasks) => {
     priority.classList.add('priority');
 
     const priorityColor = document.createElement('img');
-    priorityColor.src = '#';
+    priorityColor.src = level;
 
     const priorityType = document.createElement('div');
     priorityType.textContent = tasks.priorty;
@@ -80,6 +83,11 @@ const createListItem = (task) => {
     const li = document.createElement('li');
     li.classList.add('task');
 
+    const taskFinishToggle = document.createElement('input');
+    taskFinishToggle.classList.add('task-finished');
+    taskFinishToggle.type = 'checkbox';
+    taskFinishToggle.checked = task.finished;
+
     const title = document.createElement('div');
     title.classList.add('task-title');
     title.textContent = task.title;
@@ -88,6 +96,7 @@ const createListItem = (task) => {
     dueDate.classList.add('task-due-date');
     dueDate.textContent = task.dueDate;
 
+    li.appendChild(taskFinishToggle);
     li.appendChild(title);
     li.appendChild(dueDate);
     return li;
