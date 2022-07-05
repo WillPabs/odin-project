@@ -42,7 +42,7 @@ const createProjectHeader = (project) => {
     createTask.href = '#';
     createTask.addEventListener('click', () => {
         showCreate(projectHeader, document.querySelector('#create-task'), CreateTask);
-    })
+    });
     createTask.textContent = 'Create Task';
 
     const showFinshed = document.createElement('a');
