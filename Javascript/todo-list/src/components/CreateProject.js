@@ -13,7 +13,7 @@ export const CreateProject = (user) => {
     const button = document.createElement('button');
     button.textContent = 'Create';
     button.addEventListener('click', () => {
-        const projectName = button.value;
+        const projectName = document.querySelector('#title').value;
         const newProject = Project(projectName);
         user.addProject(newProject);
     });
