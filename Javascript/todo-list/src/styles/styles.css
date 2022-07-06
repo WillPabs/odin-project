@@ -113,10 +113,15 @@ header {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.projects-heading {
+    font-size: 1.6rem;
+}
+
 .project-options-container {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+    align-items: center;
 }
 
 .projects-list-container {
@@ -126,6 +131,8 @@ header {
     padding-top: 2rem;
 }
 
+/* --------- PROJECT --------- */
+
 .project {
     display: grid;
     background-color: rgb(107, 103, 103);
@@ -133,7 +140,16 @@ header {
     border-radius: 2rem;
 }
 
+.project-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .project-heading {
+    font-size: 1.4rem;
+}
+
+.project-title {
     font-size: 1.4rem;
 }
 
