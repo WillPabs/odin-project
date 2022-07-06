@@ -37,6 +37,9 @@ const createProjectHeader = (project) => {
     projectTitle.classList.add('project-title');
     projectTitle.textContent = project.getTitle();
 
+    const projectOptions = document.createElement('div');
+    projectOptions.classList.add('project-options-container');
+
     const createTask = document.createElement('a');
     createTask.classList.add('create-task-link');
     createTask.href = '#';
@@ -50,9 +53,11 @@ const createProjectHeader = (project) => {
     showFinshed.href = '#';
     showFinshed.textContent = 'Show Finished';
 
+    projectOptions.appendChild(createTask);
+    projectOptions.appendChild(showFinshed);
+
     projectHeader.appendChild(projectTitle);
-    projectHeader.appendChild(createTask);
-    projectHeader.appendChild(showFinshed);
+    projectHeader.appendChild(projectOptions);
     return projectHeader;
 };
 
