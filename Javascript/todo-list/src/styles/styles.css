@@ -131,6 +131,10 @@ header {
     padding-top: 2rem;
 }
 
+.projects-task {
+    display: flex;
+}
+
 /* --------- PROJECT --------- */
 
 .project {
@@ -160,7 +164,23 @@ header {
     gap: .4rem;
 }
 
-.task {
+.project-task {
     display: flex;
 }
 
+
+/* --------- TASK --------- */
+
+.task {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(107, 103, 103);
+    padding: 2rem;
+    border-radius: 2rem;
+    gap: 1rem;
+}
+
+.task > .task-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
