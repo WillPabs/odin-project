@@ -44,7 +44,7 @@ const createProjectHeader = (project) => {
     createTask.classList.add('create-task-link');
     createTask.href = '#';
     createTask.addEventListener('click', () => {
-        showCreate(projectHeader, document.querySelector('#create-task'), CreateTask);
+        showCreate(projectHeader, document.querySelector('#create-task'), CreateTask.bind(null, project));
     });
     createTask.textContent = 'Create Task';
 
