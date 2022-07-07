@@ -1,19 +1,21 @@
-export const CreateTask = () => {
+import { Task } from "../task";
+
+export const CreateTask = (project) => {
     const container = document.createElement('div');
     container.id = 'create-task';
 
     const form = document.createElement('form');
-
+    
     const heading = document.createElement('h2');
     heading.textContent = 'Create Task';
-
+    
     const title = createField('title', 'text');
     const description = createField('description', 'text');
     const dueDate = createField('due-date', 'date');
     const priority = createField('priority', 'text');
     const notes = createField('notes', 'text');
-    const submit = createField('submit', 'submit');
-
+    const submit = createField('create', 'button');
+    
     form.appendChild(heading);
     form.appendChild(title);
     form.appendChild(description);
@@ -21,7 +23,13 @@ export const CreateTask = () => {
     form.appendChild(priority);
     form.appendChild(notes);
     form.appendChild(submit);
-
+    
+    submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        const newTask = convertFormToTask(form);
+        project.addTask(newTask);
+    });
+    
     container.appendChild(form);
     return container;
 };
@@ -37,6 +45,7 @@ const createField = (fieldName, inputType) => {
 
     const input = document.createElement('input');
     input.setAttribute('type', inputType);
+    if (input.type === 'button') input.value = firstLetterCapital;
     input.setAttribute('id', fieldName);
     input.setAttribute('name', fieldName);
 
@@ -44,3 +53,13 @@ const createField = (fieldName, inputType) => {
     field.appendChild(input);
     return field;
 };
+
+const convertFormToTask = (form) => {
+    const formData = new FormData(form);
+    const values = formData.values();
+    const taskArray = [];
+    for (const value of values) {
+        taskArray.push(value);
+    }
+    return Task(...taskArray);
+}
