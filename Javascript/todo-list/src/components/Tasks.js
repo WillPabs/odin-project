@@ -99,6 +99,10 @@ const createListItem = (task) => {
     taskFinishToggle.type = 'checkbox';
     taskFinishToggle.checked = task.finished;
 
+    taskFinishToggle.addEventListener('click', () => {
+        task.finished = taskFinishToggle.checked;
+    });
+
     const title = document.createElement('div');
     title.classList.add('task-title');
     title.textContent = task.title;
