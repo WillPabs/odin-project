@@ -90,8 +90,6 @@ const createProjectTask = (task) => {
     taskFinishToggle.type = 'checkbox';
     taskFinishToggle.checked = task.finished;
 
-    // TODO
-    // fix bug that toggles checkbox for all projects
     taskFinishToggle.addEventListener('click', () => {
         task.finished = taskFinishToggle.checked;
     })
