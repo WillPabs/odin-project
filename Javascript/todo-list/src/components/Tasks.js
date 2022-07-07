@@ -92,7 +92,7 @@ const createTaskList = (tasks, level) => {
 
 const createListItem = (task) => {
     const li = document.createElement('li');
-    li.classList.add('task');
+    li.classList.add('project-task');
 
     const taskFinishToggle = document.createElement('input');
     taskFinishToggle.classList.add('task-finished');
