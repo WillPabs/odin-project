@@ -11,7 +11,8 @@ export const ProjectBar = (user) => {
     heading.textContent = 'Your Projects';
     projectBar.appendChild(heading);
 
-    const links = createProjectLinks(user.projects);
+    const projects = user.projects;
+    const links = createProjectLinks(projects);
     projectBar.appendChild(links);
 
     const allProjectsLink = document.createElement('a');
@@ -20,6 +21,10 @@ export const ProjectBar = (user) => {
     allProjectsLink.href = '#';
     allProjectsLink.addEventListener('click', () => {
         Content(Projects(user));
+        
+        const newProjects = user.projects;
+        const replace = document.querySelector('.project-links');
+        refreshProjectsBar(newProjects, replace, projectBar);
     });
 
     projectBar.appendChild(allProjectsLink);
@@ -40,4 +45,11 @@ const createProjectLinks = (projects) => {
         container.appendChild(link);
     });
     return container;
+};
+
+const refreshProjectsBar = (newProjects, node, projectBar) => {
+    if (newProjects.length !== node.childElementCount) {
+        const newLinks = createProjectLinks(newProjects);
+        projectBar.replaceChild(newLinks, node);
+    };
 };
