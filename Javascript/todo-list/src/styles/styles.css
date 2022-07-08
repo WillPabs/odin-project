@@ -137,9 +137,9 @@ header {
 
 /* --------- PROJECT --------- */
 
-.project {
-    display: grid;
+.project-overview {
     background-color: rgb(107, 103, 103);
+    display: grid;
     padding: 2rem;
     border-radius: 2rem;
 }
@@ -155,6 +155,7 @@ header {
 
 .project-title {
     font-size: 1.4rem;
+    font-weight: bold;
 }
 
 .project-tasks {
@@ -164,10 +165,44 @@ header {
     gap: .4rem;
 }
 
-.project-task {
-    display: flex;
+.tasks-list {
+    flex: 1;
 }
 
+.priority {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    gap: .5rem;
+    justify-content: center;
+}
+
+@media screen and (min-width: 750px) {
+    .project-tasks {
+        flex-direction: row;
+    }
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.project-task {
+    display: flex;
+    background-color: rgb(107, 103, 103);
+    padding: .5rem;
+    border-radius: 20px;
+}
+
+.task-finished {
+    margin-right: .4rem;
+}
+
+.task-due-date {
+    margin-left: auto;
+}
 
 /* --------- TASK --------- */
 
