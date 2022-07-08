@@ -57,7 +57,7 @@ const createProjectsList = (projects) => {
 
     projects.forEach(project => {
         const projectContainer = document.createElement('div');
-        projectContainer.classList.add('project');
+        projectContainer.classList.add('project-overview');
         
         const heading = document.createElement('div');
         heading.classList.add('project-heading');
