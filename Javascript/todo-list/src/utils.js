@@ -15,3 +15,7 @@ const toggleShow = (toInsert) => {
         createP.style.display = 'none';
     }
 }
+
+export const makeFirstLetterCapital = (fieldName) => {
+    return (fieldName[0].toUpperCase() + fieldName.substring(1));
+} 

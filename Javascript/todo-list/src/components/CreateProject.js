@@ -1,4 +1,5 @@
 import { Project } from '../project';
+import { makeFirstLetterCapital } from '../utils';
 
 export const CreateProject = (user) => {
     const container = document.createElement('div');
@@ -33,15 +34,13 @@ const createField = (fieldName, inputType) => {
 
     const label = document.createElement('label');
     label.setAttribute('for', fieldName);
-    const firstLetterCapital = fieldName[0].toUpperCase() + fieldName.substring(1);
+    const firstLetterCapital = makeFirstLetterCapital(fieldName);
     label.textContent = `${firstLetterCapital} : `;
 
     const input = document.createElement('input');
     input.setAttribute('type', inputType);
     input.setAttribute('id', fieldName);
     input.setAttribute('name', fieldName);
-
-    
 
     field.appendChild(label);
     field.appendChild(input);

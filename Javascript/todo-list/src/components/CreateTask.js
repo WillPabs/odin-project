@@ -1,4 +1,5 @@
 import { Task } from "../task";
+import { makeFirstLetterCapital } from "../utils";
 
 export const CreateTask = (project) => {
     const container = document.createElement('div');
@@ -40,12 +41,11 @@ const createField = (fieldName, inputType) => {
 
     const label = document.createElement('label');
     label.setAttribute('for', fieldName);
-    const firstLetterCapital = fieldName[0].toUpperCase() + fieldName.substring(1);
-    label.textContent = `${firstLetterCapital} : `;
+    label.textContent = `${makeFirstLetterCapital(fieldName)} : `;
 
     const input = document.createElement('input');
     input.setAttribute('type', inputType);
-    if (input.type === 'button') input.value = firstLetterCapital;
+    if (input.type === 'button') input.value = makeFirstLetterCapital(fieldName);
     input.setAttribute('id', fieldName);
     input.setAttribute('name', fieldName);
 
