@@ -1,3 +1,5 @@
+import { PRIORITY } from "../priority";
+
 export const TaskNode = (task) => {
     const taskNode = document.createElement('div');
     taskNode.classList.add('task');
@@ -23,7 +25,15 @@ export const TaskNode = (task) => {
 
     const priorityDiv = document.createElement('div');
     priorityDiv.classList.add('task-priority');
-    priorityDiv.textContent = task.priority;
+    const priorityColor = document.createElement('img');
+    priorityColor.classList.add('priority-color');
+    const level = PRIORITY.find(p => p.type.toLowerCase() === task.priority);
+    priorityColor.src = level.img;
+    const priorityType = document.createElement('div');
+    priorityType.classList.add('priority-text');
+    priorityType.textContent = task.priority.toUpperCase();
+    priorityDiv.appendChild(priorityColor);
+    priorityDiv.appendChild(priorityType);
 
     const notesDiv = document.createElement('div');
     notesDiv.classList.add('task-notes');
