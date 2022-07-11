@@ -10,6 +10,10 @@ const task1 = Task('Dentist Appointment', '4:30pm sharp at 14 Meadows Lane', '6/
 const task2 = Task('Do dishes', 'Put everything in dishwasher except glasses', '6/28/22', 'low');
 const task3 = Task('Do this', 'Put everything in dishwasher except glasses', '6/28/22', 'low');
 const task4 = Task('Do that', 'Put everything in dishwasher except glasses', '6/28/22', 'low');
+const task5 = Task('Prep food', 'put food in containers', '7/13/22', 'medium');
+const task6 = Task('Walk dog', 'take dog for walk', '7/13/22', 'high');
+const task7 = Task('Mop floor', 'mop the floor', '7/13/22', 'low');
+
 
 const project = Project('Project1');
 project.addTask(task);
@@ -23,9 +27,18 @@ project1.addTask(task1);
 project1.addTask(task2);
 project1.addTask(task4);
 
+const project2 = Project('Project3');
+project2.addTask(task5);
+
+const project3 = Project('Project4');
+project3.addTask(task6);
+project3.addTask(task7);
+
 const user1 = User('William Pabitero');
 user1.addProfilePicture(pfp1);
 user1.addProject(project);
 user1.addProject(project1);
+user1.addProject(project2);
+user1.addProject(project3);
 
 displayUserContent(user1);
