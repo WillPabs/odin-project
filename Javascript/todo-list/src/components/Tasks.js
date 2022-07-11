@@ -16,14 +16,18 @@ export const Tasks = (project) => {
 
     const projectTasks = document.createElement('div');
     projectTasks.classList.add('project-tasks');
+    
+    const highPriorityTasks = project.getTasksByPriority('high');
+    const mediumPriorityTasks = project.getTasksByPriority('medium');
+    const lowPriorityTasks = project.getTasksByPriority('low');
 
-    const highPriorityTasks = createTaskList(project.getTasksByPriority('high'), high);
-    const mediumPriorityTasks = createTaskList(project.getTasksByPriority('medium'), medium);
-    const lowPriorityTasks = createTaskList(project.getTasksByPriority('low'), low);
+    const highPriorityTaskList = createTaskList(highPriorityTasks, high);
+    const mediumPriorityTaskList = createTaskList(mediumPriorityTasks, medium);
+    const lowPriorityTaskList = createTaskList(lowPriorityTasks, low);
 
-    projectTasks.appendChild(highPriorityTasks);
-    projectTasks.appendChild(mediumPriorityTasks);
-    projectTasks.appendChild(lowPriorityTasks);
+    projectTasks.appendChild(highPriorityTaskList);
+    projectTasks.appendChild(mediumPriorityTaskList);
+    projectTasks.appendChild(lowPriorityTaskList);
 
     container.appendChild(projectHeader);
     container.appendChild(projectTasks);
@@ -72,13 +76,14 @@ const createTaskList = (tasks, level) => {
     const priorityColor = document.createElement('img');
     priorityColor.classList.add('priority-color');
     priorityColor.src = level;
-
-    const priorityType = document.createElement('div');
-    priorityType.classList.add('priority-text');
-    priorityType.textContent = makeFirstLetterCapital(tasks[0].priority);
-
-    priority.appendChild(priorityColor);
-    priority.appendChild(priorityType);
+    
+    if (tasks.length > 0) {
+        priority.appendChild(priorityColor);
+        const priorityType = document.createElement('div');
+        priorityType.classList.add('priority-text');
+        priorityType.textContent = makeFirstLetterCapital(tasks[0].priority);
+        priority.appendChild(priorityType);
+    };
 
     const ul = document.createElement('ul');
     ul.classList.add('tasks');
