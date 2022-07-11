@@ -243,15 +243,25 @@ header {
 }
 
 .task-header {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 .task-priority {
     display: flex;
     align-items: center;
+}
+
+.task-header > .task-title {
+    font-size: 1.8rem;
+}
+
+.description-label {
+    text-decoration: underline;
+    font-size: 1.1rem;
 }
 
 /* --------- MEDIA QUERIES --------- */
