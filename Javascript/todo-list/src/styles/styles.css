@@ -62,12 +62,26 @@ header {
     align-items: center;
 }
 
+/* --------- HEADER --------- */
+
+.header {
+    font-weight: bold;
+}
+
+.logo-name {
+    font-size: 2rem;
+}
+
 /* --------- PROFILE-HEADER --------- */
 
 .profile-header {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.profile-pic {
+    border-radius: 30px;
 }
 
 /* --------- MAIN --------- */
