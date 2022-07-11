@@ -232,9 +232,3 @@ header {
         flex-direction: row;
     }
 }
-
-@media screen and (max-width: 980px) {
-    /* .project-overview {
-        width: clamp(100%;
-    } */
-}
