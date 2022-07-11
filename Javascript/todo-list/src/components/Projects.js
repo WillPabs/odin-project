@@ -67,7 +67,7 @@ const createProjectsList = (projects) => {
         });
         
         const tasksContainer = document.createElement('div');
-        tasksContainer.classList.add('project-tasks');
+        tasksContainer.classList.add('project-overview-tasks');
         const size = 4;
         const tasks = project.getTaskList().slice(0, size);
         tasks.forEach(task => {
