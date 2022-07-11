@@ -5,7 +5,6 @@ import medium from '../images/yellow_circle.png';
 import low from '../images/blue_circle.png';
 import { switchContent } from './Content';
 import { TaskNode } from './Task';
-import { makeFirstLetterCapital } from '../utils';
 
 export const Tasks = (project) => {
     const container = document.createElement('div');
@@ -81,7 +80,7 @@ const createTaskList = (tasks, level) => {
         priority.appendChild(priorityColor);
         const priorityType = document.createElement('div');
         priorityType.classList.add('priority-text');
-        priorityType.textContent = makeFirstLetterCapital(tasks[0].priority);
+        priorityType.textContent = tasks[0].priority.toUpperCase();
         priority.appendChild(priorityType);
     };
 
