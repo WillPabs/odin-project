@@ -131,6 +131,15 @@ header {
     padding-top: 2rem;
 }
 
+.project-overview {
+    background-color: rgb(107, 103, 103);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 20rem;
+}
+
 .project-overview-tasks {
     padding-top: .4rem;
     display: flex;
@@ -143,13 +152,6 @@ header {
 }
 
 /* --------- PROJECT --------- */
-
-.project-overview {
-    background-color: rgb(107, 103, 103);
-    display: grid;
-    padding: 2rem;
-    border-radius: 2rem;
-}
 
 .project-header {
     display: grid;
