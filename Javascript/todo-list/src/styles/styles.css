@@ -242,9 +242,16 @@ header {
     gap: 1rem;
 }
 
-.task > .task-title {
+.task-header {
     font-size: 1.4rem;
     font-weight: bold;
+    display: flex;
+    gap: 1rem;
+}
+
+.task-priority {
+    display: flex;
+    align-items: center;
 }
 
 /* --------- MEDIA QUERIES --------- */
