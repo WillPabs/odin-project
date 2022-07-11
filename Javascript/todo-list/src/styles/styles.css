@@ -18,23 +18,6 @@ header, footer {
     align-items: center;
 }
 
-header {
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
-.header-left, 
-.header-right {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    gap: 1rem;
-}
-
-.header-right {
-    justify-content: flex-end;
-}
-
 .main {
     display: grid;
     grid-template-columns: 1fr 6fr;
@@ -62,10 +45,35 @@ header {
     align-items: center;
 }
 
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+}
+
 /* --------- HEADER --------- */
+
+header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
 
 .header {
     font-weight: bold;
+}
+
+.header-left, 
+.header-right {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-right {
+    justify-content: flex-end;
 }
 
 .logo-name {
