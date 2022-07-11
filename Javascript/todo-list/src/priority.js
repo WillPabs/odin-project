@@ -1,6 +1,6 @@
-import high from '../src/images/red_circle';
-import medium from '../src/images/yellow_circle';
-import low from '../src/images/blue_circle';
+import high from '/src/images/red_circle.png';
+import medium from '/src/images/yellow_circle.png';
+import low from '/src/images/blue_circle.png';
 
 export const PRIORITY = Object.freeze([
     {
