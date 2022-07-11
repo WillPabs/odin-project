@@ -137,7 +137,9 @@ header {
     flex-direction: column;
     padding: 2rem;
     border-radius: 2rem;
-    width: 20rem;
+    min-width: 300px;
+    max-width: 350px;
+    flex: 1;
 }
 
 .project-overview-tasks {
@@ -186,12 +188,6 @@ header {
     justify-content: center;
 }
 
-@media screen and (min-width: 750px) {
-    .project-tasks {
-        flex-direction: row;
-    }
-}
-
 .tasks {
     display: flex;
     flex-direction: column;
@@ -227,4 +223,18 @@ header {
 .task > .task-title {
     font-size: 1.4rem;
     font-weight: bold;
+}
+
+/* --------- MEDIA QUERIES --------- */
+
+@media screen and (min-width: 750px) {
+    .project-tasks {
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    /* .project-overview {
+        width: clamp(100%;
+    } */
 }
