@@ -15,3 +15,4 @@ Javascript Projects
 - [Calculator](https://willpabs.github.io/odin-project/Javascript/Calculator/index.html)
 - [TicTacToe](https://willpabs.github.io/odin-project/Javascript/TicTacToe)
 - [Restaurant](https://willpabs.github.io/odin-project/Javascript/Restaurant/dist)
+- [Todo-List](https://willpabs.github.io/odin-project/Javascript/todo-List/dist)
