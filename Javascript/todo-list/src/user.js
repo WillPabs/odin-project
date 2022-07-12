@@ -1,10 +1,10 @@
 export const User = (name) => {
-    let self = {};
-    self.name = name;
-    self.projects = [];
-    self.profilePicture;
+    let user = Object.create(userFunctions);
+    user.name = name;
+    user.projects = [];
+    user.profilePicture;
 
-    return Object.assign(self, userFunctions);
+    return user;
 } 
 
 const userFunctions = {

@@ -1,13 +1,13 @@
 export const Task = (title, description, dueDate, priority, notes) => {
-    let self = {};
-    self.title = title;
-    self.description = description;
-    self.dueDate = dueDate;
-    self.priority = priority;
-    self.notes = notes;
-    self.finished = false;
+    let task = Object.create(taskFunctions);
+    task.title = title;
+    task.description = description;
+    task.dueDate = dueDate;
+    task.priority = priority;
+    task.notes = notes;
+    task.finished = false;
     
-    return Object.assign(self, taskFunctions);
+    return task;
 };
 
 const Priority = {
@@ -19,6 +19,18 @@ const Priority = {
 const taskFunctions = {
     setTitle(newTitle) {
         this.title = newTitle;
+    },
+    setDescription(newDescription) {
+        this.description = newDescription;
+    },
+    setDueDate(newDate) {
+        this.dueDate = newDate;
+    },
+    setPriority(newPriority) {
+        this.priority = newPriority;
+    },
+    setNotes(newNotes) {
+        this.notes = newNotes;
     },
     toggleFinished() {
         this.finished === true ? this.finished = false : this.finished = true;

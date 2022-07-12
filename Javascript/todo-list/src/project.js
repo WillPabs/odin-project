@@ -1,10 +1,10 @@
 export const Project = (title) => {
-    let self = {};
-    self.title = title;
-    self.taskList = [];
-    self.finishedTasks = [];
+    let project = Object.create(projectFunctions);
+    project.title = title;
+    project.taskList = [];
+    project.finishedTasks = [];
 
-    return Object.assign(self, projectFunctions);
+    return project;
 };
 
 const projectFunctions = {
