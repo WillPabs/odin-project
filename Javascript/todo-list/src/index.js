@@ -14,7 +14,6 @@ const task5 = Task('Prep food', 'put food in containers', '7/13/22', 'medium');
 const task6 = Task('Walk dog', 'take dog for walk', '7/13/22', 'high');
 const task7 = Task('Mop floor', 'mop the floor', '7/13/22', 'low');
 
-
 const project = Project('Project1');
 project.addTask(task);
 project.addTask(task1);
