@@ -1,5 +1,5 @@
 # odin-project
-This repository contains a multitude of projects associated with https://www.theodinproject.com/. Below is a list of links to github pages of my completed projects. Projects get increasingly more complex as you go down the list.
+This repository contains a multitude of projects associated with https://www.theodinproject.com/. Below is a list of links to github pages of my completed / in-progress projects. Projects become increasingly more complex as you go down the list.
 
 Foundations Projects
 - [Landing Page](https://willpabs.github.io/odin-project/Foundations/LandingPage/index.html)
