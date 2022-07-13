@@ -14,6 +14,10 @@ export const Tasks = (project) => {
     const projectHeader = createProjectHeader(project);
 
     const projectTasks = createProjectTasks(project);
+
+    // TODO
+    // create logic to add task to finished list when checkbox
+    // is checked
     
     container.appendChild(projectHeader);
     container.appendChild(projectTasks);
@@ -42,6 +46,15 @@ const createProjectHeader = (project) => {
     const showFinished = document.createElement('a');
     showFinished.classList.add('show-finished-link');
     showFinished.href = '#';
+    showFinished.addEventListener('click', () => {
+        const finishedTasks = project.getFinishedTasks();
+        const finishedTasksDiv = document.createElement('div');
+        finishedTasksDiv.classList.add('finished-tasks');
+        finishedTasks.forEach(task => {
+            finishedTasksDiv.appendChild(createListItem(task));
+        })
+        document.querySelector('.project-tasks').replaceChildren(finishedTasksDiv);
+    });
     showFinished.textContent = 'Show Finished';
 
     projectOptions.appendChild(createTask);
