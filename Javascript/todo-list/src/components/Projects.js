@@ -71,7 +71,9 @@ const createProjectsList = (projects) => {
         const size = 4;
         const tasks = project.getTaskList().slice(0, size);
         tasks.forEach(task => {
-            tasksContainer.appendChild(createProjectTask(task));
+            if (task.finished !== true) {
+                tasksContainer.appendChild(createProjectTask(task));
+            }
         });
 
         projectContainer.appendChild(heading);

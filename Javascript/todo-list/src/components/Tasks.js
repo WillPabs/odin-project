@@ -107,8 +107,10 @@ const createTaskList = (tasks, level) => {
     ul.classList.add('tasks');
 
     tasks.forEach(task => {
-        const li = createListItem(task);
-        ul.appendChild(li);
+        if (task.finished !== true) {
+            const li = createListItem(task);
+            ul.appendChild(li);
+        }
     });
 
     container.appendChild(priority);
@@ -117,6 +119,7 @@ const createTaskList = (tasks, level) => {
 };
 
 const createListItem = (task) => {
+    console.log(task)
     const li = document.createElement('li');
     li.classList.add('project-task');
 
@@ -127,6 +130,7 @@ const createListItem = (task) => {
 
     taskFinishToggle.addEventListener('click', () => {
         task.finished = taskFinishToggle.checked;
+        li.remove();
     });
 
     const title = document.createElement('div');
