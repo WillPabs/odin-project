@@ -2,6 +2,7 @@ export const User = (name) => {
     let user = Object.create(userFunctions);
     user.name = name;
     user.projects = [];
+    user.finishedProjects = [];
     user.profilePicture;
 
     return user;
@@ -18,7 +19,10 @@ const userFunctions = {
             throw 'This is not a valid image.';
         }
     },
+    getFinishedProjects() {
+        return this.finishedProjects;
+    },
     finishProject(project) {
-        this.projects.push(project.finishProject());
+        this.finishedProjects.push(project.finishProject());
     },
 }
