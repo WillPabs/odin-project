@@ -119,7 +119,6 @@ const createTaskList = (tasks, level) => {
 };
 
 const createListItem = (task) => {
-    console.log(task)
     const li = document.createElement('li');
     li.classList.add('project-task');
 
