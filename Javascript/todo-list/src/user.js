@@ -20,6 +20,11 @@ const userFunctions = {
         }
     },
     getFinishedProjects() {
+        this.projects.forEach(project => {
+            if (project.finished === true && !this.finishedProjects.includes(project)) {
+                this.finishedProjects.push(project);
+            }
+        })
         return this.finishedProjects;
     },
     finishProject(project) {
