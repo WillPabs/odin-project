@@ -164,6 +164,14 @@ header {
     flex: 1;
 }
 
+.project-overview-header {
+    display: flex; 
+}
+
+.project-options-container {
+    margin-left: auto;
+}
+
 .project-overview-tasks {
     padding-top: .4rem;
     display: flex;
