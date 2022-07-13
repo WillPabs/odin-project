@@ -13,21 +13,8 @@ export const Tasks = (project) => {
 
     const projectHeader = createProjectHeader(project);
 
-    const projectTasks = document.createElement('div');
-    projectTasks.classList.add('project-tasks');
+    const projectTasks = createProjectTasks(project);
     
-    const highPriorityTasks = project.getTasksByPriority('high');
-    const mediumPriorityTasks = project.getTasksByPriority('medium');
-    const lowPriorityTasks = project.getTasksByPriority('low');
-
-    const highPriorityTaskList = createTaskList(highPriorityTasks, high);
-    const mediumPriorityTaskList = createTaskList(mediumPriorityTasks, medium);
-    const lowPriorityTaskList = createTaskList(lowPriorityTasks, low);
-
-    projectTasks.appendChild(highPriorityTaskList);
-    projectTasks.appendChild(mediumPriorityTaskList);
-    projectTasks.appendChild(lowPriorityTaskList);
-
     container.appendChild(projectHeader);
     container.appendChild(projectTasks);
     return container;
@@ -52,18 +39,37 @@ const createProjectHeader = (project) => {
     });
     createTask.textContent = 'Create Task';
 
-    const showFinshed = document.createElement('a');
-    showFinshed.classList.add('show-finished-link');
-    showFinshed.href = '#';
-    showFinshed.textContent = 'Show Finished';
+    const showFinished = document.createElement('a');
+    showFinished.classList.add('show-finished-link');
+    showFinished.href = '#';
+    showFinished.textContent = 'Show Finished';
 
     projectOptions.appendChild(createTask);
-    projectOptions.appendChild(showFinshed);
+    projectOptions.appendChild(showFinished);
 
     projectHeader.appendChild(projectTitle);
     projectHeader.appendChild(projectOptions);
     return projectHeader;
 };
+
+const createProjectTasks = (project) => {
+    const projectTasks = document.createElement('div');
+    projectTasks.classList.add('project-tasks');
+    
+    const highPriorityTasks = project.getTasksByPriority('high');
+    const mediumPriorityTasks = project.getTasksByPriority('medium');
+    const lowPriorityTasks = project.getTasksByPriority('low');
+
+    const highPriorityTaskList = createTaskList(highPriorityTasks, high);
+    const mediumPriorityTaskList = createTaskList(mediumPriorityTasks, medium);
+    const lowPriorityTaskList = createTaskList(lowPriorityTasks, low);
+
+    projectTasks.appendChild(highPriorityTaskList);
+    projectTasks.appendChild(mediumPriorityTaskList);
+    projectTasks.appendChild(lowPriorityTaskList);
+
+    return projectTasks;
+}
 
 const createTaskList = (tasks, level) => {
     const container = document.createElement('div');
