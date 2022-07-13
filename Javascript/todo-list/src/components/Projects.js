@@ -25,7 +25,7 @@ const createProjectsHeader = (user) => {
     heading.textContent = `${user.name[0].toUpperCase() + user.name.substring(1)}'s Projects`;
 
     const projectOptions = document.createElement('div');
-    projectOptions.classList.add('project-options-container');
+    projectOptions.classList.add('projects-options-container');
 
     const createProject = document.createElement('a');
     createProject.classList.add('create-project-link');
@@ -69,12 +69,36 @@ const createProjectsList = (projects) => {
         const projectContainer = document.createElement('div');
         projectContainer.classList.add('project-overview');
         
+        const header = document.createElement('div');
+        header.classList.add('project-overview-header');
+
         const heading = document.createElement('div');
         heading.classList.add('project-heading');
         heading.textContent = project.title;
         heading.addEventListener('click', () => {
             switchContent(Tasks(project));
         });
+
+        const projectOptionsContainer = document.createElement('div');
+        projectOptionsContainer.classList.add('project-options-container');
+
+        const finishButton = document.createElement('button');
+        finishButton.classList.add('finish-project-button');
+        finishButton.textContent = 'Finish';
+        finishButton.addEventListener('click', () => {
+            project.finishProject();
+            projectContainer.remove();
+        });
+
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-project-button');
+        deleteButton.textContent = 'Delete';
+
+        projectOptionsContainer.appendChild(finishButton);
+        projectOptionsContainer.appendChild(deleteButton);
+
+        header.appendChild(heading);
+        header.appendChild(projectOptionsContainer);
         
         const tasksContainer = document.createElement('div');
         tasksContainer.classList.add('project-overview-tasks');
@@ -86,7 +110,7 @@ const createProjectsList = (projects) => {
             }
         });
 
-        projectContainer.appendChild(heading);
+        projectContainer.appendChild(header);
         projectContainer.appendChild(tasksContainer);
         container.appendChild(projectContainer);
     });
