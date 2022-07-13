@@ -17,5 +17,8 @@ const userFunctions = {
         } else {
             throw 'This is not a valid image.';
         }
-    }
+    },
+    finishProject(project) {
+        this.projects.push(project.finishProject());
+    },
 }

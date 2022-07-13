@@ -3,6 +3,7 @@ export const Project = (title) => {
     project.title = title;
     project.taskList = [];
     project.finishedTasks = [];
+    project.finished = false;
 
     return project;
 };
@@ -54,5 +55,8 @@ const projectFunctions = {
     },
     getFinishedTasks() {
         return this.finishedTasks;
+    },
+    finishProject() {
+        this.finished = true;
     }
 };
