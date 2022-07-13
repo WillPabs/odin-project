@@ -32,6 +32,9 @@ const taskFunctions = {
     setNotes(newNotes) {
         this.notes = newNotes;
     },
+    finishTask() {
+        this.finished = true;
+    },
     toggleFinished() {
         this.finished === true ? this.finished = false : this.finished = true;
     }

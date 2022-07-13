@@ -17,7 +17,7 @@ const projectFunctions = {
     },
     finishTask(task) {
         if (task in this.taskList) {
-            this.finishedTasks.push(task);
+            this.finishedTasks.push(task.finishTask());
         };
     },
     getTitle() {
