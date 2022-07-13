@@ -23,6 +23,7 @@ const userFunctions = {
         return this.finishedProjects;
     },
     finishProject(project) {
-        this.finishedProjects.push(project.finishProject());
+        project.finishProject();
+        this.finishedProjects.push(project);
     },
 }
