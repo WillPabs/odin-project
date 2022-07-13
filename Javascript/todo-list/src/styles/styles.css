@@ -139,7 +139,7 @@ header {
     font-size: 1.6rem;
 }
 
-.project-options-container {
+.projects-options-container {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
