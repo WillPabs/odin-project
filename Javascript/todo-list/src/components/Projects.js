@@ -9,7 +9,7 @@ export const Projects = (user) => {
 
     const projectsHeader = createProjectsHeader(user);
 
-    const projects = createProjectsList(user.projects);
+    const projects = createProjectsList(user.getInProgressProjects());
     
     container.appendChild(projectsHeader);
     container.appendChild(projects);
@@ -84,9 +84,13 @@ const createProjectsList = (projects) => {
 
         const finishButton = document.createElement('button');
         finishButton.classList.add('finish-project-button');
-        finishButton.textContent = 'Finish';
+        project.finished === true ? finishButton.textContent = 'Activate' : finishButton.textContent = 'Finish';
         finishButton.addEventListener('click', () => {
-            project.finishProject();
+            if (project.finished === true) {
+                project.finished = false;
+            } else {
+                project.finishProject();                
+            }
             projectContainer.remove();
         });
 
