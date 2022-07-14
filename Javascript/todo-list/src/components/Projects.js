@@ -87,7 +87,7 @@ const createProjectsList = (projects) => {
         project.finished === true ? finishButton.textContent = 'Activate' : finishButton.textContent = 'Finish';
         finishButton.addEventListener('click', () => {
             if (project.finished === true) {
-                project.finished = false;
+                project.restoreProject();
             } else {
                 project.finishProject();                
             }
