@@ -19,6 +19,13 @@ const userFunctions = {
             throw 'This is not a valid image.';
         }
     },
+    getInProgressProjects() {
+        let projects = [];
+        this.projects.forEach(p => {
+            if (p.finished === false) projects.push(p);
+        });
+        return projects;
+    },
     getFinishedProjects() {
         this.projects.forEach(project => {
             if (project.finished === true && !this.finishedProjects.includes(project)) {
