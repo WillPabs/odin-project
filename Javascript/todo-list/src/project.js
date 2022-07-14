@@ -53,8 +53,19 @@ const projectFunctions = {
         };
         return low;
     },
+    getUncompletedTasks() {
+        let tasks = [];
+        this.taskList.forEach(task => {
+            if (!task.finished) tasks.push(task);
+        });
+        return tasks;
+    },
     getFinishedTasks() {
-        return this.finishedTasks;
+        let tasks = [];
+        this.taskList.forEach(task => {
+            if (task.finished) tasks.push(task);
+        })
+        return tasks;
     },
     finishProject() {
         this.finished = true;
