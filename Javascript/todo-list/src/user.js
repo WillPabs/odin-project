@@ -27,12 +27,18 @@ const userFunctions = {
         return projects;
     },
     getFinishedProjects() {
+        let projects = [];
         this.projects.forEach(project => {
             if (project.finished === true && !this.finishedProjects.includes(project)) {
-                this.finishedProjects.push(project);
+                projects.push(project);
             }
         })
-        return this.finishedProjects;
+        return projects;
+    },
+    restoreProject(project) {
+        project.restoreProject();
+        console.log(this.finishedProjects.indexOf(project));
+        this.finishedProjects.splice(this.finishedProjects.indexOf(project), 1);
     },
     finishProject(project) {
         project.finishProject();

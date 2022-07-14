@@ -58,5 +58,8 @@ const projectFunctions = {
     },
     finishProject() {
         this.finished = true;
+    },
+    restoreProject() {
+        this.finished = false;
     }
 };
