@@ -16,8 +16,8 @@ export const Tasks = (project) => {
     const projectTasks = createProjectTasks(project);
 
     // TODO
-    // create logic to add task to finished list when checkbox
-    // is checked
+    // create logic to remove task from unfinished project section
+    // when in finished list
     
     container.appendChild(projectHeader);
     container.appendChild(projectTasks);
@@ -50,9 +50,7 @@ const createProjectHeader = (project) => {
         const finishedTasks = project.getFinishedTasks();
         const finishedTasksDiv = document.createElement('div');
         finishedTasksDiv.classList.add('finished-tasks');
-        finishedTasks.forEach(task => {
-            finishedTasksDiv.appendChild(createListItem(task));
-        })
+        finishedTasksDiv.appendChild(createTaskList(finishedTasks));
         document.querySelector('.project-tasks').replaceChildren(finishedTasksDiv);
     });
     showFinished.textContent = 'Show Finished';
@@ -93,7 +91,7 @@ const createTaskList = (tasks, level) => {
 
     const priorityColor = document.createElement('img');
     priorityColor.classList.add('priority-color');
-    priorityColor.src = level;
+    if (level) priorityColor.src = level;
     
     if (tasks.length > 0) {
         priority.appendChild(priorityColor);
@@ -107,10 +105,8 @@ const createTaskList = (tasks, level) => {
     ul.classList.add('tasks');
 
     tasks.forEach(task => {
-        if (task.finished !== true) {
-            const li = createListItem(task);
-            ul.appendChild(li);
-        }
+        const li = createListItem(task);
+        ul.appendChild(li);
     });
 
     container.appendChild(priority);
