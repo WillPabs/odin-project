@@ -13,12 +13,8 @@ export const Tasks = (project) => {
 
     const projectHeader = createProjectHeader(project);
 
-    const projectTasks = createProjectTasks(project);
+    const projectTasks = createProjectTasks(project, false);
 
-    // TODO
-    // create logic to remove task from unfinished project section
-    // when in finished list
-    
     container.appendChild(projectHeader);
     container.appendChild(projectTasks);
     return container;
@@ -46,14 +42,19 @@ const createProjectHeader = (project) => {
     const showFinished = document.createElement('a');
     showFinished.classList.add('show-finished-link');
     showFinished.href = '#';
-    showFinished.addEventListener('click', () => {
-        const finishedTasks = project.getFinishedTasks();
-        const finishedTasksDiv = document.createElement('div');
-        finishedTasksDiv.classList.add('finished-tasks');
-        finishedTasksDiv.appendChild(createTaskList(finishedTasks));
-        document.querySelector('.project-tasks').replaceChildren(finishedTasksDiv);
-    });
     showFinished.textContent = 'Show Finished';
+    showFinished.addEventListener('click', () => {
+        if (showFinished.textContent === 'Show Finished') {
+            showFinished.textContent = 'Back to Project';
+            const finishedTasksDiv = createProjectTasks(project, true);
+            finishedTasksDiv.classList.add('finished-tasks');
+            document.querySelector('.project-tasks').replaceChildren(finishedTasksDiv);
+        } else {
+            showFinished.textContent = 'Show Finished';
+            const uncompletedDiv = createProjectTasks(project, false)
+            document.querySelector('.project-tasks').replaceWith(uncompletedDiv);
+        }
+    });
 
     projectOptions.appendChild(createTask);
     projectOptions.appendChild(showFinished);
@@ -63,21 +64,45 @@ const createProjectHeader = (project) => {
     return projectHeader;
 };
 
-const createProjectTasks = (project) => {
+const createProjectTasks = (project, isFinished) => {
     const projectTasks = document.createElement('div');
     projectTasks.classList.add('project-tasks');
+
+    if (project.getFinishedTasks().length === 0 && isFinished || 
+        project.getUncompletedTasks().length === 0 && !isFinished) {
+            projectTasks.textContent = 'No tasks available';
+            return projectTasks;
+    }
+
+    let highPriorityTasks = [];
+    let mediumPriorityTasks = [];
+    let lowPriorityTasks = [];
+    if (isFinished) {
+        const finishedTasks = project.getFinishedTasks();
+
+        finishedTasks.forEach(task => {
+            if (task.priority === 'high') highPriorityTasks.push(task);
+            else if (task.priority === 'medium') mediumPriorityTasks.push(task);
+            else if (task.priority === 'low') lowPriorityTasks.push(task);
+        });
+    } else {
+        const uncompletedTasks = project.getUncompletedTasks();
+
+        uncompletedTasks.forEach(task => {
+            if (task.priority === 'high') highPriorityTasks.push(task);
+            else if (task.priority === 'medium') mediumPriorityTasks.push(task);
+            else if (task.priority === 'low') lowPriorityTasks.push(task);
+        });
+    };
     
-    const highPriorityTasks = project.getTasksByPriority('high');
-    const mediumPriorityTasks = project.getTasksByPriority('medium');
-    const lowPriorityTasks = project.getTasksByPriority('low');
-
-    const highPriorityTaskList = createTaskList(highPriorityTasks, high);
-    const mediumPriorityTaskList = createTaskList(mediumPriorityTasks, medium);
-    const lowPriorityTaskList = createTaskList(lowPriorityTasks, low);
-
-    projectTasks.appendChild(highPriorityTaskList);
-    projectTasks.appendChild(mediumPriorityTaskList);
-    projectTasks.appendChild(lowPriorityTaskList);
+        const highPriorityTaskList = createTaskList(highPriorityTasks, high);
+        const mediumPriorityTaskList = createTaskList(mediumPriorityTasks, medium);
+        const lowPriorityTaskList = createTaskList(lowPriorityTasks, low);
+    
+        projectTasks.appendChild(highPriorityTaskList);
+        projectTasks.appendChild(mediumPriorityTaskList);
+        projectTasks.appendChild(lowPriorityTaskList);
+    
 
     return projectTasks;
 }
