@@ -40,12 +40,19 @@ const createProjectsHeader = (user) => {
     showFinished.classList.add('show-finished-link');
     createProject.classList.add('project-option');
     showFinished.href = '#';
-    showFinished.addEventListener('click', () => {
-        const finishedProjects = user.getFinishedProjects();
-        const projectsList = document.querySelector('.projects-list-container');
-        projectsList.replaceWith(createProjectsList(finishedProjects));
-    });
     showFinished.textContent = 'Show Finished';
+    showFinished.addEventListener('click', () => {
+        const projectsList = document.querySelector('.projects-list-container');
+        if (showFinished.textContent === 'Show Finished') {
+            showFinished.textContent = 'Back to Projects';
+            const finishedProjects = user.getFinishedProjects();
+            projectsList.replaceWith(createProjectsList(finishedProjects));
+        } else {
+            showFinished.textContent = 'Show Finished';
+            const unfinishedProjects = user.getInProgressProjects();
+            projectsList.replaceWith(createProjectsList(unfinishedProjects));
+        }
+    });
 
     projectOptions.appendChild(createProject);
     projectOptions.appendChild(showFinished);
