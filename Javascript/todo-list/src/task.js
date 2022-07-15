@@ -1,8 +1,10 @@
+import { format } from "date-fns";
+
 export const Task = (title, description, dueDate, priority, notes) => {
     let task = Object.create(taskFunctions);
     task.title = title;
     task.description = description;
-    task.dueDate = dueDate;
+    task.dueDate = format(new Date(dueDate), 'MM/dd/yy');
     task.priority = priority;
     task.notes = notes;
     task.finished = false;
