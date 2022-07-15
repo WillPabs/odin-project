@@ -82,6 +82,5 @@ const convertFormToTask = (form) => {
     for (const value of values) {
         taskArray.push(value);
     }
-    console.log(taskArray)
     return Task(...taskArray);
 }
