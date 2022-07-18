@@ -47,11 +47,5 @@ const userFunctions = {
     },
     getId() {
         return this.id;
-    },
-    updateUser(user) {
-        this.name = user.name;
-        this.projects = user.projects;
-        this.finishedProjects = user.finishedProjects;
-        this.profilePicture = user.profilePicture;
     }
 }
