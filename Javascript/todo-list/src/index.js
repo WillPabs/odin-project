@@ -3,6 +3,7 @@ import { Project } from './project';
 import { User } from './user';
 import { displayUserContent } from './display';
 import pfp1 from './images/DeadGod_5011.png';
+import { saveUser, getUser } from './storage/user';
 import './styles/styles.css';
 
 const task = Task('Read', 'Finish Chapter 1', '6/28/22', 'high');
@@ -39,5 +40,11 @@ user1.addProject(project);
 user1.addProject(project1);
 user1.addProject(project2);
 user1.addProject(project3);
+
+
+localStorage.removeItem('William Pabitero')
+const userDeserialized = getUser(user1.getId())
+console.log(userDeserialized);
+
 
 displayUserContent(user1);
