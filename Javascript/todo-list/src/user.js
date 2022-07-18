@@ -1,5 +1,6 @@
 export const User = (name) => {
     let user = Object.create(userFunctions);
+    user.id = Math.floor(Math.random()*1000000);
     user.name = name;
     user.projects = [];
     user.finishedProjects = [];
@@ -44,4 +45,7 @@ const userFunctions = {
         project.finishProject();
         this.finishedProjects.push(project);
     },
+    getId() {
+        return this.id;
+    }
 }
