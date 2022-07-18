@@ -1,9 +1,12 @@
+import { User } from "../user";
+
 export const saveUser = (user) => {
-    const user_serialized = JSON.stringify(user);
+    console.log(`Saving user ${user}`)
     if (!localStorage.getItem(user.id)) {
+        const user_serialized = JSON.stringify(user);
         localStorage.setItem(user.id, user_serialized);
     } else {
-        setUser(user_serialized);
+        setUser(user);
     }
     
 };
@@ -14,6 +17,6 @@ export const getUser = (id) => {
 }
 
 const setUser = (user) => {
-    const user_deserialized = getUser(user.id);
-    user_deserialized.setUser(user);
+    const user_deserialized = User(getUser(user.id));
+    user_deserialized.updateUser(user);
 }
