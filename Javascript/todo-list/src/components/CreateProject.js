@@ -1,4 +1,5 @@
 import { Project } from '../project';
+import { getUser, saveUser } from '../storage/user';
 import { makeFirstLetterCapital } from '../utils';
 
 export const CreateProject = (user) => {
@@ -17,7 +18,11 @@ export const CreateProject = (user) => {
         e.preventDefault();
         const projectName = document.querySelector('#title').value;
         const newProject = Project(projectName);
+        console.log(user.projects);
         user.addProject(newProject);
+        saveUser(user);
+        console.log(user.projects);
+        console.log(getUser(user.getId()));
     });
 
     form.appendChild(heading);
