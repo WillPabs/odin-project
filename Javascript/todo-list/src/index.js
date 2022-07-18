@@ -43,9 +43,10 @@ user1.addProject(project1);
 user1.addProject(project2);
 user1.addProject(project3);
 
-
-localStorage.removeItem('William Pabitero')
-const userDeserialized = getUser(user1.getId())
+user1.name = 'Will';
+// saveUser(user1);
+// localStorage.removeItem(139869)
+const userDeserialized = getUser(45523)
 console.log(userDeserialized);
 
 
