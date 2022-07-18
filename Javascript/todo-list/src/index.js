@@ -3,16 +3,18 @@ import { Project } from './project';
 import { User } from './user';
 import { displayUserContent } from './display';
 import pfp1 from './images/DeadGod_5011.png';
+import { format } from 'date-fns';
 import './styles/styles.css';
 
-const task = Task('Read', 'Finish Chapter 1', '6/28/22', 'high');
-const task1 = Task('Dentist Appointment', '4:30pm sharp at 14 Meadows Lane', '6/28/22', 'medium');
-const task2 = Task('Do dishes', 'Put everything in dishwasher except glasses', '6/28/22', 'low');
-const task3 = Task('Do this', 'Put everything in dishwasher except glasses', '6/28/22', 'low');
-const task4 = Task('Do that', 'Put everything in dishwasher except glasses', '6/28/22', 'low');
-const task5 = Task('Prep food', 'put food in containers', '7/13/22', 'medium');
-const task6 = Task('Walk dog', 'take dog for walk', '7/13/22', 'high');
-const task7 = Task('Mop floor', 'mop the floor', '7/13/22', 'low');
+const now = format(new Date(), 'MM/dd/yy');
+const task = Task('Read', 'Finish Chapter 1', now, 'high');
+const task1 = Task('Dentist Appointment', '4:30pm sharp at 14 Meadows Lane', now, 'medium');
+const task2 = Task('Do dishes', 'Put everything in dishwasher except glasses', now, 'low');
+const task3 = Task('Do this', 'Put everything in dishwasher except glasses', now, 'low');
+const task4 = Task('Do that', 'Put everything in dishwasher except glasses', now, 'low');
+const task5 = Task('Prep food', 'put food in containers', now, 'medium');
+const task6 = Task('Walk dog', 'take dog for walk', now, 'high');
+const task7 = Task('Mop floor', 'mop the floor', now, 'low');
 
 const project = Project('Project1');
 project.addTask(task);
