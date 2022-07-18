@@ -15,4 +15,5 @@ Javascript Projects
 - [Calculator](https://willpabs.github.io/odin-project/Javascript/Calculator/index.html)
 - [TicTacToe](https://willpabs.github.io/odin-project/Javascript/TicTacToe)
 - [Restaurant](https://willpabs.github.io/odin-project/Javascript/Restaurant/dist)
-- [Todo-List](https://willpabs.github.io/odin-project/Javascript/todo-list/dist)
+- [Todo-List](https://willpabs.github.io/odin-project/Javascript/todo-list/dist)  <a href="https://github.com/WillPabs/odin-project/tree/todo/Javascript/todo-list"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
+
