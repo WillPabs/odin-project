@@ -8,7 +8,7 @@ Foundations Projects
 
 Intermediate Section
 - [Sign Up Form](https://willpabs.github.io/odin-project/Intermediate/SignUpForm/index.html) <a href="https://github.com/WillPabs/odin-project/tree/todo/Intermediate/SignUpForm"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
-- [Admin Dashboard](https://github.com/WillPabs/odin-project/tree/todo/Intermediate/AdminDashboard/index.html) <a href="https://github.com/WillPabs/odin-project/tree/todo/Intermediate/AdminDashboard"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
+- [Admin Dashboard](https://willpabs.github.io/odin-project/Intermediate/AdminDashboard/index.html) <a href="https://github.com/WillPabs/odin-project/tree/todo/Intermediate/AdminDashboard"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 
 
 Javascript Projects
