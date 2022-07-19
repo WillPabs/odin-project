@@ -106,11 +106,6 @@ function addNewBook(book) {
     alert('Added new book!')
 }
 
-// document.querySelector('.grid-container').addEventListener('change', () => {
-    
-//     displayMyLibrary()    
-// })
-
 const bookForm = document.querySelector('#new-book-form')
 bookForm.addEventListener('submit', () => {
     console.log(bookForm.classList)
@@ -123,7 +118,7 @@ newBookButton.addEventListener('click', () => {
     const newBookForm = document.querySelector('.new-book-form')
 
     if (newBookForm.style.display === 'none') {
-        newBookForm.style.display = 'block'
+        newBookForm.style.display = 'inline'
     } else {
         newBookForm.style.display = 'none'
     }
