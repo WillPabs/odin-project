@@ -13,15 +13,15 @@
             <button id="new-book-button">NEW BOOK</button>
         </div>
         <div class="new-book-form" style="display: none;">
-            <form id="new-book-form" method="post">
+            <form id="new-book-form" method="post" nonvalidate>
                 <legend>Add New Book</legend>
 
                 <label for="title">Title</label><br>
-                <input type="text" name="title" id="title"><br>
+                <input type="text" name="title" id="title" required><br>
                 <label for="author">Author</label><br>
-                <input type="text" name="author" id="author"><br>
+                <input type="text" name="author" id="author" required><br>
                 <label for="pages">Number of Pages</label><br>
-                <input type="text" name="pages" id="pages"><br>
+                <input type="text" name="pages" id="pages" required><br>
                 <input type="checkbox" name="read" id="read">
                 <label for="read">Read?</label><br>
                 <input type="submit" id="submit-new-book" onsubmit="addNewBook(this.FormData)" value="ADD NEW BOOK">

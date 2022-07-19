@@ -107,7 +107,8 @@ function addNewBook(book) {
 }
 
 const bookForm = document.querySelector('#new-book-form')
-bookForm.addEventListener('submit', () => {
+bookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
     console.log(bookForm.classList)
     alert('submit clicked')
 })
@@ -124,6 +125,20 @@ newBookButton.addEventListener('click', () => {
     }
 })
 
+
+// form validation 
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#read');
+const formEl = [title, author, pages, read];
+formEl.forEach(element => {
+    element.addEventListener('input', (e) => {
+        if (!element.validity.valid) {
+            console.log("Error");
+        }
+    })
+})
 
 
 let myLibrary = []
