@@ -9,26 +9,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="">
+    <form action="" novalidate>
         <div class="field">
             <label for="email">Email</label>
-            <input name="email" type="text" required>
+            <input id="email" name="email" type="email" required minlength="8">
         </div>
         <div class="field">
             <label for="country">Country</label>
-            <input name="country" type="text" required>
+            <input id="country" name="country" type="text" required>
         </div>
         <div class="field">
             <label for="zip-code">Zip Code</label>
-            <input name="zip-code" type="text" required>
+            <input id="zip-code" name="zip-code" type="number" required>
         </div>
         <div class="field">
             <label for="password">Password</label>
-            <input name="password" type="text" required>
+            <input id="password" name="password" type="password" required minlength="8">
         </div>
         <div class="field">
             <label for="confirm-password">Confirm Password</label>
-            <input name="confirm-password" type="text" required>
+            <input id="confirm-password" name="confirm-password" type="password" required minlength="8">
         </div>
         <input type="submit" value="Submit">
     </form>
