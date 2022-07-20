@@ -1,0 +1,14 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+input:invalid{
+    border: #900 solid 2px;
+    background-color: #FDD;
+}
+
+input:focus:invalid {
+    outline: none;
+}
