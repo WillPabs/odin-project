@@ -12,3 +12,7 @@ input:invalid{
 input:focus:invalid {
     outline: none;
 }
+
+.error-message {
+    color: red;
+}
