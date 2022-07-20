@@ -4,7 +4,11 @@
     width: 200px;
 }
 
-input:invalid{
+input:valid {
+    border: black solid 2px;
+}
+
+input:invalid {
     border: #900 solid 2px;
     background-color: #FDD;
 }
