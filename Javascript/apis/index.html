@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button>Search Gif</button>
+    <span></span>
+    <img src="#">
+    <script>
+        const img = document.querySelector('img');
+        const getImage = (key) => {
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=WHF4WE6T8SoxWG9Dljoe6l3CtU76KLKL&s=${key}`, {mode: 'cors'})
+            .then(function(response) {
+                return response.json();
+            }).then(response => {
+                const url = response.data.images.original.url 
+                img.src = url;
+            }).catch(err => {
+                const span = document.querySelector('span');
+                span.textContent = "Failed to find gif";
+            });
+        }
+        const search = document.querySelector('input');
+        const button = document.querySelector('button');
+        button.addEventListener('click', (e) => {
+            const key = search.value;
+            getImage(key);
+        });
+
+        search.addEventListener('submit', (e) => {
+            console.log(e);
+        });
+      
+  </script>
+</body>
+</html>
