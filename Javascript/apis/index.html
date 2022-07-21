@@ -11,18 +11,20 @@
     <img>
     <script>
         const img = document.querySelector('img');
-        const getImage = (key) => {
-            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=WHF4WE6T8SoxWG9Dljoe6l3CtU76KLKL&s=${key}`, {mode: 'cors'})
-            .then(function(response) {
-                return response.json();
-            }).then(response => {
-                const url = response.data.images.original.url 
+        const getImage = async (key) => {
+            try {
+                const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=WHF4WE6T8SoxWG9Dljoe6l3CtU76KLKL&s=${key}`, {mode: 'cors'});
+                const json = await response.json();
+                console.log(json)
+                const url = json.data.images.original.url;
                 img.src = url;
-            }).catch(err => {
+            } catch (err) {
+                console.log(err);
+                img.src = '';
                 const span = document.querySelector('span');
                 span.textContent = "Failed to find gif";
-            });
-        }
+            };
+        };
         const search = document.querySelector('input');
         const button = document.querySelector('button');
         button.addEventListener('click', (e) => {
@@ -33,7 +35,6 @@
         search.addEventListener('submit', (e) => {
             console.log(e);
         });
-      
   </script>
 </body>
 </html>
