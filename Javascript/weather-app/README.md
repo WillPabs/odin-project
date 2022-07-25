@@ -12,6 +12,40 @@ Homepage
 - homepage will display the current weather for top 5 cities 
 
 Components
+- Header
+    - contains Logo, Search Bar, and User Info
+- Logo
+    - logo icon
+    - logo name
+- Search Bar
+    - input element
+        - displays closest city to spelling as user types
+    - search icon
+        - will call api on selection
+- User Info
+    - metric choice icon
+        - will show dropdown on click to change metric
+    - user icon
+    - menu icon
+        - Weather
+            - Today's Forecast
+            - Hourly Forecast
+            - 10 Day Forecast
+        - Radar
+            - Radar Maps
+            - Classic Weather Maps
+            - Regional Satellite
+        - Account
+            - Sign Up
+            - Go Premium
+            - Log In
+        - Privacy
+            - Privacy Settings
+            - Data Rights
+            - Privacy Policy
+- Content
+    - container that switches content on search
+- Footer
 - Current Weather
     - display city name, country and current time
     - current temp
