@@ -11,25 +11,19 @@ Search
 Homepage
 - homepage will display the current weather for top 5 cities 
 
-City Component
+Components
 - Current Weather
-    - display city name at top
+    - display city name, country and current time
     - current temp
-    - current weather description
     - what temp feels like
+    - current weather description
     - temp at day and temp at night
     - image of weather description
-- Time Selection Section
-    - Today
-        - Morning
-        - Afternoon
-        - Evening
-        - Overnight
-        - show current temp and weather description for all
-    - Hourly
-        - show temp and weather description for 24hr timeframe
-    - Daily
+- Daily Forecast
+    - fetches data from forecast5 api
+    - displays a list of 5 days with respective weather info
         - date
-        - day's high
-        - day's low
-        - weather description
+        - high temp
+        - low temp
+        - weather description icon
+        - chance of rain
