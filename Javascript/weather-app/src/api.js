@@ -26,6 +26,18 @@ const getCoordsByName = async (cityName, stateCode = 0, countryCode = 0, limit =
   }
 };
 
+const get5DayForecastData = async (lat, lon, units = 'imperial') => {
+  try {
+    const fullURL = await `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=${units}`;
+    const response = await fetch(fullURL, { mode: 'cors' });
+    const json = await response.json();
+    return json;
+  } catch (err) {
+    console.log('Unable to fetch 5 Day forecast data.');
+    return err;
+  }
+};
+
 const getWeatherData = async (cityName) => {
   const coords = await getCoordsByName(cityName);
   const lat = await coords[0].lat;
@@ -37,5 +49,6 @@ const getWeatherData = async (cityName) => {
 export {
   getCityData,
   getCoordsByName,
+  get5DayForecastData,
   getWeatherData,
 };
