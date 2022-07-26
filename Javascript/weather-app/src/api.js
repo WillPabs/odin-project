@@ -46,9 +46,21 @@ const getWeatherData = async (cityName) => {
   return weatherData;
 };
 
+const getWeatherIcon = async (text) => {
+  try {
+    const url = `http://openweathermap.org/img/wn/${text}.png`;
+    const icon = await fetch(url, { mode: 'cors' });
+    return icon.url;
+  } catch (err) {
+    console.log('Unable to fetch weather icon');
+    return err;
+  }
+};
+
 export {
   getCityData,
   getCoordsByName,
   get5DayForecastData,
   getWeatherData,
+  getWeatherIcon,
 };
