@@ -25,13 +25,11 @@ const CurrentWeather = (cityData) => {
   weatherDescription.classList.add('current-weather-description');
   weatherDescription.textContent = today.weather[0].description;
 
-  const day = document.createElement('div');
-  day.classList.add('temp-high');
-  day.textContent = `Day ${Math.floor(today.main.temp_max)}°`;
-
-  const night = document.createElement('div');
-  night.classList.add('temp-low');
-  night.textContent = `Night ${Math.floor(today.main.temp_min)}°`;
+  const dayAndNight = document.createElement('div');
+  dayAndNight.classList.add('day-night-temp');
+  const dayTemp = `${Math.floor(today.main.temp_max)}°`;
+  const nightTemp = `${Math.floor(today.main.temp_min)}°`;
+  dayAndNight.textContent = `Day ${dayTemp} - Night ${nightTemp}`;
 
   const weatherDescriptionIcon = document.createElement('img');
   weatherDescriptionIcon.classList.add('weather-description-icon');
@@ -42,8 +40,7 @@ const CurrentWeather = (cityData) => {
   content.appendChild(currentTemp);
   content.appendChild(feelsLike);
   content.appendChild(weatherDescription);
-  content.appendChild(day);
-  content.appendChild(night);
+  content.appendChild(dayAndNight);
   content.appendChild(weatherDescriptionIcon);
 
   container.appendChild(header);
