@@ -1,6 +1,7 @@
 import { getWeatherData, get5DayForecastData } from './api';
 import Content from './components/Content';
 import CurrentWeather from './components/CurrentWeather';
+import DailyForecast from './components/DailyForecast';
 import Header from './components/Header';
 import './style.css';
 
@@ -18,7 +19,12 @@ search.addEventListener('keydown', (e) => {
       const data = getWeatherData(name);
       data.then((weatherData) => {
         get5DayForecastData(weatherData.coord.lat, weatherData.coord.lon).then((wData) => {
-          Content((CurrentWeather(wData)));
+          const content = document.createElement('content');
+          const current = CurrentWeather(wData);
+          const daily = DailyForecast(wData);
+          content.appendChild(current);
+          content.appendChild(daily);
+          Content(content);
         });
       });
     } catch (err) {
