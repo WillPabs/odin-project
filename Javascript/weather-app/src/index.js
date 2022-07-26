@@ -1,4 +1,5 @@
 import { getWeatherData, get5DayForecastData } from './api';
+import CurrentWeather from './components/CurrentWeather';
 import City from './components/City';
 
 const outputDiv = document.querySelector('#search-output');
@@ -11,7 +12,7 @@ searchButton.addEventListener('click', () => {
     data.then((weatherData) => {
       console.log(weatherData);
       get5DayForecastData(weatherData.coord.lat, weatherData.coord.lon).then((wData) => {
-        console.log(wData);
+        document.body.appendChild(CurrentWeather(wData));
       });
       outputDiv.appendChild(City(weatherData));
     });
