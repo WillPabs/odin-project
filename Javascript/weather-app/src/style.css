@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;   
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 116, 184);
+}
+
+.logo-container,
+.search-bar-container,
+.user-info-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.metric-container {
+    display: flex;
+}
+
+.logo-icon {
+    height: 50px;
+    width: 50px;
+}
+
+.logo-name {
+    font-weight: bold;
+    color: white;
+}
