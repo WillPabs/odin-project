@@ -15,11 +15,11 @@ const CurrentWeather = (cityData) => {
 
   const currentTemp = document.createElement('div');
   currentTemp.classList.add('current-temp');
-  currentTemp.textContent = today.main.temp;
+  currentTemp.textContent = `${Math.floor(today.main.temp)}°`;
 
   const feelsLike = document.createElement('div');
   feelsLike.classList.add('feels-like');
-  feelsLike.textContent = today.main.feels_like;
+  feelsLike.textContent = `Feels like ${Math.floor(today.main.feels_like)}°`;
 
   const weatherDescription = document.createElement('div');
   weatherDescription.classList.add('current-weather-description');
@@ -27,11 +27,11 @@ const CurrentWeather = (cityData) => {
 
   const day = document.createElement('div');
   day.classList.add('temp-high');
-  day.textContent = today.main.temp_max;
+  day.textContent = `Day ${Math.floor(today.main.temp_max)}°`;
 
   const night = document.createElement('div');
   night.classList.add('temp-low');
-  night.textContent = today.main.temp_min;
+  night.textContent = `Night ${Math.floor(today.main.temp_min)}°`;
 
   const weatherDescriptionIcon = document.createElement('img');
   weatherDescriptionIcon.classList.add('weather-description-icon');
