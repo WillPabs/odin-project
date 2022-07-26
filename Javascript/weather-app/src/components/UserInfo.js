@@ -70,3 +70,5 @@ const Menu = (data) => {
 
   return menu;
 };
+
+export default UserInfo;
