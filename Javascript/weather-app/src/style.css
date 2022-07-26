@@ -16,6 +16,7 @@
     font-weight: bold;
     padding-left: 10%;
     padding-right: 10%;
+    margin-bottom: 1rem;
 }
 
 .logo-container,
@@ -47,13 +48,22 @@ main {
 .current-weather-container {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
-    padding: 1rem;
-    gap: 1rem;
     font-weight: bold;
     background-color: rgb(0, 116, 184);
     position: relative;
     border-radius: 10px;
+    color: white;
+}
+
+.current-weather-header {
+    background-color: rgb(41, 86, 112);
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.current-weather-content {
+    padding: 1rem;
 }
 
 .current-temp {
@@ -68,8 +78,8 @@ main {
 
 .weather-description-icon {
     position: absolute;
-    top: 40px;
-    right: 50px;
+    top: 20%;
+    right: 10%;
     height: 70px;
     width: 70px;
 }
