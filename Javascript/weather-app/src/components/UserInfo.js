@@ -1,3 +1,8 @@
+import down from '../images/menu-down.png';
+import up from '../images/menu-up.png';
+import user from '../images/account-circle.png';
+import menu from '../images/menu.png';
+
 const menuData = [
   ['Weather', [
     "'Today's Forecast",
@@ -33,16 +38,19 @@ const UserInfo = () => {
 
   const metricIcon = document.createElement('img');
   metricIcon.classList.add('metric-icon');
-  metricIcon.src = '#';
+  metricIcon.src = down;
+  metricIcon.addEventListener('click', () => {
+    metricIcon.src = (metricIcon.src === up ? metricIcon.src = down : metricIcon.src = up);
+  });
 
   const userIcon = document.createElement('img');
   userIcon.classList.add('user-icon');
-  userIcon.src = '#';
+  userIcon.src = user;
 
   //   const menu = Menu(menuData);
   const menuIcon = document.createElement('img');
   menuIcon.classList.add('menu-icon');
-  menuIcon.src = '#';
+  menuIcon.src = menu;
 
   metricContainer.appendChild(metric);
   metricContainer.appendChild(metricIcon);

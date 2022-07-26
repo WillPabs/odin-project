@@ -1,3 +1,5 @@
+import icon from '../images/magnify.png';
+
 const SearchBar = () => {
   const container = document.createElement('div');
   container.classList.add('search-bar-container');
@@ -10,6 +12,7 @@ const SearchBar = () => {
 
   const searchIcon = document.createElement('img');
   searchIcon.classList.add('search-icon');
+  searchIcon.src = icon;
 
   container.appendChild(searchInput);
   container.appendChild(searchIcon);
