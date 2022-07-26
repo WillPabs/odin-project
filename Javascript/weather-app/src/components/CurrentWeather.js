@@ -1,3 +1,5 @@
+import { getWeatherIcon } from '../api';
+
 const CurrentWeather = (cityData) => {
   const container = document.createElement('div');
   container.classList.add('current-weather-container');
@@ -33,7 +35,9 @@ const CurrentWeather = (cityData) => {
 
   const weatherDescriptionIcon = document.createElement('img');
   weatherDescriptionIcon.classList.add('weather-description-icon');
-  weatherDescriptionIcon.src = '#';
+  getWeatherIcon(today.weather[0].icon).then(((data) => {
+    weatherDescriptionIcon.src = data;
+  }));
 
   header.appendChild(locationAndTime);
 
