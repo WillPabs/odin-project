@@ -42,6 +42,7 @@ const UserInfo = () => {
   //   const menu = Menu(menuData);
   const menuIcon = document.createElement('img');
   menuIcon.classList.add('menu-icon');
+  menuIcon.src = '#';
 
   metricContainer.appendChild(metric);
   metricContainer.appendChild(metricIcon);
