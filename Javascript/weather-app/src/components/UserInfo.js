@@ -35,6 +35,7 @@ const UserInfo = () => {
 
   const metric = document.createElement('div');
   metric.classList.add('metric');
+  metric.textContent = 'F';
 
   const metricIcon = document.createElement('img');
   metricIcon.classList.add('metric-icon');
