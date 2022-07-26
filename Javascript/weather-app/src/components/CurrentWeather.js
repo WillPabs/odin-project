@@ -23,6 +23,7 @@ const CurrentWeather = (cityData) => {
 
   const weatherDescription = document.createElement('div');
   weatherDescription.classList.add('current-weather-description');
+  weatherDescription.textContent = today.weather[0].description;
 
   const day = document.createElement('div');
   day.classList.add('temp-high');
@@ -33,7 +34,7 @@ const CurrentWeather = (cityData) => {
   night.textContent = today.main.temp_min;
 
   const weatherDescriptionIcon = document.createElement('img');
-  weatherDescription.classList.add('weather-description-icon');
+  weatherDescriptionIcon.classList.add('weather-description-icon');
   weatherDescriptionIcon.src = '#';
 
   header.appendChild(locationAndTime);
