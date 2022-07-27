@@ -44,6 +44,12 @@ main {
     margin-right: 25%;
 }
 
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 /* ----------- CURRENT WEATHER ----------- */
 
 .current-weather-container {
@@ -83,4 +89,38 @@ main {
     right: 10%;
     height: 70px;
     width: 70px;
+}
+
+/* ----------- DAILY FORECAST ----------- */
+
+.daily-forecast-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 116, 184);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.forecast-list {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    align-self: center;
+}
+
+.forecast-item {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px;
+    align-items: center;
+}
+
+.forecast-item > div {
+    display: flex;
+}
+
+.forecast-icon {
+    height: 50px;
+    width: 50px;
 }
