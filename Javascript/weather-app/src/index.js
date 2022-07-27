@@ -3,6 +3,7 @@ import Content from './components/Content';
 import CurrentWeather from './components/CurrentWeather';
 import DailyForecast from './components/DailyForecast';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './style.css';
 
 const header = Header();
@@ -10,6 +11,9 @@ document.body.appendChild(header);
 
 const main = document.createElement('main');
 document.body.appendChild(main);
+
+const footer = Footer();
+document.body.appendChild(footer);
 
 const search = document.querySelector('#search');
 search.addEventListener('keydown', (e) => {
