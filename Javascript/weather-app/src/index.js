@@ -19,7 +19,8 @@ search.addEventListener('keydown', (e) => {
       const data = getWeatherData(name);
       data.then((weatherData) => {
         get5DayForecastData(weatherData.coord.lat, weatherData.coord.lon).then((wData) => {
-          const content = document.createElement('content');
+          const content = document.createElement('div');
+          content.classList.add('content');
           const current = CurrentWeather(wData);
           const daily = DailyForecast(wData);
           content.appendChild(current);
