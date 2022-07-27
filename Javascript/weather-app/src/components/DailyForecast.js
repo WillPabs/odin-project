@@ -20,9 +20,10 @@ const createForecastList = (list) => {
   const container = document.createElement('div');
   container.classList.add('forecast-list');
 
+  console.log(list);
   const data = getDailyData(list);
-
-  for (let i = 0; i < 5; i += 1) {
+  console.log(data);
+  for (let i = 0; i < data.dates.length; i += 1) {
     const day = document.createElement('div');
     day.classList.add('forecast-item');
 
@@ -63,6 +64,8 @@ const formatDate = (date) => {
   return isToday(newDate) ? 'Today' : format(newDate, 'E dd');
 };
 
+// TODO
+// use current weather data to display info for today section
 const getDailyData = (list) => {
   const dates = [];
   const highTemps = [];
