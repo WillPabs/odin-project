@@ -26,9 +26,9 @@ const getCoordsByName = async (cityName, stateCode = 0, countryCode = 0, limit =
   }
 };
 
-const get5DayForecastData = async (lat, lon, count = 10, units = 'imperial') => {
+const get5DayForecastData = async (lat, lon, units = 'imperial') => {
   try {
-    const fullURL = await `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&cnt=${count}&units=${units}`;
+    const fullURL = await `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=${units}`;
     const response = await fetch(fullURL, { mode: 'cors' });
     const json = await response.json();
     return json;
