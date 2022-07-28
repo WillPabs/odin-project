@@ -16,7 +16,7 @@ const getCityData = async (lat, lon, units = 'imperial') => {
 
 const getCoordsByName = async (cityName, stateCode = 0, countryCode = 0, limit = 0) => {
   try {
-    const fullURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateCode},${countryCode}&limit=${limit}&appid=${key}`;
+    const fullURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateCode},${countryCode}&limit=${limit}&appid=${key}`;
     const response = await fetch(fullURL, { mode: 'cors' });
     const json = await response.json();
     return json;
