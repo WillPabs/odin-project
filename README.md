@@ -17,4 +17,5 @@ Javascript Projects
 - [TicTacToe](https://willpabs.github.io/odin-project/Javascript/TicTacToe) <a href="https://github.com/WillPabs/odin-project/tree/todo/Javascript/TicTacToe"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 - [Restaurant](https://willpabs.github.io/odin-project/Javascript/Restaurant/dist) <a href="https://github.com/WillPabs/odin-project/tree/todo/Javascript/Restaurant"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 - [Todo-List](https://willpabs.github.io/odin-project/Javascript/todo-list/dist)  <a href="https://github.com/WillPabs/odin-project/tree/todo/Javascript/todo-list"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
+- [Weather App](https://willpabs.github.io/odin-project/Javascript/weather-app/dist)  <a href="https://github.com/WillPabs/odin-project/tree/todo/Javascript/weather-app"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 
