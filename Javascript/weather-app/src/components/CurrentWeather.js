@@ -1,4 +1,5 @@
 import { getWeatherIcon } from '../api';
+import { capitalizeFirstLetterOfString } from '../utils';
 
 const CurrentWeather = (cityData) => {
   const container = document.createElement('div');
@@ -25,7 +26,7 @@ const CurrentWeather = (cityData) => {
 
   const weatherDescription = document.createElement('div');
   weatherDescription.classList.add('current-weather-description');
-  weatherDescription.textContent = today.weather[0].description;
+  weatherDescription.textContent = capitalizeFirstLetterOfString(today.weather[0].description);
 
   const dayAndNight = document.createElement('div');
   dayAndNight.classList.add('day-night-temp');
@@ -39,13 +40,22 @@ const CurrentWeather = (cityData) => {
     weatherDescriptionIcon.src = data;
   }));
 
+  const left = document.createElement('div');
+  left.classList.add('current-weather-left');
+  const right = document.createElement('div');
+  right.classList.add('current-weather-right');
+
   header.appendChild(locationAndTime);
 
-  content.appendChild(currentTemp);
-  content.appendChild(feelsLike);
-  content.appendChild(weatherDescription);
-  content.appendChild(dayAndNight);
-  content.appendChild(weatherDescriptionIcon);
+  left.appendChild(currentTemp);
+  left.appendChild(feelsLike);
+  left.appendChild(weatherDescription);
+  left.appendChild(dayAndNight);
+
+  right.appendChild(weatherDescriptionIcon);
+
+  content.appendChild(left);
+  content.appendChild(right);
 
   container.appendChild(header);
   container.appendChild(content);
