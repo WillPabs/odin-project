@@ -20,9 +20,8 @@ const createForecastList = (list) => {
   const container = document.createElement('div');
   container.classList.add('forecast-list');
 
-  console.log(list);
   const data = getDailyData(list);
-  console.log(data);
+
   for (let i = 0; i < data.dates.length; i += 1) {
     const day = document.createElement('div');
     day.classList.add('forecast-item');
