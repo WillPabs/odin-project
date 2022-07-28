@@ -82,7 +82,7 @@ const Menu = (data) => {
 
     const title = document.createElement('div');
     title.classList.add('category-title');
-    title.textContent = category[0];
+    title.textContent = category[0].toUpperCase();
 
     const links = document.createElement('div');
     links.classList.add('menu-links');
