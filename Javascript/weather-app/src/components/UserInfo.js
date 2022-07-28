@@ -57,7 +57,7 @@ const UserInfo = () => {
       const header = document.querySelector('.header');
       header.parentNode.insertBefore(menuComponent, header.nextSibling);
     } else if (menuComponent.style.display === 'none') {
-      menuComponent.style.display = 'block';
+      menuComponent.style.display = 'grid';
     } else {
       menuComponent.style.display = 'none';
     }
