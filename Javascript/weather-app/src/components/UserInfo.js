@@ -5,7 +5,7 @@ import menu from '../images/menu.png';
 
 const menuData = [
   ['Weather', [
-    "'Today's Forecast",
+    "Today's Forecast",
     'Hourly Forecast',
     '10 Day Forecast',
   ]],
@@ -48,10 +48,20 @@ const UserInfo = () => {
   userIcon.classList.add('user-icon');
   userIcon.src = user;
 
-  //   const menu = Menu(menuData);
+  const menuComponent = Menu(menuData);
   const menuIcon = document.createElement('img');
   menuIcon.classList.add('menu-icon');
   menuIcon.src = menu;
+  menuIcon.addEventListener('click', () => {
+    if (!document.querySelector('.menu')) {
+      const header = document.querySelector('.header');
+      header.parentNode.insertBefore(menuComponent, header.nextSibling);
+    } else if (menuComponent.style.display === 'none') {
+      menuComponent.style.display = 'block';
+    } else {
+      menuComponent.style.display = 'none';
+    }
+  });
 
   metricContainer.appendChild(metric);
   metricContainer.appendChild(metricIcon);
@@ -67,15 +77,28 @@ const Menu = (data) => {
   menu.classList.add('menu');
 
   data.forEach((category) => {
+    const catContainer = document.createElement('div');
+    catContainer.classList.add('menu-category');
+
     const title = document.createElement('div');
-    title.textContent = category;
-    category.forEach((item) => {
-      const link = document.createElement('link');
+    title.classList.add('category-title');
+    title.textContent = category[0];
+
+    const links = document.createElement('div');
+    links.classList.add('menu-links');
+
+    category[1].forEach((item) => {
+      const link = document.createElement('a');
       link.classList.add('menu-link');
       link.textContent = item;
-      category.appendChild(link);
+      link.href = '#';
+      links.appendChild(link);
     });
-    menu.appendChild(category);
+
+    catContainer.appendChild(title);
+    catContainer.appendChild(links);
+
+    menu.appendChild(catContainer);
   });
 
   return menu;
