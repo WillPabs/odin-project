@@ -78,6 +78,45 @@ main {
     text-align: center;
 }
 
+.menu {
+    position: absolute;
+    background-color: white;
+    width: 100vw;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 2rem 5rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.menu-category {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.category-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-bottom: 5px;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-link {
+    color:black;
+    display: flex;
+}
+
+.menu-link:hover {
+    color: blue;
+}
+
 /* ----------- CURRENT WEATHER ----------- */
 
 .current-weather-container {
