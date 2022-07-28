@@ -48,7 +48,7 @@ const getWeatherData = async (cityName) => {
 
 const getWeatherIcon = async (text) => {
   try {
-    const url = `http://openweathermap.org/img/wn/${text}.png`;
+    const url = `https://openweathermap.org/img/wn/${text}.png`;
     const icon = await fetch(url, { mode: 'cors' });
     return icon.url;
   } catch (err) {
