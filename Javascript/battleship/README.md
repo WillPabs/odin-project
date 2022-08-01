@@ -9,6 +9,7 @@ Ship
 - hit(num)
     - takes a number and then marks that position as ‘hit’
 Gameboard
+- size
 - attacks
     - keeps track of all attacks
 - placeShip(ship, coords)
