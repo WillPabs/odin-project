@@ -8,6 +8,9 @@ const Ship = (length) => {
 const shipFunctions = {
     isSunk() {
         return this.hitArray.every(hitbox => hitbox === true);
+    },
+    hit(num) {
+        this.hitArray[num] = true;
     }
 }
 
