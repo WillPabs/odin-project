@@ -1,16 +1,21 @@
 const Gameboard = (factor) => {
     let obj = Object.create(gameboardFunctions);
-    obj.size = factor**2;
+    obj.size = Array.from(Array(factor), () => (Array(factor)));
     obj.attacks = [];
     return obj;
 }
 
 const gameboardFunctions = {
     placeShip(ship, coords) {
-
+        this.size[coords.x][coords.y] = ship;
     },
     receiveAttack(coords) {
-
+        const position = this.size[coords.x][coords.y];
+        if (position) {
+            position.hit(0);
+        } else {
+            this.attacks = coords;
+        }
     },
     allShipsSunk() {
 
