@@ -47,3 +47,18 @@ test('receiveAttack function will hit a vertical ship', () => {
     board.receiveAttack({ x: 3, y: 2 });
     expect(board.size[3][2].hitArray[1]).toBeTruthy();
 });
+
+test('allShipsSunk function', () => {
+    const ship1 = Ship(1);
+    const coords1 = { x: 2, y: 2};
+    const ship2 = Ship(1);
+    const coords2 = { x: 5, y: 2};
+
+    board.placeShip(ship1, coords1);
+    board.placeShip(ship2, coords2);
+    expect(board.allShipsSunk()).toBeFalsy();
+
+    board.receiveAttack(coords1);
+    board.receiveAttack(coords2);
+    expect(board.allShipsSunk()).toBeTruthy();
+});

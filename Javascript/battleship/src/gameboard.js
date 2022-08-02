@@ -2,6 +2,7 @@ const Gameboard = (factor) => {
     let obj = Object.create(gameboardFunctions);
     obj.size = Array.from(Array(factor), () => (Array(factor)));
     obj.missedAttacks = [];
+    obj.ships = [];
     return obj;
 }
 
@@ -13,6 +14,7 @@ const gameboardFunctions = {
         if (direction === 'horizontal' && coords.y + ship.length > this.size[0].length) {
             throw Error('Ship out of bounds');
         }
+        this.ships.push(ship);
         for (let i = 0; i < ship.length; i++) {
             direction === 'horizontal' ? 
                 this.size[coords.x][coords.y + i] = ship :
@@ -29,7 +31,7 @@ const gameboardFunctions = {
         }
     },
     allShipsSunk() {
-
+        return this.ships.every(ship => ship.isSunk());
     },
     calculateShipPosition(coords) {
         let x = coords.x;
