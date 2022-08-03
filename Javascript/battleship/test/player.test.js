@@ -37,7 +37,7 @@ test('Player bot attack', () => {
     const player = Player('Will');
     const board = Gameboard(10);
 
-    // player.botAttack(board);    
+    player.botAttack(board);    
     
     const actual = board.missedAttacks.length;
     const expected = 1;
@@ -48,23 +48,13 @@ test('Player bot attack hits', () => {
     const player = Player('Will');
     const board = Gameboard(3);  
 
-    for (let i = 0; i < 2; i++) {
-        board.placeShip(Ship(2), {x: i, y: 0});
+    for (let i = 0; i < board.size.length; i++) {
+        board.placeShip(Ship(3), {x: i, y: 0});
     }
-    // console.log(board.size)
-    player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
-    // player.botAttack(board);    
 
-    // console.log(board.missedAttacks);
+    player.botAttack(board);   
     
     const actual = board.missedAttacks.length;
-    const expected = 1;
+    const expected = 0;
     expect(actual).toEqual(expected);    
 });
