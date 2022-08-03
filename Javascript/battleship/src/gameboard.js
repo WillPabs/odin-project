@@ -47,7 +47,7 @@ const gameboardFunctions = {
                 if (coords.x !== start.x) position = coords.x - start.x;
             }
         }
-        if (y - 1 >= 0 && y + 1 < this.size[0].length) {
+        if (y - 1 >= 0 && y + 1 < this.size[0].length && x >= 0 && x < this.size.length) {
             if (this.size[x][y - 1] !== undefined) {
                 while(y >= 0 && this.size[x][y] !== undefined) {
                     start.y = y;
