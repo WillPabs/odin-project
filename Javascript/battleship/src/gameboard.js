@@ -1,3 +1,5 @@
+import Coords from "./coords";
+
 const Gameboard = (factor) => {
     let obj = Object.create(gameboardFunctions);
     obj.size = Array.from(Array(factor), () => (Array(factor)));
@@ -57,6 +59,20 @@ const gameboardFunctions = {
             }
         }
         return position;
+    },
+    getAttackableCells() {
+        const attackableCells = [];
+        const cells = this.size;
+        for (let i = 0; i < cells.length; i++) {
+            for (let j = 0; j < cells[0].length; j++) {
+                const coords = Coords(i, j);
+                const position = this.calculateShipPosition(coords);
+                if (cells[i][j] === undefined || !cells[i][j].hitArray[position]) {
+                    attackableCells.push(coords);
+                }
+            }
+        }
+        return attackableCells;
     }
 }
 
