@@ -1,0 +1,12 @@
+.grid {
+    display: grid;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    flex: 1;
+    height: 50px;
+}
