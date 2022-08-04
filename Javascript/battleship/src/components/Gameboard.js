@@ -39,12 +39,9 @@ const GameboardComponent = (gameboard) => {
       content.classList.add('cell-content');
       content.dataset.x = i;
       content.dataset.y = j;
-      content.id = `cell-${i}-${j}`;
-      // const text = (i * gameboard.size.length) + j;
-      // content.textContent = text;
-      cell.addEventListener('click', (e) => {
-        console.log(e.target);
-      });
+      // cell.addEventListener('click', (e) => {
+      //   console.log(e.target);
+      // });
 
       cell.appendChild(content);
 
