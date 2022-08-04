@@ -32,4 +32,9 @@
     - can place ships on grid with click
     - can attack a cell on board with click
 - AttackList
-    - displays missed attacks with cell numbers
+    - displays ships hitArrays if hit or not
+
+Game Flow Logic
+- player has option to play against AI or another player
+- when player presses play, game loop will start
+- game loop starts by greying out player's own board to bring focus to enemy board. Player will then proceed to click a cell on the board. The clicked cell will change to an X if hit or a dot if miss. Player's turn ends on click. Now begins other player's turn. This logic repeats until all ships of one board is sunk.
