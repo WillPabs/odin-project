@@ -21,11 +21,13 @@ const Game = (boards, players) => {
 
   board1El.forEach((cell) => {
     cell.addEventListener('click', (e) => {
-      console.log(e.target.dataset);
+      console.log(e.target);
       const content = e.target.children[0];
       const { x } = content.dataset;
       const { y } = content.dataset;
       player2.attack(x, y, board1);
+
+      board1.size[x][y] === undefined ? e.target.className = 'cell-miss' : e.target.className = 'cell-hit';
       console.log(board1.missedAttacks);
     });
   });
