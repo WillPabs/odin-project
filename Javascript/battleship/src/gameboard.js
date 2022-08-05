@@ -1,4 +1,5 @@
 import Coords from './coords';
+import Ship from './ship';
 
 const Gameboard = (factor) => {
   const obj = Object.create(gameboardFunctions);
@@ -16,6 +17,7 @@ const gameboardFunctions = {
     if (direction === 'horizontal' && coords.y + ship.length > this.size[0].length) {
       throw Error('Ship out of bounds');
     }
+
     this.ships.push(ship);
     for (let i = 0; i < ship.length; i++) {
       direction === 'horizontal'
@@ -73,6 +75,31 @@ const gameboardFunctions = {
       }
     }
     return attackableCells;
+  },
+  generateShips() {
+    const ship1L_1 = Ship(1);
+    const ship1L_2 = Ship(1);
+    const ship1L_3 = Ship(1);
+    const ship1L_4 = Ship(1);
+
+    const ship2L_1 = Ship(2);
+    const ship2L_2 = Ship(2);
+    const ship2L_3 = Ship(2);
+
+    const ship3L_1 = Ship(3);
+    const ship3L_2 = Ship(3);
+
+    const ship4L_1 = Ship(4);
+
+    const coords1 = Coords(1, 4);
+    const coords2 = Coords(1, 6);
+    const coords3 = Coords(8, 1);
+    const coords4 = Coords(9, 3);
+
+    this.placeShip(ship1L_1, coords1);
+    this.placeShip(ship1L_2, coords2);
+    this.placeShip(ship1L_3, coords3);
+    this.placeShip(ship1L_4, coords4);
   },
 };
 
