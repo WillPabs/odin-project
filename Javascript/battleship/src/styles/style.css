@@ -36,3 +36,15 @@ th {
     background-color: lightblue;
     cursor: pointer;
 }
+
+.cell-fill {
+    background-color: blue;
+}
+
+.cell-hit {
+    background-color: red;
+}
+
+.cell-miss {
+    background-color: black;
+}
