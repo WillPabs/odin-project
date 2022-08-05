@@ -39,9 +39,6 @@ const GameboardComponent = (gameboard) => {
       content.classList.add('cell-content');
       content.dataset.x = i;
       content.dataset.y = j;
-      // cell.addEventListener('click', (e) => {
-      //   console.log(e.target);
-      // });
 
       cell.appendChild(content);
 
