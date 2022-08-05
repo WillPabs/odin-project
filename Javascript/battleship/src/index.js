@@ -2,17 +2,24 @@ import GameboardComponent from './components/Gameboard';
 import CreatePlayer from './components/CreatePlayer';
 import Gameboard from './gameboard';
 import Player from './player';
-import './styles/style.css';
 import Game from './game';
+import AttackList from './components/AttackList';
+import './styles/style.css';
 
 const body = document.querySelector('body');
 
 const playerInput = CreatePlayer();
 
+const playButton = document.createElement('button');
+playButton.id = 'play';
+playButton.textContent = 'Play';
+body.appendChild(playButton);
+
 body.appendChild(playerInput);
 
-const gameboard1 = Gameboard(8);
-const gameboard2 = Gameboard(8);
+const gameboard1 = Gameboard(10);
+const gameboard2 = Gameboard(10);
+gameboard1.generateShips();
 
 const boardComponent1 = GameboardComponent(gameboard1);
 boardComponent1.classList.add('self');
