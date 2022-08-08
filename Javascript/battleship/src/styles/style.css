@@ -17,6 +17,12 @@
     flex: 1;
 }
 
+.wait {
+    opacity: 0.2;
+    background-color: rgba(85, 85, 85,0.5);
+    cursor: default;
+}
+
 .grid {
     display: grid;
 }
