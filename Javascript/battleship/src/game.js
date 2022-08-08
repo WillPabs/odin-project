@@ -40,24 +40,35 @@ const Game = (boards, players) => {
     }
   };
 
+  const makeMove = (e) => {
+    const content = e.target.children[0];
+    const { x } = content.dataset;
+    const { y } = content.dataset;
+    const boardElement = e.target.parentNode.parentNode.parentNode.parentNode;
+    const board = boardElement.classList.contains('self') ? board1 : board2;
+    const otherBoardElement = board === board1 ? rivalBoard : selfBoard;
+    removeMove(otherBoardElement.querySelectorAll('.cell'));
+    otherBoardElement.classList.remove('wait');
+    board.size[x][y] === undefined ? e.target.classList.add('cell-miss') : e.target.classList.add('cell-hit');
+    currentPlayer.attack(x, y, board);
+    boardElement.classList.add('wait');
+    if (board.allShipsSunk()) setTimeout(() => { alert('Game over'); }, 500);
+  };
+
   let currentPlayer = setTurn();
   const selfBoard = document.querySelector('.self');
   const rivalBoard = document.querySelector('.rival');
+
+  const removeMove = (board) => {
+    board.forEach((cell) => {
+      cell.removeEventListener('click', makeMove);
+    });
+  };
   const playing = () => {
     document.querySelectorAll('.cell').forEach((cell) => {
       cell.addEventListener('click', (e) => {
-        const content = e.target.children[0];
-        const { x } = content.dataset;
-        const { y } = content.dataset;
-        const boardElement = e.target.parentNode.parentNode.parentNode.parentNode;
-        const board = boardElement.classList.contains('self') ? board1 : board2;
-        const otherBoardElement = board === board1 ? rivalBoard : selfBoard;
-        console.log(otherBoardElement);
-        otherBoardElement.classList.remove('wait');
-        board.size[x][y] === undefined ? e.target.classList.add('cell-miss') : e.target.classList.add('cell-hit');
-        currentPlayer.attack(x, y, board);
-        boardElement.classList.add('wait');
-        if (board.allShipsSunk()) setTimeout(() => { alert('Game over'); }, 500);
+        makeMove(e);
+        console.log(currentPlayer);
         currentPlayer = setTurn();
       });
     });
