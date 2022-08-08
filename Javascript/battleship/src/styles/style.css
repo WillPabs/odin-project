@@ -9,6 +9,14 @@
 
 /* ----------- GAMEBOARD ----------- */
 
+.battlefield {
+    display: flex;
+}
+
+.gameboard {
+    flex: 1;
+}
+
 .grid {
     display: grid;
 }
