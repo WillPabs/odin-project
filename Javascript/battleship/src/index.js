@@ -17,6 +17,7 @@ body.appendChild(playerInput);
 const gameboard1 = Gameboard(10);
 const gameboard2 = Gameboard(10);
 gameboard1.generateShips();
+gameboard2.generateShips();
 
 const field = document.querySelector('.battlefield');
 const boardComponent1 = GameboardComponent(gameboard1);
