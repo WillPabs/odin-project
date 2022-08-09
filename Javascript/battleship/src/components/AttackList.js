@@ -1,8 +1,8 @@
 const AttackList = (board) => {
   const { ships } = board;
 
-  const container = document.createElement('div');
-  container.classList.add('attack-list');
+  const element = document.createElement('div');
+  element.classList.add('attack-list');
   console.log(ships);
 
   ships.forEach((ship) => {
@@ -15,9 +15,23 @@ const AttackList = (board) => {
       shipHitArray.appendChild(shipPart);
     });
 
-    container.appendChild(shipHitArray);
+    element.appendChild(shipHitArray);
   });
-  return container;
+
+  const render = () => {
+    ships.forEach((ship) => {
+      ship.hitArray.forEach((part) => {
+        const shipPart = document.querySelector('.ship-part');
+        shipPart.innerHTML = part;
+        console.log(shipPart);
+        console.log(part);
+      });
+    });
+  };
+  return {
+    element,
+    render,
+  };
 };
 
 export default AttackList;
