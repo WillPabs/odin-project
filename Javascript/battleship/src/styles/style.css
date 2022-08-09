@@ -13,6 +13,11 @@
     display: flex;
 }
 
+.battlefield {
+    display: flex;
+    flex: 1;
+}
+
 .gameboard {
     flex: 1;
     cursor: pointer;
