@@ -9,12 +9,13 @@
 
 /* ----------- GAMEBOARD ----------- */
 
-.battlefield {
+.battlefields {
     display: flex;
 }
 
 .gameboard {
     flex: 1;
+    cursor: pointer;
 }
 
 .wait {
@@ -47,7 +48,7 @@ th {
 
 .cell:hover {
     background-color: lightblue;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .cell-fill {
