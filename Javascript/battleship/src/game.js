@@ -1,23 +1,19 @@
-import AttackList from './components/AttackList';
-import Coords from './coords';
-import Ship from './ship';
-
 const Game = (boards, players) => {
   const { player1, player2 } = players;
-  const { board1, board2 } = boards;
+  const { field1, field2 } = boards;
 
-  const attackList1 = AttackList(board1);
-  const attackList2 = AttackList(board2);
+  // const attackList1 = AttackList(field1);
+  // const attackList2 = AttackList(field2);
 
-  const board1El = document.querySelectorAll('.self tbody .cell');
-  document.querySelector('.self').appendChild(attackList1);
-  const board2El = document.querySelectorAll('.rival tbody .cell');
-  document.querySelector('.rival').appendChild(attackList2);
+  // const board1El = document.querySelectorAll('.self tbody .cell');
+  // document.querySelector('.self').appendChild(attackList1.element);
+  // const board2El = document.querySelectorAll('.rival tbody .cell');
+  // document.querySelector('.rival').appendChild(attackList2.element);
 
   const playButton = document.querySelector('#play');
   playButton.addEventListener('click', () => {
     console.log('Game Start');
-    play();
+    playing();
   });
 
   const turnTracker = [];
@@ -40,41 +36,48 @@ const Game = (boards, players) => {
     }
   };
 
+  let currentPlayer = setTurn();
+  const selfBoard = document.querySelector('.self');
+  const rivalBoard = document.querySelector('.rival');
   const makeMove = (e) => {
     const content = e.target.children[0];
     const { x } = content.dataset;
     const { y } = content.dataset;
     const boardElement = e.target.parentNode.parentNode.parentNode.parentNode;
-    const board = boardElement.classList.contains('self') ? board1 : board2;
-    const otherBoardElement = board === board1 ? rivalBoard : selfBoard;
-    removeMove(otherBoardElement.querySelectorAll('.cell'));
-    otherBoardElement.classList.remove('wait');
-    board.size[x][y] === undefined ? e.target.classList.add('cell-miss') : e.target.classList.add('cell-hit');
-    currentPlayer.attack(x, y, board);
-    boardElement.classList.add('wait');
-    if (board.allShipsSunk()) setTimeout(() => { alert('Game over'); }, 500);
+    const board = boardElement.classList.contains('self') ? field1.board.gameboard : field2.board.gameboard;
+    const otherBoardElement = board === field1.board.gameboard ? rivalBoard : selfBoard;
+    if (!e.target.classList.contains('cell-miss') && !e.target.classList.contains('cell-hit')) {
+      removeMove(boardElement.querySelectorAll('.cell'));
+      otherBoardElement.classList.remove('wait');
+      board.size[x][y] === undefined ? e.target.classList.add('cell-miss') : e.target.classList.add('cell-hit');
+      currentPlayer.attack(x, y, board);
+      addMove(otherBoardElement.querySelectorAll('.cell'));
+      boardElement.classList.add('wait');
+      if (board.allShipsSunk()) {
+        setTimeout(() => {
+          alert(`${currentPlayer.name} has won`);
+        }, 500);
+      }
+      currentPlayer = setTurn();
+    }
   };
-
-  let currentPlayer = setTurn();
-  const selfBoard = document.querySelector('.self');
-  const rivalBoard = document.querySelector('.rival');
 
   const removeMove = (board) => {
     board.forEach((cell) => {
       cell.removeEventListener('click', makeMove);
     });
   };
-  const playing = () => {
-    document.querySelectorAll('.cell').forEach((cell) => {
-      cell.addEventListener('click', (e) => {
-        makeMove(e);
-        console.log(currentPlayer);
-        currentPlayer = setTurn();
-      });
+  const addMove = (board) => {
+    board.forEach((cell) => {
+      cell.addEventListener('click', makeMove);
     });
   };
 
-  playing();
+  const playing = () => {
+    document.querySelectorAll('.cell').forEach((cell) => {
+      cell.addEventListener('click', makeMove);
+    });
+  };
 };
 
 export default Game;
