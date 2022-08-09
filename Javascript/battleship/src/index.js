@@ -19,14 +19,14 @@ const gameboard2 = Gameboard(10);
 gameboard1.generateShips();
 gameboard2.generateShips();
 
-const field = document.querySelector('.battlefield');
+const field = document.querySelector('.battlefields');
 const boardComponent1 = GameboardComponent(gameboard1);
-boardComponent1.classList.add('self');
+boardComponent1.element.classList.add('self');
 const boardComponent2 = GameboardComponent(gameboard2);
-boardComponent2.classList.add('rival');
-field.appendChild(boardComponent1);
+boardComponent2.element.classList.add('rival');
+field.appendChild(boardComponent1.element);
 field.appendChild(document.createElement('br'));
-field.appendChild(boardComponent2);
+field.appendChild(boardComponent2.element);
 
 Game(
   { board1: gameboard1, board2: gameboard2 },

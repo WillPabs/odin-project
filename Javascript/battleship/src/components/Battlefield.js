@@ -1,11 +1,13 @@
 const Battlefield = (board, attackList) => {
-  const container = document.createElement('div');
-  container.classList.add('battlefield');
+  const element = document.createElement('div');
+  element.classList.add('battlefield');
 
-  container.appendChild(board);
-  container.appendChild(attackList);
+  element.appendChild(board);
+  element.appendChild(attackList);
 
-  return container;
+  return {
+    element,
+  };
 };
 
 export default Battlefield;

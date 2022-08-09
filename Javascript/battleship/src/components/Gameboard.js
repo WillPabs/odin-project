@@ -1,6 +1,6 @@
 const GameboardComponent = (gameboard) => {
-  const container = document.createElement('div');
-  container.classList.add('gameboard');
+  const element = document.createElement('div');
+  element.classList.add('gameboard');
 
   const boardGrid = document.createElement('table');
   boardGrid.classList.add('grid');
@@ -50,9 +50,12 @@ const GameboardComponent = (gameboard) => {
   boardGrid.appendChild(tableHead);
   boardGrid.appendChild(tableBody);
 
-  container.appendChild(boardGrid);
+  element.appendChild(boardGrid);
 
-  return container;
+  return {
+    element,
+    gameboard,
+  };
 };
 
 export default GameboardComponent;
