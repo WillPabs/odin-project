@@ -1,6 +1,12 @@
+import Drag from './drag';
+
 const Game = (boards, players) => {
   const { player1, player2 } = players;
   const { field1, field2 } = boards;
+
+  document.querySelector('.ship-box').addEventListener('dragstart', Drag.start);
+  document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('dragover', Drag.dragover));
+  document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('drop', Drag.drop));
 
   const playButton = document.querySelector('#play');
   playButton.addEventListener('click', () => {
