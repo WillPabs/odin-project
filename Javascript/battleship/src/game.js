@@ -2,14 +2,6 @@ const Game = (boards, players) => {
   const { player1, player2 } = players;
   const { field1, field2 } = boards;
 
-  // const attackList1 = AttackList(field1);
-  // const attackList2 = AttackList(field2);
-
-  // const board1El = document.querySelectorAll('.self tbody .cell');
-  // document.querySelector('.self').appendChild(attackList1.element);
-  // const board2El = document.querySelectorAll('.rival tbody .cell');
-  // document.querySelector('.rival').appendChild(attackList2.element);
-
   const playButton = document.querySelector('#play');
   playButton.addEventListener('click', () => {
     console.log('Game Start');
