@@ -61,7 +61,7 @@ th {
 .cell, td, th {
     flex: 1;
     height: 2em;
-    width: 4em;
+    width: 2em;
 }
 
 .cell {
