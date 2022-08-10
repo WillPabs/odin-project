@@ -18,6 +18,22 @@
     flex: 1;
 }
 
+.ui-draggable {
+    cursor: grab;
+}
+
+.ui-draggable:active {
+    cursor: grabbing;
+}
+
+.ship-box {
+    width: 4em;
+    height: 2em;
+    padding-right: 1px;
+    padding-bottom: 0px;
+    background-color: blue;
+}
+
 .gameboard {
     flex: 1;
     cursor: pointer;
@@ -44,7 +60,8 @@ th {
 
 .cell, td, th {
     flex: 1;
-    height: 50px;
+    height: 2em;
+    width: 4em;
 }
 
 .cell {
