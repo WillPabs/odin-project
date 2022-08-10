@@ -68,6 +68,10 @@ th {
     border: solid 1px;
 }
 
+.cell-busy {
+    cursor: grab;
+}
+
 .cell:hover {
     background-color: lightblue;
     /* cursor: pointer; */
