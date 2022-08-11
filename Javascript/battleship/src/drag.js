@@ -12,6 +12,13 @@ const Drag = (board) => {
 
   const drop = (ev) => {
     ev.preventDefault();
+    let shipLength = dragged.dataset.length;
+    let newTarget = ev.target;
+    while (shipLength > 0) {
+      if (!newTarget) return;
+      newTarget = newTarget.nextSibling;
+      shipLength -= 1;
+    }
     if (ev.target.classList.contains('cell')) {
       console.log(ev.target);
       console.log(dragged);
