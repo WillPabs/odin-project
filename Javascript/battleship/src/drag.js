@@ -1,4 +1,4 @@
-const Drag = (() => {
+const Drag = (board) => {
   let dragged = null;
 
   const start = (ev) => {
@@ -7,22 +7,16 @@ const Drag = (() => {
 
   const dragover = (ev) => {
     ev.preventDefault();
-    ev.dataTransfer.setData('text', ev.target.id);
+    ev.dataTransfer.setData('text', ev.target.dataset.id);
   };
 
-  /* TODO : allow entire ship box to be draggable */
   const drop = (ev) => {
     ev.preventDefault();
     if (ev.target.classList.contains('cell')) {
       console.log(ev.target);
       console.log(dragged);
-      let { target } = ev;
-      target.appendChild(dragged);
-      const shipLength = dragged.dataset.length;
-      for (let i = 0; i < shipLength; i += 1) {
-        target.classList.add('cell-busy');
-        target = target.nextSibling;
-      }
+      const { target } = ev;
+      board.placeShip(target, dragged);
     }
   };
 
@@ -31,6 +25,6 @@ const Drag = (() => {
     dragover,
     drop,
   };
-})();
+};
 
 export default Drag;
