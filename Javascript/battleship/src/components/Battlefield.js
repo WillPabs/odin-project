@@ -7,9 +7,9 @@ const Battlefield = (board, attackList) => {
 
   element.appendChild(board.element);
   element.appendChild(attackList.element);
-  element.appendChild(ShipComponent(Ship(2)));
-  element.appendChild(ShipComponent(Ship(3)));
-  element.appendChild(ShipComponent(Ship(4)));
+  element.appendChild(ShipComponent(Ship(2)).element);
+  element.appendChild(ShipComponent(Ship(3)).element);
+  element.appendChild(ShipComponent(Ship(4)).element);
 
   return {
     element,
