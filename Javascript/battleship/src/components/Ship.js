@@ -5,6 +5,8 @@ const ShipComponent = (ship) => {
 
   element.draggable = true;
 
+  element.style.width = `${ship.length * 2}em`;
+
   element.dataset.length = ship.length;
 
   return element;
