@@ -4,10 +4,6 @@ const Game = (boards, players) => {
   const { player1, player2 } = players;
   const { field1, field2 } = boards;
 
-  document.querySelector('.ship-box').addEventListener('dragstart', Drag.start);
-  document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('dragover', Drag.dragover));
-  document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('drop', Drag.drop));
-
   const playButton = document.querySelector('#play');
   playButton.addEventListener('click', () => {
     console.log('Game Start');
@@ -71,11 +67,22 @@ const Game = (boards, players) => {
     });
   };
 
+  // make it specific to each board
   const playing = () => {
     document.querySelectorAll('.cell').forEach((cell) => {
       cell.addEventListener('click', makeMove);
     });
   };
+
+  const setUp = (board) => {
+    console.log('setting up');
+    const drag = Drag(board);
+    document.querySelectorAll('.ship-box').forEach((ship) => ship.addEventListener('dragstart', drag.start));
+    document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('dragover', drag.dragover));
+    document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('drop', drag.drop));
+  };
+
+  setUp(field1.board);
 };
 
 export default Game;
