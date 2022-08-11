@@ -11,7 +11,10 @@ const ShipComponent = (ship) => {
 
   element.dataset.length = ship.length;
 
-  return element;
+  return {
+    element,
+    ship,
+  };
 };
 
 export default ShipComponent;
