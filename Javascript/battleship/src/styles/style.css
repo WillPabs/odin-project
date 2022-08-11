@@ -27,11 +27,12 @@
 }
 
 .ship-box {
-    width: 4em;
+    /* width: 4em; */
     height: 2em;
     padding-right: 1px;
     padding-bottom: 0px;
     background-color: blue;
+    position: relative;
 }
 
 .gameboard {
