@@ -59,7 +59,9 @@ const GameboardComponent = (gameboard) => {
     const shipLength = dragged.dataset.length;
     for (let i = 0; i < shipLength; i += 1) {
       target.classList.add('cell-busy');
-      const coords = Coords(target.dataset.x, target.dataset.y);
+      const x = Number(content.dataset.x);
+      const y = Number(content.dataset.y) + i;
+      const coords = Coords(x, y);
       gameboard.placeShip(dragged, coords);
       target = target.nextSibling;
     }
