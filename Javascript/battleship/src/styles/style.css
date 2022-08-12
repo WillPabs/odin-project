@@ -27,16 +27,12 @@
 }
 
 .ship-box {
-    /* width: 4em; */
-    height: 2em;
-    padding-right: 1px;
-    padding-bottom: 0px;
+    height: 50px;
     background-color: blue;
     position: relative;
 }
 
 .gameboard {
-    flex: 1;
     cursor: pointer;
 }
 
@@ -61,8 +57,8 @@ th {
 
 .cell, td, th {
     flex: 1;
-    height: 2em;
-    width: 2em;
+    height: 50px;
+    width: 50px;
 }
 
 .cell {
@@ -75,7 +71,6 @@ th {
 
 .cell:hover {
     background-color: lightblue;
-    /* cursor: pointer; */
 }
 
 .cell-fill {
