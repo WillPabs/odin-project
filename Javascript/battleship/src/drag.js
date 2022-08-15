@@ -12,20 +12,20 @@ const Drag = (board) => {
         shipLength -= 1;
       }
     }
-    ev.dataTransfer.setData('text', ev.target.dataset.id);
+    ev.dataTransfer.setData('text', ev.target.id);
   };
 
   const dragover = (ev) => {
     ev.preventDefault();
-    // don't let ship drop if busy is true
-    const busy = checkIfBusy(ev.target, dragged.dataset.length);
-    if (busy) return;
   };
 
   const drop = (ev) => {
     ev.preventDefault();
     let shipLength = dragged.dataset.length;
     let newTarget = ev.target;
+    const busy = checkIfBusy(ev.target, dragged.dataset.length);
+    console.log(busy);
+    if (busy) return;
     while (shipLength > 0) {
       if (!newTarget) return;
       if (newTarget.classList.contains('cell-busy')) return;
@@ -38,46 +38,93 @@ const Drag = (board) => {
     }
   };
 
+  const checkDirection = (x, y, i) => {
+    const directions = [];
+    const left = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y + i - 1}']`);
+    const right = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y + i + 1}']`);
+    const down = document.querySelector(`.cell-content[data-x='${x + 1}'][data-y='${y + i}']`);
+    const up = document.querySelector(`.cell-content[data-x='${x - 1}'][data-y='${y + i}']`);
+    const lld = document.querySelector(`.cell-content[data-x='${x + 1}'][data-y='${y + i - 1}']`);
+    const lud = document.querySelector(`.cell-content[data-x='${x - 1}'][data-y='${y + i - 1}']`);
+    const rld = document.querySelector(`.cell-content[data-x='${x + 1}'][data-y='${y + i + 1}']`);
+    const rud = document.querySelector(`.cell-content[data-x='${x - 1}'][data-y='${y + i + 1}']`);
+    if (x === 0 && y === 0) {
+      directions.push(down);
+      directions.push(right);
+      directions.push(rld);
+    } else if (x === 0 && y === 9) {
+      directions.push(left);
+      directions.push(down);
+      directions.push(lld);
+    } else if (x === 9 && y === 0) {
+      directions.push(up);
+      directions.push(right);
+      directions.push(rud);
+    } else if (x === 9 && y === 9) {
+      directions.push(left);
+      directions.push(up);
+      directions.push(lud);
+    } else if (x === 0 && (y > 0 && y < 9)) {
+      directions.push(left);
+      directions.push(lld);
+      directions.push(down);
+      directions.push(rld);
+      directions.push(right);
+    } else if (y === 0 && (x > 0 && x < 9)) {
+      directions.push(up);
+      directions.push(rud);
+      directions.push(right);
+      directions.push(rld);
+      directions.push(down);
+    } else if (x === 9 && (y > 0 && y < 9)) {
+      directions.push(left);
+      directions.push(lud);
+      directions.push(up);
+      directions.push(rud);
+      directions.push(right);
+    } else if (y === 9 && (x > 0 && x < 9)) {
+      directions.push(up);
+      directions.push(lud);
+      directions.push(left);
+      directions.push(lld);
+      directions.push(down);
+    } else {
+      directions.push(up);
+      directions.push(down);
+      directions.push(left);
+      directions.push(right);
+      directions.push(lud);
+      directions.push(lld);
+      directions.push(rud);
+      directions.push(rld);
+    }
+    return directions;
+  };
+
   const checkIfBusy = (target, length) => {
     console.log(target);
-    const x = Number(target.firstChild.dataset.x);
-    const y = Number(target.firstChild.dataset.y);
-    for (let i = 0; i < length; i += 1) {
-      const left = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y + i - 1}']`);
-      const right = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y + i + 1}']`);
-      const up = document.querySelector(`.cell-content[data-x='${x + 1}'][data-y='${y + i}']`);
-      const down = document.querySelector(`.cell-content[data-x='${x - 1}'][data-y='${y + i}']`);
-      const lud = document.querySelector(`.cell-content[data-x='${x + 1}'][data-y='${y + i - 1}']`);
-      const lld = document.querySelector(`.cell-content[data-x='${x - 1}'][data-y='${y + i - 1}']`);
-      const rud = document.querySelector(`.cell-content[data-x='${x + 1}'][data-y='${y + i + 1}']`);
-      const rld = document.querySelector(`.cell-content[data-x='${x - 1}'][data-y='${y + i + 1}']`);
-      if (i === 0) {
-        console.log(up);
-        console.log(left);
-        console.log(down);
-        console.log(lud);
-        console.log(lld);
-        if (up.classList.contains('cell-busy')
-            || left.classList.contains('cell-busy')
-            || down.classList.contains('cell-busy')
-            || lud.classList.contains('cell-busy')
-            || lld.classList.contains('cell-busy')) { return true; }
-      } else if (i === length - 1) {
-        if (up.classList.contains('cell-busy')
-        || right.classList.contains('cell-busy')
-        || down.classList.contains('cell-busy')
-        || rud.classList.contains('cell-busy')
-        || rld.classList.contains('cell-busy')) { return true; }
-      } else if (up.classList.contains('cell-busy')
-        || down.classList.contains('cell-busy')) { return true; } else { return false; }
+    let x;
+    let y;
+    let id;
+    if (target.classList.contains('ship-box')) {
+      x = Number(target.parentNode.dataset.x);
+      y = Number(target.parentNode.dataset.y);
+      id = Number(target.parentNode.dataset.id);
+    } else {
+      x = Number(target.firstChild.dataset.x);
+      y = Number(target.firstChild.dataset.y);
+      id = Number(target.firstChild.dataset.id);
     }
-    // loop through shiplength
-    // if beginning cell only check up, left, down, left upper and lower diagonal
-    // checks x+1; y-1; x-1; x+1, y-1; x-1, y-1;
-    // if end cell only check up, right, down, right upper and lower diagonal
-    // checks x+1; y+1; x-1; x+1, y+1; x-1, y+1;
-    // else check up, down
-    // checks x+1, x-1
+
+    for (let i = 0; i < length; i += 1) {
+      const directions = checkDirection(x, y, i);
+      for (let j = 0; j < directions.length; j += 1) {
+        const direction = directions[j].parentNode;
+        console.log(direction);
+        if (direction.classList.contains('cell-busy')) { return true; }
+      }
+    }
+    return false;
   };
 
   return {
