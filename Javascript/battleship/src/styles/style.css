@@ -15,6 +15,7 @@
 
 .battlefield {
     display: flex;
+    flex-direction: column;
     flex: 1;
 }
 
@@ -24,6 +25,20 @@
 
 .ui-draggable:active {
     cursor: grabbing;
+}
+
+.shipyard {
+    padding: 2rem;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.shipyard > div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .ship-box {
