@@ -1,15 +1,13 @@
-import ShipComponent from './Ship';
-import Ship from '../ship';
+import Shipyard from './Shipyard';
 
 const Battlefield = (board, attackList) => {
   const element = document.createElement('div');
   element.classList.add('battlefield');
 
+  const shipyard = Shipyard();
   element.appendChild(board.element);
   element.appendChild(attackList.element);
-  element.appendChild(ShipComponent(Ship(2)).element);
-  element.appendChild(ShipComponent(Ship(3)).element);
-  element.appendChild(ShipComponent(Ship(4)).element);
+  element.appendChild(shipyard);
 
   return {
     element,
