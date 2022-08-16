@@ -11,10 +11,10 @@ const Gameboard = (factor) => {
 
 const gameboardFunctions = {
   placeShip(ship, coords, direction = 'horizontal') {
-    if (direction === 'vertical' && coords.x + ship.length > this.size.length) {
+    if (direction === 'vertical' && Number(coords.x) + Number(ship.length) > this.size.length + 1) {
       throw Error('Ship out of bounds');
     }
-    if (direction === 'horizontal' && coords.y + ship.length > this.size[0].length) {
+    if (direction === 'horizontal' && Number(coords.y) + Number(ship.length) > this.size[0].length + 1) {
       throw Error('Ship out of bounds');
     }
 
