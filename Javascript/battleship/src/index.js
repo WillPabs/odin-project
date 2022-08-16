@@ -17,7 +17,6 @@ body.appendChild(playerInput);
 
 const gameboard1 = Gameboard(10);
 const gameboard2 = Gameboard(10);
-gameboard1.generateShips();
 gameboard2.generateShips();
 
 const attackList1 = AttackList(gameboard1);
