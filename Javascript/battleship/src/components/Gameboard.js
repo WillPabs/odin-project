@@ -1,4 +1,5 @@
 import Coords from '../coords';
+import Ship from '../ship';
 
 const GameboardComponent = (gameboard) => {
   const element = document.createElement('div');
@@ -57,12 +58,13 @@ const GameboardComponent = (gameboard) => {
     const content = target.firstChild;
     content.appendChild(dragged);
     const shipLength = dragged.dataset.length;
+    const ship = Ship(dragged.dataset.length);
+    const x = Number(content.dataset.x);
+    const y = Number(content.dataset.y);
+    const coords = Coords(x, y);
+    gameboard.placeShip(ship, coords);
     for (let i = 0; i < shipLength; i += 1) {
       target.classList.add('cell-busy');
-      const x = Number(content.dataset.x);
-      const y = Number(content.dataset.y) + i;
-      const coords = Coords(x, y);
-      gameboard.placeShip(dragged, coords);
       target = target.nextSibling;
     }
   };
