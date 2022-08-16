@@ -55,6 +55,7 @@ const Game = (boards, players) => {
       cell.removeEventListener('click', makeMove);
     });
   };
+
   const addMove = (board) => {
     board.forEach((cell) => {
       cell.addEventListener('click', makeMove);
@@ -85,7 +86,6 @@ const Game = (boards, players) => {
   const playButton = document.querySelector('#play');
   playButton.addEventListener('click', () => {
     console.log('Game Start');
-    console.log(field1.board.gameboard.size);
     playing();
   });
 };
