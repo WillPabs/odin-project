@@ -4,12 +4,6 @@ const Game = (boards, players) => {
   const { player1, player2 } = players;
   const { field1, field2 } = boards;
 
-  const playButton = document.querySelector('#play');
-  playButton.addEventListener('click', () => {
-    console.log('Game Start');
-    playing();
-  });
-
   const turnTracker = [];
   const setTurn = () => {
     if (turnTracker.length === 0) {
@@ -69,6 +63,10 @@ const Game = (boards, players) => {
 
   // make it specific to each board
   const playing = () => {
+    document.querySelectorAll('.ship-box').forEach((ship) => {
+      console.log(ship.parentNode);
+      ship.parentNode.removeChild(ship);
+    });
     document.querySelectorAll('.cell').forEach((cell) => {
       cell.addEventListener('click', makeMove);
     });
@@ -83,6 +81,13 @@ const Game = (boards, players) => {
   };
 
   setUp(field1.board);
+
+  const playButton = document.querySelector('#play');
+  playButton.addEventListener('click', () => {
+    console.log('Game Start');
+    console.log(field1.board.gameboard.size);
+    playing();
+  });
 };
 
 export default Game;
