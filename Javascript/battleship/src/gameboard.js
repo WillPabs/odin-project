@@ -91,15 +91,30 @@ const gameboardFunctions = {
 
     const ship4L_1 = Ship(4);
 
-    const coords1 = Coords(1, 4);
-    const coords2 = Coords(1, 6);
-    const coords3 = Coords(8, 1);
-    const coords4 = Coords(9, 3);
+    const coords1 = Coords(0, 0);
+    const coords2 = Coords(0, 2);
+    const coords3 = Coords(0, 4);
+    const coords4 = Coords(0, 6);
+    const coords5 = Coords(2, 0);
+    const coords6 = Coords(4, 0);
+    const coords7 = Coords(6, 0);
+    const coords8 = Coords(3, 3);
+    const coords9 = Coords(5, 6);
+    const coords10 = Coords(9, 3);
 
     this.placeShip(ship1L_1, coords1);
     this.placeShip(ship1L_2, coords2);
     this.placeShip(ship1L_3, coords3);
     this.placeShip(ship1L_4, coords4);
+
+    this.placeShip(ship2L_1, coords5);
+    this.placeShip(ship2L_2, coords6);
+    this.placeShip(ship2L_3, coords7);
+
+    this.placeShip(ship3L_1, coords8);
+    this.placeShip(ship3L_2, coords9);
+
+    this.placeShip(ship4L_1, coords10);
   },
 };
 
