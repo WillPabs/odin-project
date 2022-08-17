@@ -57,8 +57,8 @@ const GameboardComponent = (gameboard) => {
   const placeShip = (target, dragged) => {
     const content = target.firstChild;
     content.appendChild(dragged);
-    const shipLength = dragged.dataset.length;
-    const ship = Ship(dragged.dataset.length);
+    const shipLength = Number(dragged.dataset.length);
+    const ship = Ship(shipLength);
     const x = Number(content.dataset.x);
     const y = Number(content.dataset.y);
     const coords = Coords(x, y);
