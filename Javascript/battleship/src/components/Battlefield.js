@@ -9,11 +9,15 @@ const Battlefield = (board, attackList) => {
 
   element.appendChild(label);
   element.appendChild(board.element);
-  element.appendChild(attackList.element);
+  // element.appendChild(attackList.element);
   element.appendChild(Shipyard());
 
   const setLabel = (text) => {
     label.textContent = text;
+  };
+
+  const setAttackList = () => {
+    element.appendChild(attackList.element);
   };
 
   return {
@@ -21,6 +25,7 @@ const Battlefield = (board, attackList) => {
     board,
     attackList,
     setLabel,
+    setAttackList,
   };
 };
 
