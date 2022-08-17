@@ -8,10 +8,9 @@ const AttackList = (board) => {
   ships.forEach((ship) => {
     const shipHitArray = document.createElement('div');
     shipHitArray.classList.add('ship');
-    ship.hitArray.forEach((part) => {
+    ship.hitArray.forEach(() => {
       const shipPart = document.createElement('div');
       shipPart.classList.add('ship-part');
-      shipPart.textContent = part;
       shipHitArray.appendChild(shipPart);
     });
 
