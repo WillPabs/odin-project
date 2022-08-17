@@ -1,17 +1,9 @@
 import GameboardComponent from './components/Gameboard';
-import CreatePlayer from './components/CreatePlayer';
 import Gameboard from './gameboard';
 import Player from './player';
 import Game from './game';
-import AttackList from './components/AttackList';
 import './styles/style.css';
 import Battlefield from './components/Battlefield';
-
-const body = document.querySelector('body');
-
-const playerInput = CreatePlayer();
-
-body.appendChild(playerInput);
 
 const gameboard1 = Gameboard(10);
 const gameboard2 = Gameboard(10);
