@@ -1,4 +1,5 @@
 import Drag from './drag';
+import AttackList from './components/AttackList';
 
 const Game = (boards, players) => {
   const { player1, player2 } = players;
@@ -25,14 +26,14 @@ const Game = (boards, players) => {
   };
 
   let currentPlayer = setTurn();
-  const selfBoard = document.querySelector('.self');
-  const rivalBoard = document.querySelector('.rival');
+  const selfBoard = document.querySelector('.self .gameboard');
+  const rivalBoard = document.querySelector('.rival .gameboard');
   const makeMove = (e) => {
     const content = e.target.children[0];
     const { x } = content.dataset;
     const { y } = content.dataset;
     const boardElement = e.target.parentNode.parentNode.parentNode.parentNode;
-    const board = boardElement.classList.contains('self') ? field1.board.gameboard : field2.board.gameboard;
+    const board = boardElement.parentNode.classList.contains('self') ? field1.board.gameboard : field2.board.gameboard;
     const otherBoardElement = board === field1.board.gameboard ? rivalBoard : selfBoard;
     if (!e.target.classList.contains('cell-miss') && !e.target.classList.contains('cell-hit')) {
       removeMove(boardElement.querySelectorAll('.cell'));
@@ -64,8 +65,15 @@ const Game = (boards, players) => {
 
   // make it specific to each board
   const playing = () => {
+    const rival = document.querySelector('.rival');
+    const self = document.querySelector('.self');
+    rival.classList.remove('wait');
+    self.classList.add('wait');
+    const attackList1 = AttackList(field1.board.gameboard);
+    const attackList2 = AttackList(field2.board.gameboard);
+    field1.setAttackList(attackList1);
+    field2.setAttackList(attackList2);
     document.querySelectorAll('.ship-box').forEach((ship) => {
-      console.log(ship.parentNode);
       ship.parentNode.removeChild(ship);
     });
     document.querySelectorAll('.cell').forEach((cell) => {
@@ -75,19 +83,32 @@ const Game = (boards, players) => {
 
   const setUp = (board) => {
     console.log('setting up');
+    document.querySelector('.rival').classList.add('wait');
     const drag = Drag(board);
     document.querySelectorAll('.ship-box').forEach((ship) => ship.addEventListener('dragstart', drag.start));
-    document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('dragover', drag.dragover));
-    document.querySelectorAll('.cell').forEach((cell) => cell.addEventListener('drop', drag.drop));
+    document.querySelectorAll('.self .cell').forEach((cell) => cell.addEventListener('dragover', drag.dragover));
+    document.querySelectorAll('.self .cell').forEach((cell) => cell.addEventListener('drop', drag.drop));
   };
 
   setUp(field1.board);
 
   const playButton = document.querySelector('#play');
   playButton.addEventListener('click', () => {
-    console.log('Game Start');
-    playing();
+    if (!checkAllShipsPlaced()) {
+      alert('Please place all remaining ships on the board');
+    } else {
+      console.log('Game Start');
+      playing();
+    }
   });
+
+  const checkAllShipsPlaced = () => {
+    const ships = document.querySelectorAll('.self .shipyard div');
+    for (const ship of ships) {
+      if (ship.children.length !== 0) return false;
+    }
+    return true;
+  };
 };
 
 export default Game;
