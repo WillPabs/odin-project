@@ -7,15 +7,28 @@
     text-decoration: none;
 }
 
+/* ----------- HEADER ----------- */
+
+header > h2 {
+    display: flex;
+    justify-content: center;
+}
+
 /* ----------- GAMEBOARD ----------- */
 
 .battlefields {
     display: flex;
+    justify-content: center;
 }
 
 .battlefield {
     display: flex;
     flex-direction: column;
+}
+
+.battlefield-label {
+    display: flex;
+    justify-content: center;
 }
 
 .ui-draggable {
