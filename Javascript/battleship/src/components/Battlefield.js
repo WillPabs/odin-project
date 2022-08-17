@@ -1,6 +1,6 @@
 import Shipyard from './Shipyard';
 
-const Battlefield = (board, attackList) => {
+const Battlefield = (board) => {
   const element = document.createElement('div');
   element.classList.add('battlefield');
 
@@ -9,21 +9,19 @@ const Battlefield = (board, attackList) => {
 
   element.appendChild(label);
   element.appendChild(board.element);
-  // element.appendChild(attackList.element);
   element.appendChild(Shipyard());
 
   const setLabel = (text) => {
     label.textContent = text;
   };
 
-  const setAttackList = () => {
+  const setAttackList = (attackList) => {
     element.appendChild(attackList.element);
   };
 
   return {
     element,
     board,
-    attackList,
     setLabel,
     setAttackList,
   };
