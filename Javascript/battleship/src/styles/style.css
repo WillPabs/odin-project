@@ -9,9 +9,9 @@
 
 /* ----------- HEADER ----------- */
 
-header > h2 {
+header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 /* ----------- GAMEBOARD ----------- */
