@@ -1,9 +1,14 @@
 import Drag from './drag';
 import AttackList from './components/AttackList';
+import Gameboard from './gameboard';
+import GameboardComponent from './components/Gameboard';
+import Battlefield from './components/Battlefield';
+import PlayAgain from './components/PlayAgain';
+import { reset } from './utils';
 
 const Game = (boards, players) => {
   const { player1, player2 } = players;
-  const { field1, field2 } = boards;
+  let { field1, field2 } = boards;
 
   const turnTracker = [];
   const setTurn = () => {
@@ -25,9 +30,11 @@ const Game = (boards, players) => {
     }
   };
 
+  // 1st turn will always be self
   let currentPlayer = setTurn();
   const selfBoard = document.querySelector('.self .gameboard');
   const rivalBoard = document.querySelector('.rival .gameboard');
+
   const makeMove = (e) => {
     const content = e.target.children[0];
     const { x } = content.dataset;
@@ -42,9 +49,14 @@ const Game = (boards, players) => {
       currentPlayer.attack(x, y, board);
       addMove(otherBoardElement.querySelectorAll('.cell'));
       boardElement.classList.add('wait');
+      console.log(board);
       if (board.allShipsSunk()) {
         setTimeout(() => {
-          alert(`${currentPlayer.name} has won`);
+          console.log('Game Over')
+          document.querySelector('.battlefields').classList.add('wait');
+          const header = document.querySelector('header h2');
+          header.after(PlayAgain(currentPlayer.name));
+          // alert(`${currentPlayer.name} has won`);
         }, 500);
       }
       currentPlayer = setTurn();
@@ -66,7 +78,7 @@ const Game = (boards, players) => {
   // make it specific to each board
   const playing = () => {
     const rival = document.querySelector('.rival');
-    const self = document.querySelector('.self');
+    const self = document.querySelector('.self .gameboard');
     rival.classList.remove('wait');
     self.classList.add('wait');
     const attackList1 = AttackList(field1.board.gameboard);
@@ -109,6 +121,9 @@ const Game = (boards, players) => {
     }
     return true;
   };
+
+  const resetButton = document.querySelector('#leave-game');
+  resetButton.addEventListener('click', reset);
 };
 
 export default Game;
