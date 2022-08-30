@@ -138,3 +138,14 @@ th {
     width: 10px;
     background-color: blue;
 }
+
+/* ----------- PLAY-AGAIN ----------- */
+
+.play-again-model {
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100px;
+}
