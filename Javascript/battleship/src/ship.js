@@ -10,7 +10,7 @@ const shipFunctions = {
     return this.hitArray.every((hitbox) => hitbox === true);
   },
   hit(num) {
-    this.hitArray[num] = true;
+    if (num < this.length) this.hitArray[num] = true;
   },
 };
 
