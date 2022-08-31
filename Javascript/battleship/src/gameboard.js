@@ -5,6 +5,7 @@ const Gameboard = (factor) => {
   const obj = Object.create(gameboardFunctions);
   obj.size = Array.from(Array(factor), () => (Array(factor)));
   obj.missedAttacks = [];
+  obj.successfulAttacks = [];
   obj.ships = [];
   return obj;
 };
@@ -30,6 +31,7 @@ const gameboardFunctions = {
     if (ship) {
       const position = this.calculateShipPosition(coords);
       ship.hit(position);
+      this.successfulAttacks.push(coords);
     } else {
       this.missedAttacks.push(coords);
     }
