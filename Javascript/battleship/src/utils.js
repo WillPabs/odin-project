@@ -2,7 +2,7 @@ import Battlefield from "./components/Battlefield";
 import GameboardComponent from "./components/Gameboard";
 import Gameboard from "./gameboard";
 
-export const reset = () => {
+export const reset = (field1, field2) => {
     const gameboard1 = Gameboard(10);
     const gameboard2 = Gameboard(10);
     gameboard2.generateShips();
