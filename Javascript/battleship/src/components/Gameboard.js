@@ -69,6 +69,14 @@ const GameboardComponent = (gameboard) => {
     }
   };
 
+  const receiveAttack = (x, y, player, board) => {
+    if (player.name === 'bot') {
+      player.botAttack(board);
+    } else {
+      player.attack(x, y, board);
+    }
+  };
+
   return {
     element,
     gameboard,
