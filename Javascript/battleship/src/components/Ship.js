@@ -5,7 +5,7 @@ const ShipComponent = (ship) => {
 
   element.draggable = true;
 
-  element.style.width = `${ship.length * 50}px`;
+  element.style.width = `${ship.length * 40}px`;
 
   element.dataset.id = Math.floor(Math.random() * 1000);
 
