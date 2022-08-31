@@ -12,14 +12,20 @@
 header {
     display: flex;
     justify-content: space-between;
+    padding: 30px;
+}
+
+header > h2 {
+    font-size: 35px;
 }
 
 #play {
     display: flex;
-    padding: 7px;
+    padding: 7px 30px;
     margin-left: auto;
     margin-right: auto;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 /* ----------- GAMEBOARD ----------- */
@@ -68,8 +74,8 @@ th {
 
 .cell, td, th {
     flex: 1;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 }
 
 .cell {
@@ -109,7 +115,7 @@ th {
 }
 
 .ship-box {
-    height: 50px;
+    height: 40px;
     background-color: blue;
     position: relative;
 }
