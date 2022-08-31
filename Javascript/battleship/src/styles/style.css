@@ -114,6 +114,10 @@ th {
     position: relative;
 }
 
+.rival > .shipyard {
+    display: none;
+}
+
 /* ----------- ATTACK-LIST ----------- */
 
 .attack-list {
