@@ -51,7 +51,7 @@ const Game = (boards, players) => {
       board.size[x][y] === undefined ? e.target.classList.add('cell-miss') : e.target.classList.add('cell-hit');
       currentPlayer.attack(x, y, board);
       if (board.allShipsSunk()) {
-        removeMove(boardCells);
+        // removeMove(boardCells);
         removeMove(otherBoardCells);
         setTimeout(() => {
           console.log('Game Over');
@@ -61,32 +61,27 @@ const Game = (boards, players) => {
         }, 500);
       }
       if (e.target.classList.contains('cell-miss')) {
-        removeMove(boardCells);
+        // removeMove(boardCells);
         addMove(otherBoardCells);
         boardElement.classList.add('wait');
         otherBoardElement.classList.remove('wait');
         currentPlayer = setTurn();
         const otherBoard = boardElement.parentNode.classList.contains('self') ? field2.board.gameboard : field1.board.gameboard;
-        let botAttackCoords = currentPlayer.botAttack(otherBoard);
-        let botX = botAttackCoords.x;
-        let botY = botAttackCoords.y;
-        let targetE = document.querySelector(`.cell-content[data-x='${botX}'][data-y='${botY}']`).parentNode;
-        setTimeout(() => {
+        const botAttack = setInterval(() => {
+          const botAttackCoords = currentPlayer.botAttack(otherBoard);
+          const botX = botAttackCoords.x;
+          const botY = botAttackCoords.y;
+          const targetE = document.querySelector(`.cell-content[data-x='${botX}'][data-y='${botY}']`).parentNode;
           otherBoard.size[botX][botY] === undefined ? targetE.classList.add('cell-miss') : targetE.classList.add('cell-hit');
-        }, 1000);
-        setInterval(() => {
-          botAttackCoords = currentPlayer.botAttack(otherBoard);
-          botX = botAttackCoords.x;
-          botY = botAttackCoords.y;
-          targetE = document.querySelector(`.cell-content[data-x='${botX}'][data-y='${botY}']`).parentNode;
-          otherBoard.size[botX][botY] === undefined ? targetE.classList.add('cell-miss') : targetE.classList.add('cell-hit');
+          console.log(`x: ${botX} y: ${botY} ${currentPlayer.name}`);
           if (targetE.classList.contains('cell-miss')) {
-            addMove(boardCells);
+            // addMove(boardCells);
             removeMove(otherBoardCells);
             boardElement.classList.remove('wait');
             otherBoardElement.classList.add('wait');
             currentPlayer = setTurn();
-            clearInterval();
+            console.log(`After turn ${currentPlayer.name}`);
+            clearInterval(botAttack);
           }
         }, 1000);
       }
@@ -119,7 +114,7 @@ const Game = (boards, players) => {
     document.querySelectorAll('.ship-box').forEach((ship) => {
       ship.parentNode.removeChild(ship);
     });
-    document.querySelectorAll('.cell').forEach((cell) => {
+    document.querySelectorAll('.rival .cell').forEach((cell) => {
       cell.addEventListener('click', makeMove);
     });
   };
