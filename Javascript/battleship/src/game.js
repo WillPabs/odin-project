@@ -1,14 +1,11 @@
 import Drag from './drag';
 import AttackList from './components/AttackList';
-import Gameboard from './gameboard';
-import GameboardComponent from './components/Gameboard';
-import Battlefield from './components/Battlefield';
 import PlayAgain from './components/PlayAgain';
 import { reset } from './utils';
 
 const Game = (boards, players) => {
   const { player1, player2 } = players;
-  let { field1, field2 } = boards;
+  const { field1, field2 } = boards;
 
   const turnTracker = [];
   const setTurn = () => {
@@ -35,6 +32,12 @@ const Game = (boards, players) => {
   const selfBoard = document.querySelector('.self .gameboard');
   const rivalBoard = document.querySelector('.rival .gameboard');
 
+  // playing game with a bot
+  /* 
+    user clicks cell and attacks that board. The turn is passed to the bot where
+  */
+
+  // playing game with another user
   const makeMove = (e) => {
     const content = e.target.children[0];
     const { x } = content.dataset;
@@ -42,24 +45,51 @@ const Game = (boards, players) => {
     const boardElement = e.target.parentNode.parentNode.parentNode.parentNode;
     const board = boardElement.parentNode.classList.contains('self') ? field1.board.gameboard : field2.board.gameboard;
     const otherBoardElement = board === field1.board.gameboard ? rivalBoard : selfBoard;
+    const boardCells = boardElement.querySelectorAll('.cell');
+    const otherBoardCells = otherBoardElement.querySelectorAll('.cell');
     if (!e.target.classList.contains('cell-miss') && !e.target.classList.contains('cell-hit')) {
-      removeMove(boardElement.querySelectorAll('.cell'));
-      otherBoardElement.classList.remove('wait');
       board.size[x][y] === undefined ? e.target.classList.add('cell-miss') : e.target.classList.add('cell-hit');
       currentPlayer.attack(x, y, board);
-      addMove(otherBoardElement.querySelectorAll('.cell'));
-      boardElement.classList.add('wait');
-      console.log(board);
       if (board.allShipsSunk()) {
+        removeMove(boardCells);
+        removeMove(otherBoardCells);
         setTimeout(() => {
-          console.log('Game Over')
+          console.log('Game Over');
           document.querySelector('.battlefields').classList.add('wait');
           const header = document.querySelector('header h2');
           header.after(PlayAgain(currentPlayer.name));
-          // alert(`${currentPlayer.name} has won`);
         }, 500);
       }
-      currentPlayer = setTurn();
+      if (e.target.classList.contains('cell-miss')) {
+        removeMove(boardCells);
+        addMove(otherBoardCells);
+        boardElement.classList.add('wait');
+        otherBoardElement.classList.remove('wait');
+        currentPlayer = setTurn();
+        const otherBoard = boardElement.parentNode.classList.contains('self') ? field2.board.gameboard : field1.board.gameboard;
+        let botAttackCoords = currentPlayer.botAttack(otherBoard);
+        let botX = botAttackCoords.x;
+        let botY = botAttackCoords.y;
+        let targetE = document.querySelector(`.cell-content[data-x='${botX}'][data-y='${botY}']`).parentNode;
+        setTimeout(() => {
+          otherBoard.size[botX][botY] === undefined ? targetE.classList.add('cell-miss') : targetE.classList.add('cell-hit');
+        }, 1000);
+        setInterval(() => {
+          botAttackCoords = currentPlayer.botAttack(otherBoard);
+          botX = botAttackCoords.x;
+          botY = botAttackCoords.y;
+          targetE = document.querySelector(`.cell-content[data-x='${botX}'][data-y='${botY}']`).parentNode;
+          otherBoard.size[botX][botY] === undefined ? targetE.classList.add('cell-miss') : targetE.classList.add('cell-hit');
+          if (targetE.classList.contains('cell-miss')) {
+            addMove(boardCells);
+            removeMove(otherBoardCells);
+            boardElement.classList.remove('wait');
+            otherBoardElement.classList.add('wait');
+            currentPlayer = setTurn();
+            clearInterval();
+          }
+        }, 1000);
+      }
     }
   };
 
@@ -77,6 +107,7 @@ const Game = (boards, players) => {
 
   // make it specific to each board
   const playing = () => {
+    document.querySelector('.self .shipyard').style.display = 'none';
     const rival = document.querySelector('.rival');
     const self = document.querySelector('.self .gameboard');
     rival.classList.remove('wait');
@@ -111,6 +142,7 @@ const Game = (boards, players) => {
     } else {
       console.log('Game Start');
       playing();
+      playButton.style.display = 'none';
     }
   });
 
@@ -123,7 +155,9 @@ const Game = (boards, players) => {
   };
 
   const resetButton = document.querySelector('#leave-game');
-  resetButton.addEventListener('click', reset);
+  resetButton.addEventListener('click', () => {
+    reset(field1, field2);
+  });
 };
 
 export default Game;
