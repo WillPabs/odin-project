@@ -25,6 +25,7 @@ const playerFunctions = {
             found = attackableCells.find(({x, y}) => { x === newCoords.x && y === newCoords.y});
         }
         gameboard.receiveAttack(found);
+        return found;
     }
 }
 
