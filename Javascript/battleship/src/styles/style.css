@@ -40,7 +40,7 @@ header {
 }
 
 .gameboard {
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .wait {
