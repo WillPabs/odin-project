@@ -69,18 +69,35 @@ const GameboardComponent = (gameboard) => {
     }
   };
 
-  const receiveAttack = (x, y, player, board) => {
+  const changeCell = (x, y, target) => {
+    gameboard.size[x][y] === undefined ? target.classList.add('cell-miss') : target.classList.add('cell-hit');
+  };
+
+  const receiveAttack = (player, target = undefined) => {
+    element.classList.remove('wait');
+    let x;
+    let y;
+
     if (player.name === 'bot') {
-      player.botAttack(board);
-    } else {
-      player.attack(x, y, board);
+      ({ x, y } = player.botAttack(gameboard));
+      target = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
     }
+    if (!target.classList.contains('cell-miss') && !target.classList.contains('cell-hit')) {
+      ({ x } = target.children[0].dataset);
+      ({ y } = target.children[0].dataset);
+      player.attack(x, y, gameboard);
+    }
+    console.log(x);
+    console.log(y);
+    console.log(target);
+    changeCell(x, y, target);
   };
 
   return {
     element,
     gameboard,
     placeShip,
+    receiveAttack,
   };
 };
 
