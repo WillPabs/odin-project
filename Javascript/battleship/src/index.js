@@ -4,6 +4,9 @@ import Player from './player';
 import Game from './game';
 import './styles/style.css';
 import Battlefield from './components/Battlefield';
+import Drag from './drag';
+import setUp from './setup';
+import { checkAllShipsPlaced } from './utils';
 
 const gameboard1 = Gameboard(10);
 const gameboard2 = Gameboard(10);
@@ -25,7 +28,18 @@ field2.setLabel('Rival Grid');
 field.appendChild(field1.element);
 field.appendChild(field2.element);
 
-Game(
-  { field1, field2 },
-  { player1: Player('will'), player2: Player('bot') },
-);
+setUp(field1.board);
+
+const playButton = document.querySelector('#play');
+playButton.addEventListener('click', () => {
+  if (!checkAllShipsPlaced()) {
+    alert('Please place all remaining ships on the board');
+  } else {
+    console.log('Game Start');
+    Game(
+      { field1, field2 },
+      { player1: Player('will'), player2: Player('bot') },
+    );
+    playButton.style.display = 'none';
+  }
+});
