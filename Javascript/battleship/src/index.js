@@ -4,7 +4,6 @@ import Player from './player';
 import Game from './game';
 import './styles/style.css';
 import Battlefield from './components/Battlefield';
-import Drag from './drag';
 import setUp from './setup';
 import { checkAllShipsPlaced } from './utils';
 
