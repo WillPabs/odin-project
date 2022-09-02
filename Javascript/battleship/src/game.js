@@ -1,5 +1,6 @@
 import AttackList from './components/AttackList';
 import { reset } from './utils';
+import PlayAgain from './components/PlayAgain';
 
 const Game = (boards, players) => {
   const { player1, player2 } = players;
@@ -25,20 +26,65 @@ const Game = (boards, players) => {
     }
   };
 
-  const makeMove = async (e, field, player) => {
-    field.board.receiveAttack(player, e.target);
+  const isGameOver = (board, player) => {
+    if (board.allShipsSunk()) {
+      setTimeout(() => {
+        console.log('Game Over');
+        document.querySelector('.battlefields').classList.add('wait');
+        const header = document.querySelector('header h2');
+        header.after(PlayAgain(player.name));
+      }, 200);
+    }
   };
 
-  const fullTurn = async (e, field, player) => {
-    field.board.element.classList.remove('wait');
-    await makeMove(e, field, player);
-    field.board.element.classList.add('wait');
+  const isMissedAttack = (target) => {
+    if (target.classList.contains('cell-miss')) {
+      return true;
+    }
+    return false;
+  };
+
+  let { player, field } = setTurn();
+  const playerMove = (e) => {
+    const missedAtkCount = field.board.gameboard.missedAttacks.length;
+    field.board.receiveAttack(player, e.target);
+    isGameOver(field.board.gameboard, player);
+    if (missedAtkCount !== field.board.gameboard.missedAttacks.length) {
+      ({ player, field } = setTurn());
+    }
+  };
+
+  const botMove = () => {
+    const missedAtkCount = field.board.gameboard.missedAttacks.length;
+    field.board.receiveAttack(player);
+    isGameOver(field.board.gameboard, player);
+    if (missedAtkCount !== field.board.gameboard.missedAttacks.length) {
+      ({ player, field } = setTurn());
+    } else {
+      botMove();
+    }
+  };
+
+  const fullTurn = (e) => {
+    field2.board.element.classList.remove('wait');
+    playerMove(e);
+    field2.board.element.classList.add('wait');
     field1.board.element.classList.remove('wait');
-    setTimeout(() => {
-      field1.board.receiveAttack(player2);
-      field1.board.element.classList.add('wait');
-      field2.board.element.classList.remove('wait');
-    }, 1000);
+    // setTimeout(() => {
+    if (player.name === 'bot') {
+      document.querySelectorAll('.rival .cell').forEach((cell) => {
+        cell.removeEventListener('click', fullTurn);
+      });
+      botMove();
+      document.querySelectorAll('.rival .cell').forEach((cell) => {
+        cell.addEventListener('click', fullTurn);
+      });
+    }
+
+    isGameOver(field1.board.gameboard, player2);
+    field1.board.element.classList.add('wait');
+    field2.board.element.classList.remove('wait');
+    // }, 100);
   };
 
   // game starts
@@ -55,13 +101,11 @@ const Game = (boards, players) => {
     ship.parentNode.removeChild(ship);
   });
   document.querySelectorAll('.rival .cell').forEach((cell) => {
-    cell.addEventListener('click', (e) => fullTurn(e, field2, player1));
+    cell.addEventListener('click', fullTurn);
   });
 
-  // 1st turn will always be self
-  // let currentPlayer = setTurn();
-  const selfBoard = document.querySelector('.self .gameboard');
-  const rivalBoard = document.querySelector('.rival .gameboard');
+  // const selfBoard = document.querySelector('.self .gameboard');
+  // const rivalBoard = document.querySelector('.rival .gameboard');
 
   // ({ currentPlayer, currentField } = setTurn());
   // }
