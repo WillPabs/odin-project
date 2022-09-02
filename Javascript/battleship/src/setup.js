@@ -1,6 +1,6 @@
 import Drag from './drag';
 
-const setUp = async (board) => {
+const setUp = (board) => {
   console.log('setting up');
   document.querySelector('.rival').classList.add('wait');
   const drag = Drag(board);
