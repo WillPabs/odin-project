@@ -74,23 +74,24 @@ const GameboardComponent = (gameboard) => {
   };
 
   const receiveAttack = (player, target = undefined) => {
-    element.classList.remove('wait');
     let x;
     let y;
+    let newTarget = target;
 
     if (player.name === 'bot') {
       ({ x, y } = player.botAttack(gameboard));
-      target = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
+      newTarget = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
     }
-    if (!target.classList.contains('cell-miss') && !target.classList.contains('cell-hit')) {
-      ({ x } = target.children[0].dataset);
-      ({ y } = target.children[0].dataset);
+    if (!newTarget.classList.contains('cell-miss') && !newTarget.classList.contains('cell-hit')) {
+      ({ x } = newTarget.children[0].dataset);
+      ({ y } = newTarget.children[0].dataset);
       player.attack(x, y, gameboard);
     }
     console.log(x);
     console.log(y);
-    console.log(target);
-    changeCell(x, y, target);
+    console.log(newTarget);
+    changeCell(x, y, newTarget);
+    return newTarget;
   };
 
   return {
