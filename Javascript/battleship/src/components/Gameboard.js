@@ -73,20 +73,27 @@ const GameboardComponent = (gameboard) => {
     gameboard.size[x][y] === undefined ? target.classList.add('cell-miss') : target.classList.add('cell-hit');
   };
 
-  const receiveAttack = (player, target = undefined) => {
+  const receiveAttack = (player, target) => {
     let x;
     let y;
-    let newTarget = target;
+    let newTarget;
 
-    if (player.name === 'bot') {
+    // if (player.name === 'bot') {
+    //   ({ x, y } = player.botAttack(gameboard));
+    //   newTarget = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
+    // }
+    if (target) {
+      newTarget = target;
+      if (!newTarget.classList.contains('cell-miss') && !newTarget.classList.contains('cell-hit')) {
+        ({ x } = newTarget.children[0].dataset);
+        ({ y } = newTarget.children[0].dataset);
+        player.attack(x, y, gameboard);
+      }
+    } else {
       ({ x, y } = player.botAttack(gameboard));
       newTarget = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
     }
-    if (!newTarget.classList.contains('cell-miss') && !newTarget.classList.contains('cell-hit')) {
-      ({ x } = newTarget.children[0].dataset);
-      ({ y } = newTarget.children[0].dataset);
-      player.attack(x, y, gameboard);
-    }
+    console.log(player.name);
     console.log(x);
     console.log(y);
     console.log(newTarget);
