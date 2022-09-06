@@ -1,9 +1,6 @@
 const Drag = (board) => {
   let dragged = null;
 
-  /* fix bug that allows user to place ships next to eachother
-        problem occurs when user starts drag ship but places it back in same cell
-    */
   const start = (ev) => {
     dragged = ev.target;
     let shipLength = dragged.dataset.length;
