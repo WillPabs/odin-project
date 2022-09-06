@@ -6,6 +6,18 @@ const Game = (boards, players) => {
   const { player1, player2 } = players;
   const { field1, field2 } = boards;
 
+  // game starts
+  document.querySelector('.self .shipyard').style.display = 'none';
+  const rival = document.querySelector('.rival');
+  const self = document.querySelector('.self .gameboard');
+  rival.classList.remove('wait');
+  self.classList.add('wait');
+  field1.board.placeAllShips();
+  const attackList1 = AttackList(field1.board.gameboard);
+  const attackList2 = AttackList(field2.board.gameboard);
+  field1.setAttackList(attackList1);
+  field2.setAttackList(attackList2);
+
   const turnTracker = [];
   const setTurn = () => {
     if (turnTracker.length === 0) {
@@ -51,6 +63,15 @@ const Game = (boards, players) => {
     isGameOver(field.board.gameboard, player);
     if (missedAtkCount !== field.board.gameboard.missedAttacks.length) {
       ({ player, field } = setTurn());
+    } else {
+      // const { id } = e.target.children[0].dataset;
+      const { x } = e.target.children[0].dataset;
+      const { y } = e.target.children[0].dataset;
+      const { id } = field.board.gameboard.size[x][y];
+      console.log(id);
+      console.log(x);
+      console.log(y);
+      attackList2.update(id);
     }
   };
 
@@ -87,17 +108,6 @@ const Game = (boards, players) => {
     // }, 100);
   };
 
-  // game starts
-  document.querySelector('.self .shipyard').style.display = 'none';
-  const rival = document.querySelector('.rival');
-  const self = document.querySelector('.self .gameboard');
-  rival.classList.remove('wait');
-  self.classList.add('wait');
-  field1.board.placeAllShips();
-  const attackList1 = AttackList(field1.board.gameboard);
-  const attackList2 = AttackList(field2.board.gameboard);
-  field1.setAttackList(attackList1);
-  field2.setAttackList(attackList2);
   document.querySelectorAll('.ship-box').forEach((ship) => {
     ship.parentNode.removeChild(ship);
   });
