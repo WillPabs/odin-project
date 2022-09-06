@@ -73,10 +73,6 @@ const GameboardComponent = (gameboard) => {
     let y;
     let newTarget;
 
-    // if (player.name === 'bot') {
-    //   ({ x, y } = player.botAttack(gameboard));
-    //   newTarget = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
-    // }
     if (target) {
       newTarget = target;
       if (!newTarget.classList.contains('cell-miss') && !newTarget.classList.contains('cell-hit')) {
@@ -88,12 +84,7 @@ const GameboardComponent = (gameboard) => {
       ({ x, y } = player.botAttack(gameboard));
       newTarget = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
     }
-    console.log(player.name);
-    console.log(x);
-    console.log(y);
-    console.log(newTarget);
     changeCell(x, y, newTarget);
-    return newTarget;
   };
 
   const placeAllShips = () => {
