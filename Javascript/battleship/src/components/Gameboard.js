@@ -58,11 +58,6 @@ const GameboardComponent = (gameboard) => {
     const content = target.firstChild;
     content.appendChild(dragged);
     const shipLength = Number(dragged.dataset.length);
-    const ship = Ship(shipLength);
-    const x = Number(content.dataset.x);
-    const y = Number(content.dataset.y);
-    const coords = Coords(x, y);
-    gameboard.placeShip(ship, coords);
     for (let i = 0; i < shipLength; i += 1) {
       target.classList.add('cell-busy');
       target = target.nextSibling;
@@ -101,11 +96,25 @@ const GameboardComponent = (gameboard) => {
     return newTarget;
   };
 
+  const placeAllShips = () => {
+    const ships = element.querySelectorAll('.ship-box');
+    ships.forEach((ship) => {
+      const shipLength = Number(ship.dataset.length);
+      const newShip = Ship(shipLength);
+      const parent = ship.parentNode;
+      const x = Number(parent.dataset.x);
+      const y = Number(parent.dataset.y);
+      const coords = Coords(x, y);
+      gameboard.placeShip(newShip, coords);
+    });
+  };
+
   return {
     element,
     gameboard,
     placeShip,
     receiveAttack,
+    placeAllShips,
   };
 };
 
