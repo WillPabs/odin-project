@@ -93,6 +93,7 @@ const Game = (boards, players) => {
   const self = document.querySelector('.self .gameboard');
   rival.classList.remove('wait');
   self.classList.add('wait');
+  field1.board.placeAllShips();
   const attackList1 = AttackList(field1.board.gameboard);
   const attackList2 = AttackList(field2.board.gameboard);
   field1.setAttackList(attackList1);
