@@ -1,5 +1,6 @@
 const Ship = (length) => {
   const obj = Object.create(shipFunctions);
+  obj.id = Math.floor(Math.random() * 1000);
   obj.length = length;
   obj.hitArray = Array(length).fill(false);
   return obj;
