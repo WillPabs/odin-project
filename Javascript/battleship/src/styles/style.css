@@ -150,6 +150,10 @@ th {
     background-color: blue;
 }
 
+.hit {
+    background-color: red;
+}
+
 /* ----------- PLAY-AGAIN ----------- */
 
 .play-again-modal {
