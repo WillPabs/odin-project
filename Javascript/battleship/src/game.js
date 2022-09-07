@@ -49,13 +49,6 @@ const Game = (boards, players) => {
     }
   };
 
-  const isMissedAttack = (target) => {
-    if (target.classList.contains('cell-miss')) {
-      return true;
-    }
-    return false;
-  };
-
   let { player, field } = setTurn();
   const playerMove = (e) => {
     const missedAtkCount = field.board.gameboard.missedAttacks.length;
@@ -64,7 +57,6 @@ const Game = (boards, players) => {
     if (missedAtkCount !== field.board.gameboard.missedAttacks.length) {
       ({ player, field } = setTurn());
     } else {
-      // const { id } = e.target.children[0].dataset;
       const { x } = e.target.children[0].dataset;
       const { y } = e.target.children[0].dataset;
       const { id } = field.board.gameboard.size[x][y];
@@ -91,21 +83,21 @@ const Game = (boards, players) => {
     playerMove(e);
     field2.board.element.classList.add('wait');
     field1.board.element.classList.remove('wait');
-    // setTimeout(() => {
-    if (player.name === 'bot') {
-      document.querySelectorAll('.rival .cell').forEach((cell) => {
-        cell.removeEventListener('click', fullTurn);
-      });
-      botMove();
-      document.querySelectorAll('.rival .cell').forEach((cell) => {
-        cell.addEventListener('click', fullTurn);
-      });
-    }
+    setTimeout(() => {
+      if (player.name === 'bot') {
+        document.querySelectorAll('.rival .cell').forEach((cell) => {
+          cell.removeEventListener('click', fullTurn);
+        });
+        botMove();
+        document.querySelectorAll('.rival .cell').forEach((cell) => {
+          cell.addEventListener('click', fullTurn);
+        });
+      }
 
-    isGameOver(field1.board.gameboard, player2);
-    field1.board.element.classList.add('wait');
-    field2.board.element.classList.remove('wait');
-    // }, 100);
+      isGameOver(field1.board.gameboard, player2);
+      field1.board.element.classList.add('wait');
+      field2.board.element.classList.remove('wait');
+    }, 1000);
   };
 
   document.querySelectorAll('.ship-box').forEach((ship) => {
