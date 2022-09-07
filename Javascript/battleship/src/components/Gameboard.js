@@ -85,6 +85,7 @@ const GameboardComponent = (gameboard) => {
       newTarget = document.querySelector(`.cell-content[data-x='${x}'][data-y='${y}']`).parentNode;
     }
     changeCell(x, y, newTarget);
+    return { x, y };
   };
 
   const placeAllShips = () => {
