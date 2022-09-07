@@ -52,28 +52,25 @@ const Game = (boards, players) => {
   let { player, field } = setTurn();
   const playerMove = (e) => {
     const missedAtkCount = field.board.gameboard.missedAttacks.length;
-    field.board.receiveAttack(player, e.target);
+    const { x, y } = field.board.receiveAttack(player, e.target);
     isGameOver(field.board.gameboard, player);
     if (missedAtkCount !== field.board.gameboard.missedAttacks.length) {
       ({ player, field } = setTurn());
     } else {
-      const { x } = e.target.children[0].dataset;
-      const { y } = e.target.children[0].dataset;
       const { id } = field.board.gameboard.size[x][y];
-      console.log(id);
-      console.log(x);
-      console.log(y);
       attackList2.update(id);
     }
   };
 
   const botMove = () => {
     const missedAtkCount = field.board.gameboard.missedAttacks.length;
-    field.board.receiveAttack(player);
+    const { x, y } = field.board.receiveAttack(player);
     isGameOver(field.board.gameboard, player);
     if (missedAtkCount !== field.board.gameboard.missedAttacks.length) {
       ({ player, field } = setTurn());
     } else {
+      const { id } = field.board.gameboard.size[x][y];
+      attackList1.update(id);
       botMove();
     }
   };
@@ -81,23 +78,22 @@ const Game = (boards, players) => {
   const fullTurn = (e) => {
     field2.board.element.classList.remove('wait');
     playerMove(e);
-    field2.board.element.classList.add('wait');
-    field1.board.element.classList.remove('wait');
-    setTimeout(() => {
-      if (player.name === 'bot') {
-        document.querySelectorAll('.rival .cell').forEach((cell) => {
-          cell.removeEventListener('click', fullTurn);
-        });
+    if (player.name === 'bot') {
+      field2.board.element.classList.add('wait');
+      field1.board.element.classList.remove('wait');
+      document.querySelectorAll('.rival .cell').forEach((cell) => {
+        cell.removeEventListener('click', fullTurn);
+      });
+      setTimeout(() => {
         botMove();
+        field1.board.element.classList.add('wait');
+        field2.board.element.classList.remove('wait');
         document.querySelectorAll('.rival .cell').forEach((cell) => {
           cell.addEventListener('click', fullTurn);
         });
-      }
-
-      isGameOver(field1.board.gameboard, player2);
-      field1.board.element.classList.add('wait');
-      field2.board.element.classList.remove('wait');
-    }, 1000);
+      }, 1000);
+    }
+    isGameOver(field1.board.gameboard, player2);
   };
 
   document.querySelectorAll('.ship-box').forEach((ship) => {
@@ -107,6 +103,7 @@ const Game = (boards, players) => {
     cell.addEventListener('click', fullTurn);
   });
 
+  // ---- 2 PLAYER LOGIC ----
   // const selfBoard = document.querySelector('.self .gameboard');
   // const rivalBoard = document.querySelector('.rival .gameboard');
 
