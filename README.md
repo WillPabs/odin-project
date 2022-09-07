@@ -18,4 +18,5 @@ Javascript Projects
 - [Restaurant](https://willpabs.github.io/odin-project/Javascript/Restaurant/dist) <a href="https://github.com/WillPabs/odin-project/tree/main/Javascript/Restaurant"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 - [Todo-List](https://willpabs.github.io/odin-project/Javascript/todo-list/dist)  <a href="https://github.com/WillPabs/odin-project/tree/main/Javascript/todo-list"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 - [Weather App](https://willpabs.github.io/odin-project/Javascript/weather-app/dist)  <a href="https://github.com/WillPabs/odin-project/tree/main/Javascript/weather-app"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
+- [Battleship](https://willpabs.github.io/odin-project/Javascript/battleship/dist)  <a href="https://github.com/WillPabs/odin-project/tree/main/Javascript/battleship"><img src="https://materialdesignicons.com/icon/code-braces-box" width="20" height="20" /></a>
 
