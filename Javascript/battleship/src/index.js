@@ -34,7 +34,6 @@ playButton.addEventListener('click', () => {
   if (!checkAllShipsPlaced()) {
     alert('Please place all remaining ships on the board');
   } else {
-    console.log('Game Start');
     Game(
       { field1, field2 },
       { player1: Player('will'), player2: Player('bot') },

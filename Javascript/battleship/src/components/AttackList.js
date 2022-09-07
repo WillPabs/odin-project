@@ -3,7 +3,6 @@ const AttackList = (board) => {
 
   const element = document.createElement('div');
   element.classList.add('attack-list');
-  console.log(ships);
 
   ships.forEach((ship) => {
     const { length } = ship;
@@ -24,17 +23,6 @@ const AttackList = (board) => {
     element.appendChild(shipHitArray);
   });
 
-  const render = () => {
-    ships.forEach((ship) => {
-      ship.hitArray.forEach((part) => {
-        const shipPart = document.querySelector('.ship-part');
-        shipPart.innerHTML = part;
-        console.log(shipPart);
-        console.log(part);
-      });
-    });
-  };
-
   const update = (id) => {
     const ship = document.querySelector(`.ship[data-id='${id}']`);
     const found = [...ship.children].find((part) => !part.classList.contains('hit'));
@@ -42,7 +30,6 @@ const AttackList = (board) => {
   };
   return {
     element,
-    render,
     update,
   };
 };
